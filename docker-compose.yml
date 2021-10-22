@@ -61,7 +61,7 @@ services:
   # Celery worker that executes celery tasks created by Django.
   celery:
     << : *default-common-django
-    image: ${COMPOSE_PROJECT_NAME}_celery
+    image: ${COMPOSE_PROJECT_NAME}_django:latest
     container_name: ${COMPOSE_PROJECT_NAME}_celery
     depends_on:
       - django
