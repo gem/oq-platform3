@@ -271,7 +271,7 @@ devtest_run () {
     local deps old_ifs branch_id="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4"
 
     if [ "$branch_geonode" == "" ] ; then
-        branch_geonode="2.6.x"
+        branch_geonode=$branch_id
     fi
 
 #    if [ "$branch_id" = "$plugins_branch_id" ]; then
