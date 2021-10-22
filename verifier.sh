@@ -236,8 +236,6 @@ _devtest_innervm_run () {
 
     repo_id="$GEM_GIT_REPO"
 
-    scp install.sh "$lxc_ip:"
-
     if [ -d "_shuttle" ]; then
         rm -rf _shuttle
     fi
