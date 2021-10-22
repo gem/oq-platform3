@@ -40,6 +40,22 @@ volumes:
 
 services:
 
+  # PostGIS database.
+  db:
+    # use geonode official postgis 13 image
+    image: geonode/postgis:13
+    command: postgres -c "max_connections=${POSTGRESQL_MAX_CONNECTIONS}"
+    container_name: ${COMPOSE_PROJECT_NAME}_db
+    env_file:
+      - .env
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - dbbackups:/pg_backups
+    restart: on-failure
+    # uncomment to enable remote connections to postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+
   # Our custom django application. It includes Geonode.
   django:
     << : *default-common-django
@@ -57,18 +73,21 @@ services:
       - IS_CELERY=False
     entrypoint: ["/usr/src/{{project_name}}/entrypoint.sh"]
     command: "uwsgi --ini /usr/src/{{project_name}}/uwsgi.ini"
+    depends_on:
+      - db
 
   # Celery worker that executes celery tasks created by Django.
   celery:
     << : *default-common-django
     image: ${COMPOSE_PROJECT_NAME}_django:latest
     container_name: ${COMPOSE_PROJECT_NAME}_celery
-    depends_on:
-      - django
     environment:
       - IS_CELERY=True
     entrypoint: ["/usr/src/{{project_name}}/entrypoint.sh"]
     command: "celery-cmd"
+    depends_on:
+      - db
+      - django
 
   # Vanilla RabbitMQ service. This is needed by celery
   rabbitmq:
@@ -77,6 +96,8 @@ services:
     volumes:
       - rabbitmq:/var/lib/rabbitmq
     restart: on-failure
+    depends_on:
+      - db
 
   # Nginx is serving django static and media files and proxies to django and geonode
   geonode:
@@ -98,6 +119,8 @@ services:
       - nginx-certificates:/geonode-certificates
       - statics:/mnt/volumes/statics
     restart: on-failure
+    depends_on:
+      - db
 
   # Gets and installs letsencrypt certificates
   letsencrypt:
@@ -112,6 +135,8 @@ services:
     volumes:
       - nginx-certificates:/geonode-certificates
     restart: on-failure
+    depends_on:
+      - db
 
   # Geoserver backend
   geoserver:
@@ -133,6 +158,8 @@ services:
       - data:/data
       - tmp:/tmp
     restart: on-failure
+    depends_on:
+      - db
 
   data-dir-conf:
     image: geonode/geoserver_data:2.19.x
@@ -141,19 +168,3 @@ services:
     volumes:
       - geoserver-data-dir:/geoserver_data/data
     restart: on-failure
-
-  # PostGIS database.
-  db:
-    # use geonode official postgis 13 image
-    image: geonode/postgis:13
-    command: postgres -c "max_connections=${POSTGRESQL_MAX_CONNECTIONS}"
-    container_name: ${COMPOSE_PROJECT_NAME}_db
-    env_file:
-      - .env
-    volumes:
-      - dbdata:/var/lib/postgresql/data
-      - dbbackups:/pg_backups
-    restart: on-failure
-    # uncomment to enable remote connections to postgres
-    ports:
-      - "5432:5432"
