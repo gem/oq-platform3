@@ -56,13 +56,13 @@ fi
 set -e
 
 GEM_GIT_REPO="git://github.com/gem"
-GEM_GIT_PACKAGE="oq-platform2"
+GEM_GIT_PACKAGE="oq-platform3"
 
 if [ "$GEM_EPHEM_CMD" = "" ]; then
     GEM_EPHEM_CMD="lxc-copy"
 fi
 if [ "$GEM_EPHEM_NAME" = "" ]; then
-    GEM_EPHEM_NAME="ubuntu16-x11-lxc-eph"
+    GEM_EPHEM_NAME="bullseye-x11-oqplatform3"
 fi
 
 LXC_VER=$(lxc-ls --version | cut -d '.' -f 1)
