@@ -19,6 +19,8 @@ NAME_PROJECT="openquakeplatform"
 set -x
 . .gem_init.sh
 
+cd $HOME
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
@@ -49,9 +51,9 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
-python3.8 -m venv $HOME/oq-platform3
+python3.8 -m venv $HOME/platform3
 
-source $HOME/oq-platform3/bin/activate
+source $HOME/platform3/bin/activate
 
 pip install Django==3.2
 
