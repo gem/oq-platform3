@@ -252,10 +252,11 @@ export GEM_GIT_PACKAGE=\"$GEM_GIT_PACKAGE\"
 export GEM_TEST_LATEST=\"$GEM_TEST_LATEST\"
 export plugins_branch_id=\"$plugins_branch_id\"
 #
-echo "Your shell is currently working in '$(pwd)'."
+echo "Your shell is currently working in '$(pwd)'. "
 #
 ls -lrt
 \"./install.sh\" \"$branch_id\" \"$branch_geonode\" \"$GEM_GIT_PACKAGE\" \"$lxc_ip\" \"$notests\" \"$plugins_branch_id\"
+"
     echo "_devtest_innervm_run: exit"
 
     return 0
