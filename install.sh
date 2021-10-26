@@ -83,6 +83,9 @@ exec_test () {
     pip install nose
     wget "https://ftp.openquake.org/common/selenium-deps"
     . selenium-deps
+    wget "http://ftp.openquake.org/mirror/mozilla/geckodriver-v${GEM_GECKODRIVER_VERSION}-linux64.tar.gz"
+    tar zxvf "geckodriver-v${GEM_GECKODRIVER_VERSION}-linux64.tar.gz"
+    sudo cp geckodriver /usr/local/bin
     pip install -U selenium==${GEM_SELENIUM_VERSION}
 
     cp $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py.tmpl $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py
