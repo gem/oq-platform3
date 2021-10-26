@@ -81,8 +81,8 @@ echo "Installation complete."
 #function complete procedure for tests
 exec_test () {    
     pip install nose
-    wget "https://ftp.openquake.org/common/selenium-deps"
-    . selenium-deps
+    wget "https://ftp.openquake.org/common/selenium-deps3"
+    . selenium-deps3
     wget "http://ftp.openquake.org/mirror/mozilla/geckodriver-v${GEM_GECKODRIVER_VERSION}-linux64.tar.gz"
     tar zxvf "geckodriver-v${GEM_GECKODRIVER_VERSION}-linux64.tar.gz"
     sudo cp geckodriver /usr/local/bin
