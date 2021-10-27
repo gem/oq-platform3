@@ -253,7 +253,7 @@ _devtest_innervm_run () {
 	export plugins_branch_id=${plugins_branch_id}
    	cd $GEM_GIT_PACKAGE
    	sleep 50000
-	EOF
+EOF
 
     echo "_devtest_innervm_run: exit"
 
