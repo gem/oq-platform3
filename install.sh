@@ -17,7 +17,6 @@ NAME_PROJECT="openquakeplatform"
 
 #display each command before executing it
 set -x
-. .gem_init.sh
 
 cd $HOME
 
