@@ -246,14 +246,16 @@ _devtest_innervm_run () {
     rm -rf _shuttle
 
     ssh -t $lxc_ip << EOF
+	id
     export GEM_SET_DEBUG=${GEM_SET_DEBUG}
    	export GEM_GIT_REPO=${GEM_GIT_REPO}
    	export GEM_GIT_PACKAGE=${GEM_GIT_PACKAGE}
    	export GEM_TEST_LATEST=${GEM_TEST_LATEST}
 	export plugins_branch_id=${plugins_branch_id}
-   	cd $GEM_GIT_PACKAGE
+   	cd ${GEM_GIT_PACKAGE}
+	pwd
 
-	\"./install.sh\" \"$branch_id\" \"$branch_geonode\" \"$GEM_GIT_PACKAGE\" \"$lxc_ip\" \"$notests\" \"$plugins_branch_id\"
+	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${lxc_ip} ${notests} ${plugins_branch_id}
 EOF
 
     echo "_devtest_innervm_run: exit"
