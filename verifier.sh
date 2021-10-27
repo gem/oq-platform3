@@ -245,14 +245,14 @@ _devtest_innervm_run () {
     scp -r "_shuttle/$GEM_GIT_PACKAGE" ${lxc_ip}:
     rm -rf _shuttle
 
-    ssh -t  $lxc_ip < EOF
-      export GEM_SET_DEBUG=${GEM_SET_DEBUG}
-   	  export GEM_GIT_REPO=${GEM_GIT_REPO}
-   	  export GEM_GIT_PACKAGE=${GEM_GIT_PACKAGE}
-   	  export GEM_TEST_LATEST=${GEM_TEST_LATEST}
-	  export plugins_branch_id=${plugins_branch_id}
-   	  cd $GEM_GIT_PACKAGE
-   	  sleep 50000
+    ssh -t $lxc_ip << EOF
+    export GEM_SET_DEBUG=${GEM_SET_DEBUG}
+   	export GEM_GIT_REPO=${GEM_GIT_REPO}
+   	export GEM_GIT_PACKAGE=${GEM_GIT_PACKAGE}
+   	export GEM_TEST_LATEST=${GEM_TEST_LATEST}
+	export plugins_branch_id=${plugins_branch_id}
+   	cd $GEM_GIT_PACKAGE
+   	sleep 50000
 	EOF
 
     echo "_devtest_innervm_run: exit"
