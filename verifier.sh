@@ -252,7 +252,8 @@ _devtest_innervm_run () {
    	export GEM_TEST_LATEST=${GEM_TEST_LATEST}
 	export plugins_branch_id=${plugins_branch_id}
    	cd $GEM_GIT_PACKAGE
-   	sleep 50000
+
+	\"./install.sh\" \"$branch_id\" \"$branch_geonode\" \"$GEM_GIT_PACKAGE\" \"$lxc_ip\" \"$notests\" \"$plugins_branch_id\"
 EOF
 
     echo "_devtest_innervm_run: exit"
