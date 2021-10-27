@@ -95,6 +95,7 @@ exec_test () {
     export DISPLAY=:1
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
 
+    export DISPLAY=:1
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test || true
     # sleep 40000 || true
 }
