@@ -335,7 +335,7 @@ sig_hand () {
     echo "sig_hand begin $$ [$lxc_name]" >> /tmp/sig_hand.log
 
     if [ "$lxc_name" != "" ]; then
-        ssh -t  $lxc_ip ". env/bin/activate ; export PYTHONPATH=:$HOME/oq-platform2:$HOME/oq-platform-taxtweb:$HOME/oq-platform-ipt ; export DJANGO_SETTINGS_MODULE='openquakeplatform.settings ; sudo supervisorctl stop openquake-webui ; sleep 3 ; cd geonode ; paver stop"
+        ssh -t  $lxc_ip ". env/bin/activate ; export PYTHONPATH=:$HOME/oq-platform3; export DJANGO_SETTINGS_MODULE='openquakeplatform.settings ; sleep 3 ;"
 
         copy_common "$ACTION"
         copy_dev
