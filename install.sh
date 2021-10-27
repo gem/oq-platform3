@@ -78,6 +78,8 @@ sleep 50
 
 echo "Installation complete."
 
+sleep 50000
+
 #function complete procedure for tests
 exec_test () {    
     pip install nose
