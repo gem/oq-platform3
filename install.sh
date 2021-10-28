@@ -55,15 +55,14 @@ inst_docker
 git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
 python3.8 -m venv $HOME/platform3
-
 source $HOME/platform3/bin/activate
 
+cp -pr $HOME/geonode-project .
 pip install Django==3.2
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
-cp -pr $HOME/geonode-project .
 
 docker-compose build --no-cache
 docker-compose up -d db
