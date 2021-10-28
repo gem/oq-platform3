@@ -9,7 +9,7 @@ x-common-django:
   env_file:
     - .env
   volumes:
-    # - '.:/usr/src/{{project_name}}'
+    # - '.:/usr/src/openquakeplatform'
     - statics:/mnt/volumes/statics
     - geoserver-data-dir:/geoserver_data/data
     - backup-restore:/backup_restore
@@ -71,8 +71,8 @@ services:
       start_period: 60s
     environment:
       - IS_CELERY=False
-    entrypoint: ["/usr/src/{{project_name}}/entrypoint.sh"]
-    command: "uwsgi --ini /usr/src/{{project_name}}/uwsgi.ini"
+    entrypoint: ["/usr/src/openquakeplatform/entrypoint.sh"]
+    command: "uwsgi --ini /usr/src/openquakeplatform/uwsgi.ini"
     depends_on:
       - db
 
@@ -83,7 +83,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_celery
     environment:
       - IS_CELERY=True
-    entrypoint: ["/usr/src/{{project_name}}/entrypoint.sh"]
+    entrypoint: ["/usr/src/openquakeplatform/entrypoint.sh"]
     command: "celery-cmd"
     depends_on:
       - db
@@ -102,7 +102,7 @@ services:
   # Nginx is serving django static and media files and proxies to django and geonode
   geonode:
     image: geonode/nginx:3.x
-    build: ./docker/nginx/
+    build: ../geonode-project/docker/nginx/
     container_name: ${COMPOSE_PROJECT_NAME}_nginx
     environment:
       - HTTPS_HOST=${HTTPS_HOST}
@@ -125,7 +125,7 @@ services:
   # Gets and installs letsencrypt certificates
   letsencrypt:
     image: geonode/letsencrypt:latest
-    build: ./docker/letsencrypt/
+    build: ../geonode-project/docker/letsencrypt/
     container_name: ${COMPOSE_PROJECT_NAME}_letsencrypt
     environment:
       - HTTPS_HOST=${HTTPS_HOST}
@@ -141,8 +141,8 @@ services:
   # Geoserver backend
   geoserver:
     image: geonode/geoserver:2.19.x
-    build: ./docker/geoserver/
-    container_name: ${COMPOSE_PROJECT_NAME}_geoserver4
+    build: ../geonode-project/docker/geoserver/
+    container_name: ${COMPOSE_PROJECT_NAME}_geoserver3
     healthcheck:
       test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.0.0.1:8080/geoserver/rest/workspaces/geonode.html"
       interval: 60s

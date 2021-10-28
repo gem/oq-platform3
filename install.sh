@@ -50,6 +50,9 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
+#clone of repo 3.2.x 
+git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
+
 python3.8 -m venv $HOME/platform3
 
 source $HOME/platform3/bin/activate
