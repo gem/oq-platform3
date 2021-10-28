@@ -58,7 +58,7 @@ RUN pip install --upgrade --no-cache-dir  --src /usr/src -r requirements.txt \
     && pip install pygdal==$(gdal-config --version).* \
     && pip install flower==0.9.4
 
-#RUN pip install --upgrade  -e geonode-project/
+RUN cd geonode-project && pip install --upgrade  -e .
 
 # Activate "memcached"
 RUN apt install -y memcached
@@ -66,9 +66,9 @@ RUN pip install pylibmc \
     && pip install sherlock
 
 # Install "geonode-contribs" apps
-#RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b master
+RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b master
 # Install logstash and centralized dashboard dependencies
-#RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install --upgrade  -e . \
-#    cd /usr/src/geonode-contribs/ldap; pip install --upgrade  -e .
+RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install --upgrade  -e . \
+    cd /usr/src/geonode-contribs/ldap; pip install --upgrade  -e .
 
 ENTRYPOINT /usr/src/{{project_name}}/entrypoint.sh

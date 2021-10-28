@@ -5,7 +5,7 @@ services:
 x-common-django:
   &default-common-django
   image: ${COMPOSE_PROJECT_NAME}_django:latest
-  restart: on-failure
+  restart: unless-stopped
   env_file:
     - .env
   volumes:
@@ -188,20 +188,20 @@ services:
     restart: on-failure
 
   # Gets and installs letsencrypt certificates
-  letsencrypt:
-    image: geonode/letsencrypt:latest
-    build: geonode-project/docker/letsencrypt/
-    container_name: ${COMPOSE_PROJECT_NAME}_letsencrypt
+  #letsencrypt:
+  #  image: geonode/letsencrypt:latest
+  #  build: geonode-project/docker/letsencrypt/
+  #  container_name: ${COMPOSE_PROJECT_NAME}_letsencrypt
     #environment:
     #  - HTTPS_HOST=${HTTPS_HOST}
     #- HTTP_HOST=${HTTP_HOST}
     #- ADMIN_EMAIL=${ADMIN_EMAIL}
     #- LETSENCRYPT_MODE=${LETSENCRYPT_MODE}
-    env_file:
-      - .env
-    volumes:
-      - nginx-certificates:/geonode-certificates
-    restart: on-failure
+    #  env_file:
+    #     - .env
+    #   volumes:
+    #     - nginx-certificates:/geonode-certificates
+    #  restart: on-failure
 
   data-dir-conf:
     image: geonode/geoserver_data:2.18.x
@@ -213,4 +213,3 @@ services:
         org.geonode.component: conf
         org.geonode.instance.name: geonode
     restart: on-failure
-
