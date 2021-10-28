@@ -53,14 +53,11 @@ inst_docker
 
 #clone of repo 3.2.x 
 git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
+cp -pr $HOME/geonode-project ./oq-platform3
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-pwd
-ls
-
-cp -pr $HOME/geonode-project ./oq-platform3
 pip install Django==3.2
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
