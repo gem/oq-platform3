@@ -61,7 +61,7 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 cd $NAME_PROJECT
 
 docker-compose build --no-cache
-docker-compose up db -d
+docker-compose up -d db
 
 sleep 15
 
