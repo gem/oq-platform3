@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 COPY geonode-project/ /usr/src/{{project_name}}/
 WORKDIR /usr/src/{{project_name}}
 
-COPY geonode-projetc/monitoring-cron /etc/cron.d/monitoring-cron
+COPY geonode-project/monitoring-cron /etc/cron.d/monitoring-cron
 RUN chmod 0644 /etc/cron.d/monitoring-cron
 RUN crontab /etc/cron.d/monitoring-cron
 RUN touch /var/log/cron.log
@@ -59,7 +59,7 @@ RUN pip install --upgrade --no-cache-dir  --src /usr/src -r requirements.txt \
     && pip install pygdal==$(gdal-config --version).* \
     && pip install flower==0.9.4
 
-RUN pip install --upgrade  -e .
+#RUN pip install --upgrade  -e geonode-project/
 
 # Activate "memcached"
 RUN apt install -y memcached
