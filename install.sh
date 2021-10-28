@@ -19,6 +19,7 @@ NAME_PROJECT="openquakeplatform"
 set -x
 
 cd $HOME
+rm -rf platform3/ openquakeplatform/ geonode-project/
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -62,6 +63,7 @@ pip install Django==3.2
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
+cp -pr $HOME/geonode-project .
 
 docker-compose build --no-cache
 docker-compose up -d db

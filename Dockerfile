@@ -28,24 +28,24 @@ RUN apt-get update && apt-get install -y \
 
 
 # add bower and grunt command
-COPY ../geonode-project/ /usr/src/{{project_name}}/
+COPY geonode-project/ /usr/src/{{project_name}}/
 WORKDIR /usr/src/{{project_name}}
 
-COPY ../geonode-projetc/monitoring-cron /etc/cron.d/monitoring-cron
+COPY geonode-projetc/monitoring-cron /etc/cron.d/monitoring-cron
 RUN chmod 0644 /etc/cron.d/monitoring-cron
 RUN crontab /etc/cron.d/monitoring-cron
 RUN touch /var/log/cron.log
 RUN service cron start
 
-COPY ../geonode-project/wait-for-databases.sh /usr/bin/wait-for-databases
+COPY geonode-project/wait-for-databases.sh /usr/bin/wait-for-databases
 RUN chmod +x /usr/bin/wait-for-databases
 RUN chmod +x /usr/src/{{project_name}}/tasks.py \
     && chmod +x /usr/src/{{project_name}}/entrypoint.sh
 
-COPY ../geonode-project/celery.sh /usr/bin/celery-commands
+COPY geonode-project/celery.sh /usr/bin/celery-commands
 RUN chmod +x /usr/bin/celery-commands
 
-COPY ../geonode-project/celery-cmd /usr/bin/celery-cmd
+COPY geonode-project/celery-cmd /usr/bin/celery-cmd
 RUN chmod +x /usr/bin/celery-cmd
 
 # Prepraing dependencies
