@@ -21,6 +21,7 @@ set -x
 cd $HOME
 rm -rf platform3/ openquakeplatform/ geonode-project/
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
+rm -rf $GEM_GIT_REPO/geonode-project
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
