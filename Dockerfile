@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
 
 # add bower and grunt command
 COPY geonode-project/ /usr/src/{{project_name}}/
+COPY pla_common/ /usr/src/{{project_name}}/
 WORKDIR /usr/src/{{project_name}}
 
 COPY geonode-project/monitoring-cron /etc/cron.d/monitoring-cron
