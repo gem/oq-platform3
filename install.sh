@@ -19,7 +19,9 @@ NAME_PROJECT="openquakeplatform"
 set -x
 
 cd $HOME
-
+rm -rf platform3/ openquakeplatform/ geonode-project/
+sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
+rm -rf $GEM_GIT_REPO/geonode-project
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
@@ -50,8 +52,11 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
-python3.8 -m venv $HOME/platform3
+#clone of repo 3.2.x 
+git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
+cp -pr $HOME/geonode-project ./oq-platform3
 
+python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
 pip install Django==3.2
@@ -61,9 +66,9 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 cd $NAME_PROJECT
 
 docker-compose build --no-cache
-docker-compose up db -d
+docker-compose up -d db
 
-sleep 10
+sleep 15
 
 docker-compose up -d
 
@@ -73,14 +78,16 @@ docker-compose up -d
 #while since apache is up
 #while ! ps aux | grep apache; do echo "wait for apache be ready"; done
 
-sleep 50
+sleep 200
 
 echo "Installation complete."
 
-sleep 50000
 
 #function complete procedure for tests
 exec_test () {    
+    python3.8 -m venv venv
+    source ./venv/bin/activate
+    cd $HOME
     pip install nose
     wget "https://ftp.openquake.org/common/selenium-deps3"
     . selenium-deps3
@@ -90,8 +97,7 @@ exec_test () {
     pip install -U selenium==${GEM_SELENIUM_VERSION}
 
     cp $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py.tmpl $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py
-    git clone -b "$BRANCH_ID" --depth=1  $GEM_GIT_REPO/oq-moon.git || git clone --depth=1 $GEM_GIT_REPO/oq-moon.git
-    export DISPLAY=:1
+    git clone -b "$GEM_GIT_PACKAGE" --depth=1  $GEM_GIT_REPO/oq-moon.git || git clone --depth=1 $GEM_GIT_REPO/oq-moon.git
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
 
     export DISPLAY=:1
@@ -104,7 +110,7 @@ if [ "$NO_EXEC_TEST" != "notest" ] ; then
 fi
 
 do_logs () {
-    cd $HOME
+    cd $HOME/$GEM_GIT_PACKAGE
     docker-compose logs > $HOME/docker.log
 }
 
