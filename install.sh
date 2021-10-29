@@ -20,7 +20,7 @@ set -x
 
 cd $HOME
 rm -rf platform3/ openquakeplatform/ geonode-project/
-
+rm /usr/share/keyrings/docker-archive-keyring.gpg
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
