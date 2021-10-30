@@ -28,7 +28,6 @@ RUN apt-get update && apt-get install -y \
 
 # add bower and grunt command
 COPY geonode-project/ /usr/src/{{project_name}}/
-COPY pla_common/ /usr/src/{{project_name}}/
 WORKDIR /usr/src/{{project_name}}
 
 COPY geonode-project/monitoring-cron /etc/cron.d/monitoring-cron
@@ -66,6 +65,7 @@ RUN apt install -y memcached
 RUN pip install pylibmc \
     && pip install sherlock
 
+COPY -r pla_common /usr/src/geonode/pla_common
 # Install "geonode-contribs" apps
 # RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b master
 # # Install logstash and centralized dashboard dependencies
