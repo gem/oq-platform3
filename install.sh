@@ -30,6 +30,7 @@ sudo apt-get -y install git ca-certificates wget
 
 cd $GEM_GIT_PACKAGE
 cp .env-sample .env
+cp local_settings.tmpl local_settings.py
 
 cd $HOME
 

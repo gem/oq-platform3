@@ -66,6 +66,7 @@ RUN pip install pylibmc \
     && pip install sherlock
 
 COPY pla_common /usr/src/geonode/pla_common
+COPY local_settings.py /usr/src/openquakeplatform/openquakeplatform
 # Install "geonode-contribs" apps
 # RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b master
 # # Install logstash and centralized dashboard dependencies
