@@ -6,12 +6,16 @@ from django.contrib.auth.models import Group
 
 
 class Command(BaseCommand):
-    args = '<auth_user.json>'
+    # args = '<auth_user.json>'
     help = ('Import users')
 
-    def handle(self, user_fname, *args, **options):
-        devel_data = os.getenv("DEVEL_DATA")
-        prod_inst = os.getenv("PROD_INSTALL")
+    def add_arguments(self, parser):
+        parser.add_argument('<auth_user.json>')
+
+    def handle(self, *args, **options):
+        # devel_data = os.getenv("DEVEL_DATA")
+        # prod_inst = os.getenv("PROD_INSTALL")
+        user_fname = options['<auth_user>']
         user_json = open(user_fname).read()
         user_load = json.loads(user_json)
 
@@ -23,11 +27,12 @@ class Command(BaseCommand):
             # Add users
             if (fields['username'] == 'AnonymousUser'
                     or fields['username'] == 'GEM'):
+                    or fields['username'] == 'admin'):
                 continue
-            if (devel_data != 'y'
-                    or prod_inst != 'y'):
-                if (fields['username'] == 'admin'):
-                    continue
+            # if (devel_data != 'y'
+            #         or prod_inst != 'y'):
+            #     if (fields['username'] == 'admin'):
+            #         continue
 
             username = fields['username']
             email = fields['email']
