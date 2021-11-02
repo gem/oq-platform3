@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
             # Add users
             if (fields['username'] == 'AnonymousUser'
-                    or fields['username'] == 'GEM'):
+                    or fields['username'] == 'GEM'
                     or fields['username'] == 'admin'):
                 continue
             # if (devel_data != 'y'
@@ -44,7 +44,7 @@ class Command(BaseCommand):
             is_staff = fields['is_staff']
 
             # Set list of groups
-            groupnames = [groupname.encode("utf-8")
+            groupnames = [groupname
                           for groupname in fields['groups'][0]]
 
             gem_user = User.objects.model(
