@@ -15,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # devel_data = os.getenv("DEVEL_DATA")
         # prod_inst = os.getenv("PROD_INSTALL")
-        user_fname = options['<auth_user>']
+        user_fname = options['<auth_user.json>']
         user_json = open(user_fname).read()
         user_load = json.loads(user_json)
 
