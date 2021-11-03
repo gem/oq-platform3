@@ -1,33 +1,28 @@
 [
-    {
-        "pk": 50, 
-        "model": "documents.document", 
-        "fields": {
-            "extension": "pdf", 
-            "popular_count": 41, 
-            "object_id": 26, 
-            "regions": [], 
-            "content_type": [
-                "maps", 
-                "map"
-            ], 
-            "doc_file": "documents/GEGD-Global_Geodetic_Strain_Rate_Model-201407-V01_4.pdf", 
-            "share_count": 0
-        }
+{
+    "fields": {
+        "doc_type": "presentation",
+        "doc_url": "",
+        "extension": "pdf",
+        "title_en": "EGU 2007; Earthquake prediction; principles",
+        "object_id": 185,
+        "data_quality_statement_en": "",
+        "regions": [
+            1
+        ],
+        "content_type": [
+            "maps",
+            "map"
+        ],
+        "doc_file": "documents/Earthquake_prediction_Principles.pdf",
+        "supplemental_information_en": "Geophysical Research Abstracts, Vol. 9, 05526, 2007\r\nSRef-ID: 1607-7962/gra/EGU2007-A-05526\r\n\u00a9 European Geosciences Union 2007",
+        "abstract_en": "",
+        "tkeywords": [],
+        "purpose_en": "Earthquake prediction\r\n\r\nEGU General Assembly, Vienna, Austria, 15 \u2013 20 April 2007",
+        "constraints_other_en": "None"
     },
-    {
-        "pk": 936, 
-        "model": "documents.document", 
-        "fields": {
-            "extension": "zip", 
-            "popular_count": 30, 
-            "object_id": null, 
-            "regions": [
-                10
-            ], 
-            "content_type": null, 
-            "doc_file": "documents/arg-l0-exposure.zip", 
-            "share_count": 0
-        }
-    }
+    "model": "documents.document",
+    "pk": 393
+}
 ]
+

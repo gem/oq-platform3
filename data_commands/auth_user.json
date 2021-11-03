@@ -91,7 +91,7 @@
         "pk": 7,
         "model": "auth.user",
         "fields": {
-            "username": "paul",
+            "username": "pslh",
             "first_name": "",
             "last_name": "",
             "is_active": false,
@@ -262,5 +262,70 @@
             "email": "demo0@demo.demo", 
             "date_joined": "2015-11-11T13:45:51"
         }
-    }
+    },
+    {
+    "fields": {
+        "profile": null,
+        "last_name": "",
+        "is_staff": true,
+        "user_permissions": [],
+        "date_joined": "2019-04-17T09:30:29.092",
+        "city": null,
+        "first_name": "",
+        "area": null,
+        "zipcode": null,
+        "is_superuser": false,
+        "last_login": "2019-05-20T09:01:05.879",
+        "email": "farnazbayaat@gmail.com",
+        "username": "bayaat2014",
+        "fax": null,
+        "is_active": true,
+        "delivery": null,
+        "groups": [
+            [
+                "registered-members"
+            ]
+        ],
+        "organization": null,
+        "password": "pbkdf2_sha256$20000$tqXhPNWa5EsB$0uew9mi6f1WzQDdUBwttwgQhAN4Zs4pMavIHjo+Df8Y=",
+        "country": null,
+        "position": null,
+        "voice": null
+    },
+    "model": "people.profile",
+    "pk": 3737
+},
+    {
+    "fields": {
+        "profile": "",
+        "last_name": "Tumalski",
+        "is_staff": true,
+        "user_permissions": [],
+        "date_joined": "2021-06-30T08:44:21.257",
+        "city": " Plock",
+        "first_name": "Tadeusz",
+        "area": "",
+        "zipcode": "09-401",
+        "is_superuser": false,
+        "last_login": "2021-07-02T08:34:53.944",
+        "email": "tadeusz.tumalski@wp.pl",
+        "username": "T.Tumalski",
+        "fax": "",
+        "is_active": true,
+        "delivery": "",
+        "groups": [
+            [
+                "registered-members"
+            ]
+        ],
+        "organization": "Private researcher",
+        "password": "pbkdf2_sha256$20000$o3s5lhaMgpkg$h1eflPsFx87uHsHRdGhclCGfZDNFkO7IhK8vQFJSyhQ=",
+        "country": "POL",
+        "position": "Private researcher",
+        "voice": "604336385"
+    },
+    "model": "people.profile",
+    "pk": 6418
+}
 ]
+
