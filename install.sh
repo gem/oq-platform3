@@ -82,6 +82,9 @@ sleep 200
 
 echo "Installation complete."
 
+# Run commands on django container
+docker-compose exec django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+
 
 #function complete procedure for tests
 exec_test () {    
