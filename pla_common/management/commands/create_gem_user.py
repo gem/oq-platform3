@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
         gem_username = 'GEM'
         gem_pwd = 'GEM'
-        groupname = 'vulnerability-editors'
+        groupname = 'contributors'
 
         # Create Gem user without password
         User = get_user_model()
