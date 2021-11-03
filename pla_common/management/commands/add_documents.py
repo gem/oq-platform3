@@ -34,73 +34,65 @@ class Command(BaseCommand):
 
         # Read documents json
         doc_fname = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'documents_document.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'documents_document.json')
         doc_json = open(doc_fname).read()
         doc_load = json.loads(doc_json)
 
         # Read Style layer json
         layer_style_fname = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'layers_style.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'layers_style.json')
         layer_style_json = open(layer_style_fname).read()
         layer_style_load = json.loads(layer_style_json)
 
         # Read layer attribute json
         layer_attr_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'layers_attribute.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'layers_attribute.json')
         layer_attr_json = open(layer_attr_name).read()
         layer_attr_load = json.loads(layer_attr_json)
 
         # Read layer rating json
         layer_rating_name = (
-            os.path.join(
-                os.path.expanduser("~"),
+                'data_commands/gs_data/dump/'
                 'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'rating_overall_rating.json'))
+                'rating_overall_rating.json')
         layer_rating_json = open(layer_rating_name).read()
         layer_rating_load = json.loads(layer_rating_json)
 
         # Read layer json
         layer_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'layers_layer.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'layers_layer.json')
         layer_json = open(layer_name).read()
         layer_load = json.loads(layer_json)
 
         # Read resourcebase json
         resource_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'base_resource_base.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'base_resource_base.json')
         resource_json = open(resource_name).read()
         resource_load = json.loads(resource_json)
 
         # Read map json
         maps_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'maps_map.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'maps_map.json')
         maps_json = open(maps_name).read()
         maps_load = json.loads(maps_json)
 
         # Read maplayer json
         maplayer_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'maps_maplayer.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'maps_maplayer.json')
         maplayer_json = open(maplayer_name).read()
         maplayer_load = json.loads(maplayer_json)
 
@@ -111,55 +103,49 @@ class Command(BaseCommand):
 
         # Read category json
         category_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'base_topiccategory.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'base_topiccategory.json')
         category_json = open(category_name).read()
         category_load = json.loads(category_json)
 
         # Read regions json
         region_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'base_region.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'base_region.json')
         region_json = open(region_name).read()
         region_load = json.loads(region_json)
 
         # Read license json
         license_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'base_license.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'base_license.json')
         license_json = open(license_name).read()
         license_load = json.loads(license_json)
 
         # Read SpatialRepresentationType json
         srt_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'base_spatialrepresentationtype.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'base_spatialrepresentationtype.json')
         srt_json = open(srt_name).read()
         srt_load = json.loads(srt_json)
 
         # Read tag json
         tag_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'taggit_tag.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'taggit_tag.json')
         tag_json = open(tag_name).read()
         tag_load = json.loads(tag_json)
         # print("tag load: %d" % len(tag_load))
 
         tag_name = (
-            os.path.join(
-                os.path.expanduser("~"),
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'taggit_taggeditem.json'))
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'taggit_taggeditem.json')
         tag_json = open(tag_name).read()
         tag_item_load = json.loads(tag_json)
 
