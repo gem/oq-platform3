@@ -3,12 +3,12 @@
     "model": "documents.documentresourcelink",
     "pk": 1,
     "fields": {
-        "document": 28,
+        "document": 393,
         "content_type": [
             "maps",
             "map"
         ],
-        "object_id": 27
+        "object_id": 185
     }
 }
 ]
