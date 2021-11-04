@@ -10,18 +10,16 @@ from geonode.base.models import HierarchicalKeyword
 from geonode.base.models import ResourceBase, TaggedContentItem
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
-from agon_ratings.models import OverallRating
+# from agon_ratings.models import OverallRating
 from decimal import Decimal
 
 
 def base_attrs(base):
     base_new = {}
     base_new.update(base)
-    base_new['thumbnail_url'] = base['thumbnail']
+    base_new['thumbnail_url'] = base['thumbnail_url']
     base_new['title_en'] = base['title']
-    del base_new['thumbnail']
-    del base_new['distribution_description']
-    del base_new['distribution_url']
+    del base_new['thumbnail_url']
     del base_new['regions']
     return base_new
 
@@ -40,6 +38,14 @@ class Command(BaseCommand):
         doc_json = open(doc_fname).read()
         doc_load = json.loads(doc_json)
 
+        # Read documents resource link json
+        doc_res_fname = (
+                '/usr/src/openquakeplatform/'
+                'data_commands/gs_data/dump/'
+                'documents_documentresourcelink.json')
+        doc_res_json = open(doc_res_fname).read()
+        doc_res_load = json.loads(doc_res_json)
+
         # Read Style layer json
         layer_style_fname = (
                 '/usr/src/openquakeplatform/'
@@ -57,12 +63,12 @@ class Command(BaseCommand):
         layer_attr_load = json.loads(layer_attr_json)
 
         # Read layer rating json
-        layer_rating_name = (
-                'data_commands/gs_data/dump/'
-                'oq-platform2/openquakeplatform/common/gs_data/dump/'
-                'rating_overall_rating.json')
-        layer_rating_json = open(layer_rating_name).read()
-        layer_rating_load = json.loads(layer_rating_json)
+        # layer_rating_name = (
+        #         'data_commands/gs_data/dump/'
+        #         'oq-platform2/openquakeplatform/common/gs_data/dump/'
+        #         'rating_overall_rating.json')
+        # layer_rating_json = open(layer_rating_name).read()
+        # layer_rating_load = json.loads(layer_rating_json)
 
         # Read layer json
         layer_name = (
@@ -216,7 +222,7 @@ class Command(BaseCommand):
             # Istance user
             User = get_user_model()
             owner = User.objects.get(username=mapp['owner'][0])
-
+            
             # Save maps
             newmap = Map.objects.model(
                 uuid=mapp['uuid'],
@@ -293,8 +299,9 @@ class Command(BaseCommand):
                 transparent=mapslayer['transparent']
                 )
             newmaplayer.save()
-
+        
         # Import documents
+        doc_old_refs = {}
         for doc_full in doc_load:
 
             doc = doc_full['fields']
@@ -313,10 +320,10 @@ class Command(BaseCommand):
             User = get_user_model()
             owner = User.objects.get(username=res['owner'][0])
 
-            object_id = None
-            # associate optional map with document
-            if doc['object_id'] is not None:
-                object_id = map_old_refs[doc['object_id']].pk
+            # object_id = None
+            # # associate optional map with document
+            # if doc['object_id'] is not None:
+            #     object_id = map_old_refs[doc['object_id']].pk
 
             # Save documents
             newdoc = Document.objects.model(
@@ -327,7 +334,7 @@ class Command(BaseCommand):
                 abstract=res['abstract'],
                 purpose=res['purpose'],
                 doc_file=doc['doc_file'],
-                object_id=object_id,
+                # object_id=object_id,
                 category=old_category_refs[res['category']],
                 license=(old_license_refs[res['license']]
                          if res['license'] is not None
@@ -339,6 +346,7 @@ class Command(BaseCommand):
                 share_count=doc['share_count']
                 )
             newdoc.save()
+            doc_old_refs[doc_full['pk']] = newdoc
 
             # Istance and add regions
             regions = [region for region in res['regions']]
@@ -356,6 +364,34 @@ class Command(BaseCommand):
                 newdoc.regions.add(Reg)
 
             print('Imported document: %s' % res['title'])
+
+        # Import document resource link
+        for doc_res_full in doc_res_load:
+
+            doc_res = doc_res_full['fields']
+            # res = new_resources[doc_full['pk']]
+
+            # Istance content_type
+            ctype_name = doc_res['content_type']
+            if ctype_name is not None:
+                ctype = [ctype for ctype in doc_res['content_type']]
+                label_type = ctype[0]
+                cont_type = ctype[1]
+                content_type = ContentType.objects.get(
+                    app_label=label_type, model=cont_type)
+
+            object_id = None
+            # associate optional map with document
+            if doc_res['object_id'] is not None:
+                object_id = doc_old_refs[doc_res['object_id']].pk
+
+            # Save documents
+            newdoc_res = Document.objects.model(
+                document=doc_res['document'],    
+                object_id=object_id,
+                content_type=content_type,
+                )
+            newdoc_res.save()
 
         # Delete all layer
         Layer.objects.all().exclude(
@@ -471,31 +507,31 @@ class Command(BaseCommand):
             new_attr.save()
 
         # Import layer rating
-        for rating in layer_rating_load:
+        # for rating in layer_rating_load:
 
-            field = rating['fields']
+        #     field = rating['fields']
 
-            # Istance content_type
-            ctype_name = field['content_type']
-            if ctype_name is not None:
-                r_type = [r_type for r_type in field['content_type']]
-                label_type = r_type[0]
-                cont_type = r_type[1]
-                content_type = ContentType.objects.get(
-                    app_label=label_type, model=cont_type)
+        #     # Istance content_type
+        #     ctype_name = field['content_type']
+        #     if ctype_name is not None:
+        #         r_type = [r_type for r_type in field['content_type']]
+        #         label_type = r_type[0]
+        #         cont_type = r_type[1]
+        #         content_type = ContentType.objects.get(
+        #             app_label=label_type, model=cont_type)
 
-            object_id = None
-            if field['object_id'] is not None:
-                object_id = layer_old_refs[field['object_id']].pk
+        #     object_id = None
+        #     if field['object_id'] is not None:
+        #         object_id = layer_old_refs[field['object_id']].pk
 
-            OverallRating.objects.all().delete()
-            new_rating = OverallRating.objects.model(
-                category=field['category'],
-                rating=Decimal(value=field['rating']),
-                object_id=object_id,
-                content_type=content_type
-                )
-            new_rating.save()
+        #     OverallRating.objects.all().delete()
+        #     new_rating = OverallRating.objects.model(
+        #         category=field['category'],
+        #         rating=Decimal(value=field['rating']),
+        #         object_id=object_id,
+        #         content_type=content_type
+        #         )
+        #     new_rating.save()
 
         # Import all tags
         new_tags = {}
