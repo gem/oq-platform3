@@ -1,7 +1,7 @@
 import os
 import json
 from django.core.management.base import BaseCommand
-from geonode.documents.models import Document
+from geonode.documents.models import Document, DocumentResourceLink
 from geonode.layers.models import Layer, Style, Attribute
 from geonode.maps.models import Map, MapLayer
 from geonode.base.models import TopicCategory, Region, License
@@ -339,7 +339,7 @@ class Command(BaseCommand):
                 license=(old_license_refs[res['license']]
                          if res['license'] is not None
                          else None),
-                content_type=content_type,
+                # content_type=content_type,
                 edition=res['edition'],
                 supplemental_information_en=res['supplemental_information'],
                 popular_count=doc['popular_count'],
@@ -369,7 +369,13 @@ class Command(BaseCommand):
         for doc_res_full in doc_res_load:
 
             doc_res = doc_res_full['fields']
-            # res = new_resources[doc_full['pk']]
+            doc_res_id = doc_old_refs[doc_res['document']].pk
+
+            # Istance Map
+            if doc_res_id is not None:
+                doc_res_id = Document.objects.get(id=doc_res_id)
+            else:
+                doc_res_id = None
 
             # Istance content_type
             ctype_name = doc_res['content_type']
@@ -383,15 +389,17 @@ class Command(BaseCommand):
             object_id = None
             # associate optional map with document
             if doc_res['object_id'] is not None:
-                object_id = doc_old_refs[doc_res['object_id']].pk
+                object_id = map_old_refs[doc_res['object_id']].pk
 
             # Save documents
-            newdoc_res = Document.objects.model(
-                document=doc_res['document'],    
+            newdoc_res = DocumentResourceLink.objects.model(
+                document=doc_res_id,    
                 object_id=object_id,
                 content_type=content_type,
                 )
             newdoc_res.save()
+
+            print('Imported iresource for document: %s' % doc_res['document'])
 
         # Delete all layer
         Layer.objects.all().exclude(
@@ -409,102 +417,102 @@ class Command(BaseCommand):
             srt_old_refs[srt_full['pk']] = new_srt
 
         # Import layers
-        layer_old_refs = {}
-        for layer_full in layer_load:
+        # layer_old_refs = {}
+        # for layer_full in layer_load:
 
-            layer = layer_full['fields']
-            base = new_resources[layer_full['pk']]
+        #     layer = layer_full['fields']
+        #     base = new_resources[layer_full['pk']]
 
-            # Instance default SpatialRepresentationType
-            srt = (srt_old_refs[srt_full['pk']]
-                   if base['spatial_representation_type'] is not None
-                   else None)
+        #     # Instance default SpatialRepresentationType
+        #     srt = (srt_old_refs[srt_full['pk']]
+        #            if base['spatial_representation_type'] is not None
+        #            else None)
 
-            # Istance user
-            User = get_user_model()
-            owner = User.objects.get(username=base['owner'][0])
+        #     # Istance user
+        #     User = get_user_model()
+        #     owner = User.objects.get(username=base['owner'][0])
 
-            # Instance default style
-            default_style = (old_style_refs[layer['default_style']]
-                             if layer['default_style'] is not None
-                             else None)
+        #     # Instance default style
+        #     default_style = (old_style_refs[layer['default_style']]
+        #                      if layer['default_style'] is not None
+        #                      else None)
 
-            attrs = base_attrs(base)
-            attrs.update({
-                "owner": owner,
-                "name": layer['name'],
-                "category": (old_category_refs[base['category']]
-                             if base['category'] is not None
-                             else None),
-                "license": (old_license_refs[base['license']]
-                            if base['license'] is not None
-                            else None),
-                "typename": layer['typename'],
-                "store": layer['store'],
-                "workspace": layer['workspace'],
-                "default_style": default_style,
-                "storeType": layer['storeType'],
-                "bbox_x0": base['bbox_x0'],
-                "bbox_x1": base['bbox_x1'],
-                "bbox_y0": base['bbox_y0'],
-                "bbox_y1": base['bbox_y1'],
-                "spatial_representation_type": srt,
-                "supplemental_information_en": base['supplemental_information']
-            })
+        #     attrs = base_attrs(base)
+        #     attrs.update({
+        #         "owner": owner,
+        #         "name": layer['name'],
+        #         "category": (old_category_refs[base['category']]
+        #                      if base['category'] is not None
+        #                      else None),
+        #         "license": (old_license_refs[base['license']]
+        #                     if base['license'] is not None
+        #                     else None),
+        #         "typename": layer['typename'],
+        #         "store": layer['store'],
+        #         "workspace": layer['workspace'],
+        #         "default_style": default_style,
+        #         "storeType": layer['storeType'],
+        #         "bbox_x0": base['bbox_x0'],
+        #         "bbox_x1": base['bbox_x1'],
+        #         "bbox_y0": base['bbox_y0'],
+        #         "bbox_y1": base['bbox_y1'],
+        #         "spatial_representation_type": srt,
+        #         "supplemental_information_en": base['supplemental_information']
+        #     })
 
-            # Save layer
-            new_layer = Layer.objects.model(**attrs)
-            new_layer.save()
-            layer_old_refs[layer_full['pk']] = new_layer
+        #     # Save layer
+        #     new_layer = Layer.objects.model(**attrs)
+        #     new_layer.save()
+        #     layer_old_refs[layer_full['pk']] = new_layer
 
-            # Istance and add regions
-            regions = [region for region in base['regions']]
+        #     # Istance and add regions
+        #     regions = [region for region in base['regions']]
 
-            for reg in regions:
-                # Search in old region json
-                for region in region_load:
-                    field = region['fields']
-                    if region['pk'] == reg:
-                        name = field['name']
-                    else:
-                        continue
-                # Add region to each document
-                Reg = Region.objects.get(name=name)
-                new_layer.regions.add(Reg)
+        #     for reg in regions:
+        #         # Search in old region json
+        #         for region in region_load:
+        #             field = region['fields']
+        #             if region['pk'] == reg:
+        #                 name = field['name']
+        #             else:
+        #                 continue
+        #         # Add region to each document
+        #         Reg = Region.objects.get(name=name)
+        #         new_layer.regions.add(Reg)
 
-            # Instance and add styles
-            for sty in layer['styles']:
-                new_layer.styles.add(old_style_refs[sty])
+        #     # Instance and add styles
+        #     for sty in layer['styles']:
+        #         new_layer.styles.add(old_style_refs[sty])
 
-            print(
-                'Imported layer: %s with pk: %s' % (
-                    layer['name'], layer_full['pk']))
+        #     print(
+        #         'Imported layer: %s with pk: %s' % (
+        #             layer['name'], layer_full['pk']))
 
-        # Import layer attribute
-        for attr in layer_attr_load:
+        # # Import layer attribute
+        # for attr in layer_attr_load:
 
-            field = attr['fields']
-            layer_id = layer_old_refs[field['layer']]
+        #     field = attr['fields']
+        #     layer_id = layer_old_refs[field['layer']]
 
-            new_attr = Attribute.objects.model(
-                count=field['count'],
-                layer=layer_id,
-                description=field['description'],
-                min=field['min'],
-                attribute_label=field['attribute_label'],
-                attribute=field['attribute'],
-                display_order=field['display_order'],
-                unique_values=field['unique_values'],
-                median=field['median'],
-                sum=field['sum'],
-                visible=field['visible'],
-                last_stats_updated=field['last_stats_updated'],
-                stddev=field['stddev'],
-                attribute_type=field['attribute_type'],
-                average=field['average'],
-                max=field['max']
-                )
-            new_attr.save()
+        #     new_attr = Attribute.objects.model(
+        #         count=field['count'],
+        #         layer=layer_id,
+        #         description=field['description'],
+        #         min=field['min'],
+        #         attribute_label=field['attribute_label'],
+        #         attribute=field['attribute'],
+        #         display_order=field['display_order'],
+        #         unique_values=field['unique_values'],
+        #         median=field['median'],
+        #         sum=field['sum'],
+        #         visible=field['visible'],
+        #         last_stats_updated=field['last_stats_updated'],
+        #         stddev=field['stddev'],
+        #         attribute_type=field['attribute_type'],
+        #         average=field['average'],
+        #         max=field['max']
+        #         )
+        #     new_attr.save()
 
         # Import layer rating
         # for rating in layer_rating_load:
@@ -566,3 +574,4 @@ class Command(BaseCommand):
                     name=new_tags[field['tag']]['name']),
                 content_object=content_object)
             new_tag_item.save()
+
