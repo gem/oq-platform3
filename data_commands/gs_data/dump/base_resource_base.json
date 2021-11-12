@@ -153,19 +153,7 @@
         "language": "eng",
         "restriction_code_type": null,
         "maintenance_frequency": "unknown",
-        "csw_anytext": "  13afeff0-db11-11eb-8665-00163e781343    eng    utf8    dataset        Private researcher    Private researcher        604336385            Plock      09-401    POL    tadeusz.tu
-malski@wp.pl        pointOfContact      2021-07-03T13:12:32Z    ISO 19115:2003 - Geographic information - Metadata    ISO 19115:2003         4326    EPSG    6.11            EGU 2007; Earthquake predictio
-n; principles      2021-07-03T09:32:00Z    publication      https://www.preventionweb.net/publications/view/20501    mapDigital      Inside the Earth are created zones of increased and decreased pressure
- of the liquid core. https://imagizer.imageshack.com/v2/640x480q90/838/wnetrzeziemi.jpg This unequal pressure distribution causes deformations of Earths crust and mantle. We can see those deformations on
- all of the images of geopotential model (GRIM, EGM96 and others)'https://scx2.b-cdn.net/gfx/news/hires/2009/earthexplore.jpg Together with the movement of the solid inner core inside the mantle also the
- zones of increased and decreased pressure inside Earth move and together with them the deformations of Earth's crust drift west. That west drift of the Earth's crust deformations is a driving mechanism 
-of plate tectonics, which means it is the cause of the continental drift and all the phenomenons connected with it, among others earthquakes. https://www.preventionweb.net/publications/view/20501    Eart
-hquake prediction EGU General Assembly, Vienna, Austria, 15 20 April 2007    completed      unknown        http://platform.openquake.org/uploaded/thumbs/document-13afeff0-db11-11eb-8665-00163e781343-thum
-b.png    Thumbnail for 'EGU 2007; Earthquake prediction; principles'    image/png        ESRI Shapefile    1.0        earthquakes    plate tectonics    theme        Global    place           None        
- eng    utf8    risk        None    None    None    None        Geophysical Research Abstracts, Vol. 9, 05526, 2007 SRef-ID: 1607-7962/gra/EGU2007-A-05526 European Geosciences Union 2007              htt
-p://platform.openquake.or/documents/393    WWW:LINK-1.0-http--link    Online link to the 'EGU 2007; Earthquake prediction; principles' description on GeoNode        http://platform.openquake.org/uploaded
-/thumbs/document-13afeff0-db11-11eb-8665-00163e781343-thumb.png    WWW:DOWNLOAD-1.0-http--download    .png    EGU 2007; Earthquake prediction; principles (Thumbnail Format)              dataset          
- ",
+        "csw_anytext": "",
         "supplemental_information": "Geophysical Research Abstracts, Vol. 9, 05526, 2007 SRef-ID: 1607-7962/gra/EGU2007-A-05526 European Geosciences Union 2007",
         "tkeywords": [],
         "metadata_uploaded_preserve": true,
