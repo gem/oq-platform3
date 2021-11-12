@@ -342,8 +342,8 @@ class Command(BaseCommand):
                 # content_type=content_type,
                 edition=res['edition'],
                 supplemental_information_en=res['supplemental_information'],
-                popular_count=doc['popular_count'],
-                share_count=doc['share_count']
+                # popular_count=doc['popular_count'],
+                # share_count=doc['share_count']
                 )
             newdoc.save()
             doc_old_refs[doc_full['pk']] = newdoc
@@ -399,7 +399,7 @@ class Command(BaseCommand):
                 )
             newdoc_res.save()
 
-            print('Imported iresource for document: %s' % doc_res['document'])
+            print('Imported resource for document: %s' % doc_res['document'])
 
         # Delete all layer
         Layer.objects.all().exclude(
