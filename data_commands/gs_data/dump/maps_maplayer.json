@@ -7,27 +7,29 @@
         "name": "oqplatform:gem_active_faults",
         "format": "image/png",
         "visibility": true,
-        "source_params": "{\"restUrl\": \"/gs/rest\", \"title\": \"Local Geoserver\", \"baseParams\": {\"VERSION\": \"1.1.1\", \"REQUEST\": \"GetCapabilities\", \"TILED\": true, \"SERVICE\": \"WMS\"}, \"
-ptype\": \"gxp_wmscsource\", \"id\": \"4\"}",
-        "layer_params": "{\"selected\": false, \"attribution\": \"<span class='gx-attribution-title'>pslh</span>\", \"title\": \"gem_active_faults\", \"cached\": true, \"capability\": {\"abstract\": \"No
- abstract provided\", \"nestedLayers\": [], \"cascaded\": 0, \"fixedHeight\": 0, \"prefix\": \"oqplatform\", \"keywords\": [], \"noSubsets\": false, \"dimensions\": {}, \"opaque\": false, \"tileSets\": [
-{\"layers\": \"oqplatform:gem_active_faults\", \"styles\": \"\", \"format\": \"image/jpeg\", \"height\": 256, \"srs\": {\"EPSG:900913\": true}, \"bbox\": {\"EPSG:900913\": {\"srs\": \"EPSG:900913\", \"bb
-ox\": [-20037508.34, -20037508.34, 20037508.34, 20037508.34]}}, \"resolutions\": [156543.03390625, 78271.516953125, 39135.7584765625, 19567.87923828125, 9783.939619140625, 4891.9698095703125, 2445.984904
-7851562, 1222.9924523925781, 611.4962261962891, 305.74811309814453, 152.87405654907226, 76.43702827453613, 38.218514137268066, 19.109257068634033, 9.554628534317017, 4.777314267158508, 2.388657133579254,
- 1.194328566789627, 0.5971642833948135, 0.29858214169740677, 0.14929107084870338, 0.07464553542435169, 0.037322767712175846, 0.018661383856087923, 0.009330691928043961, 0.004665345964021981, 0.0023326729
-820109904, 0.0011663364910054952, 0.0005831682455027476, 0.0002915841227513738, 0.0001457920613756869], \"width\": 256}], \"infoFormats\": [\"text/plain\", \"application/vnd.ogc.gml\", \"application/vnd.
-ogc.gml/3.1.1\", \"text/html\", \"application/json\"], \"styles\": [{\"abstract\": \"\", \"legend\": {\"href\": \"https://platform.openquake.org/geoserver/wms?request=GetLegendGraphic&format=image%2Fpng&
-width=20&height=20&layer=gem_active_faults\", \"width\": \"20\", \"format\": \"image/png\", \"height\": \"20\"}, \"name\": \"gem_active_faults\", \"title\": \"gem_active_faults\"}], \"attribution\": {\"t
-itle\": \"pslh\"}, \"authorityURLs\": {}, \"bbox\": {\"EPSG:4326\": {\"srs\": \"EPSG:4326\", \"bbox\": [-171.282075941822, -64.7659508346957, 165.975285420372, 71.5910359257766]}}, \"fixedWidth\": 0, \"m
-etadataURLs\": [{\"href\": \"https://platform.openquake.org/catalogue/csw?outputschema=http%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2Fcsdgm&service=CSW&request=GetRecordById&version=2.0.2&elementsetname=full
-&id=8c1c7a5e-ba49-11e7-9181-00163e801d73\", \"type\": \"FGDC\", \"format\": \"text/xml\"}, {\"href\": \"https://platform.openquake.org/catalogue/csw?outputschema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgm
-d&service=CSW&request=GetRecordById&version=2.0.2&elementsetname=full&id=8c1c7a5e-ba49-11e7-9181-00163e801d73\", \"type\": \"TC211\", \"format\": \"text/xml\"}], \"name\": \"oqplatform:gem_active_faults\
-", \"identifiers\": {}, \"srs\": {\"EPSG:900913\": true}, \"formats\": [\"image/png\", \"application/atom xml\", \"application/atom+xml\", \"application/openlayers\", \"application/pdf\", \"application/r
-ss xml\", \"application/rss+xml\", \"application/vnd.google-earth.kml\", \"application/vnd.google-earth.kml xml\", \"application/vnd.google-earth.kml+xml\", \"application/vnd.google-earth.kml+xml;mode=ne
-tworklink\", \"application/vnd.google-earth.kmz\", \"application/vnd.google-earth.kmz xml\", \"application/vnd.google-earth.kmz+xml\", \"application/vnd.google-earth.kmz;mode=networklink\", \"atom\", \"i
-mage/geotiff\", \"image/geotiff8\", \"image/gif\", \"image/gif;subtype=animated\", \"image/jpeg\", \"image/png8\", \"image/png; mode=8bit\", \"image/svg\", \"image/svg xml\", \"image/svg+xml\", \"image/t
-iff\", \"image/tiff8\", \"kml\", \"kmz\", \"openlayers\", \"rss\"], \"title\": \"gem_active_faults\", \"queryable\": true, \"llbbox\": [-171.282075941822, -64.7659508346957, 165.975285420372, 71.59103592
-57766]}, \"tiled\": true}",
+        "source_params": "{\"restUrl\": \"/gs/rest\", \"title\": \"Local Geoserver\", \"baseParams\": {\"VERSION\": \"1.1.1\", \"REQUEST\": \"GetCapabilities\", \"TILED\": true, \"SER
+VICE\": \"WMS\"}, \"ptype\": \"gxp_wmscsource\", \"id\": \"4\"}",
+        "layer_params": "{\"selected\": false, \"attribution\": \"<span class='gx-attribution-title'>pslh</span>\", \"title\": \"gem_active_faults\", \"cached\": true, \"capability\":
+ {\"abstract\": \"Noabstract provided\", \"nestedLayers\": [], \"cascaded\": 0, \"fixedHeight\": 0, \"prefix\": \"oqplatform\", \"keywords\": [], \"noSubsets\": false, \"dimensions\":
+ {}, \"opaque\": false, \"tileSets\": [{\"layers\": \"oqplatform:gem_active_faults\", \"styles\": \"\", \"format\": \"image/jpeg\", \"height\": 256, \"srs\": {\"EPSG:900913\": true}, 
+\"bbox\": {\"EPSG:900913\": {\"srs\": \"EPSG:900913\", \"bbox\": [-20037508.34, -20037508.34, 20037508.34, 20037508.34]}}, \"resolutions\": [156543.03390625, 78271.516953125, 39135.75
+84765625, 19567.87923828125, 9783.939619140625, 4891.9698095703125, 2445.9849047851562, 1222.9924523925781, 611.4962261962891, 305.74811309814453, 152.87405654907226, 76.4370282745361
+3, 38.218514137268066, 19.109257068634033, 9.554628534317017, 4.777314267158508, 2.388657133579254, 1.194328566789627, 0.5971642833948135, 0.29858214169740677, 0.14929107084870338, 0.
+07464553542435169, 0.037322767712175846, 0.018661383856087923, 0.009330691928043961, 0.004665345964021981, 0.0023326729820109904, 0.0011663364910054952, 0.0005831682455027476, 0.00029
+15841227513738, 0.0001457920613756869], \"width\": 256}], \"infoFormats\": [\"text/plain\", \"application/vnd.ogc.gml\", \"application/vnd.ogc.gml/3.1.1\", \"text/html\", \"applicatio
+n/json\"], \"styles\": [{\"abstract\": \"\", \"legend\": {\"href\": \"https://platform.openquake.org/geoserver/wms?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer
+=gem_active_faults\", \"width\": \"20\", \"format\": \"image/png\", \"height\": \"20\"}, \"name\": \"gem_active_faults\", \"title\": \"gem_active_faults\"}], \"attribution\": {\"title
+\": \"pslh\"}, \"authorityURLs\": {}, \"bbox\": {\"EPSG:4326\": {\"srs\": \"EPSG:4326\", \"bbox\": [-171.282075941822, -64.7659508346957, 165.975285420372, 71.5910359257766]}}, \"fixe
+dWidth\": 0, \"metadataURLs\": [{\"href\": \"https://platform.openquake.org/catalogue/csw?outputschema=http%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2Fcsdgm&service=CSW&request=GetRecordBy
+Id&version=2.0.2&elementsetname=full&id=8c1c7a5e-ba49-11e7-9181-00163e801d73\", \"type\": \"FGDC\", \"format\": \"text/xml\"}, {\"href\": \"https://platform.openquake.org/catalogue/cs
+w?outputschema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&service=CSW&request=GetRecordById&version=2.0.2&elementsetname=full&id=8c1c7a5e-ba49-11e7-9181-00163e801d73\", \"type\": \"TC
+211\", \"format\": \"text/xml\"}], \"name\": \"oqplatform:gem_active_faults\", \"identifiers\": {}, \"srs\": {\"EPSG:900913\": true}, \"formats\": [\"image/png\", \"application/atom x
+ml\", \"application/atom+xml\", \"application/openlayers\", \"application/pdf\", \"application/rss xml\", \"application/rss+xml\", \"application/vnd.google-earth.kml\", \"application/
+vnd.google-earth.kml xml\", \"application/vnd.google-earth.kml+xml\", \"application/vnd.google-earth.kml+xml;mode=networklink\", \"application/vnd.google-earth.kmz\", \"application/vn
+d.google-earth.kmz xml\", \"application/vnd.google-earth.kmz+xml\", \"application/vnd.google-earth.kmz;mode=networklink\", \"atom\", \"image/geotiff\", \"image/geotiff8\", \"image/gif
+\", \"image/gif;subtype=animated\", \"image/jpeg\", \"image/png8\", \"image/png; mode=8bit\", \"image/svg\", \"image/svg xml\", \"image/svg+xml\", \"image/tiff\", \"image/tiff8\", \"k
+ml\", \"kmz\", \"openlayers\", \"rss\"], \"title\": \"gem_active_faults\", \"queryable\": true, \"llbbox\": [-171.282075941822, -64.7659508346957, 165.975285420372, 71.5910359257766]}
+, \"tiled\": true}",
         "ows_url": "https://platform.openquake.org/geoserver/wms",
         "stack_order": 6,
         "styles": "gem_active_faults",
@@ -38,6 +40,4 @@ iff\", \"image/tiff8\", \"kml\", \"kmz\", \"openlayers\", \"rss\"], \"title\": \
     "model": "maps.maplayer",
     "pk": 350
 }
-
 ]
-
