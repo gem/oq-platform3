@@ -7,7 +7,9 @@
     <userList>
         <userRoles username="admin">
             <roleRef roleID="ADMIN"/>
+            <roleRef roleID="GROUP_ADMIN"/>
         </userRoles>
     </userList>
     <groupList/>
 </roleRegistry>
+

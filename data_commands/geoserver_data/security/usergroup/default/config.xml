@@ -8,3 +8,4 @@
   <passwordEncoderName>pbePasswordEncoder</passwordEncoderName>
   <passwordPolicyName>default</passwordPolicyName>
 </userGroupService>
+
