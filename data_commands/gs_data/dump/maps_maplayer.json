@@ -7,7 +7,7 @@
         "name": "oqplatform:gem_active_faults",
         "format": "image/png",
         "visibility": true,
-        "source_params": "{\"restUrl\": \"/gs/rest\", \"title\": \"Local Geoserver\", \"baseParams\": {\"VERSION\": \"1.1.1\", \"REQUEST\": \"GetCapabilities\", \"TILED\": true, \"SERVICE\": \"WMS\"}, \"ptype\": \"gxp_wmscsource\", \"id\": \"4\"}",
+        "source_params": "",
         "layer_params": "":
         "ows_url": "https://platform.openquake.org/geoserver/wms",
         "stack_order": 6,
