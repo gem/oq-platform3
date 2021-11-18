@@ -321,11 +321,6 @@ class Command(BaseCommand):
             User = get_user_model()
             owner = User.objects.get(username=res['owner'][0])
 
-            # object_id = None
-            # # associate optional map with document
-            # if doc['object_id'] is not None:
-            #     object_id = map_old_refs[doc['object_id']].pk
-
             # Save documents
             newdoc = Document.objects.model(
                 uuid=res['uuid'],
@@ -447,55 +442,27 @@ class Command(BaseCommand):
                              if layer['default_style'] is not None
                              else None)
 
-            # attrs = base_attrs(base)
-            # attrs.update({
-            #     "owner": owner,
-            #     "name": layer['name'],
-            #     "category": (old_category_refs[base['category']]
-            #                  if base['category'] is not None
-            #                  else None),
-            #     "license": (old_license_refs[base['license']]
-            #                 if base['license'] is not None
-            #                 else None),
-            #     "typename": layer['typename'],
-            #     "store": layer['store'],
-            #     "workspace": layer['workspace'],
-            #     "default_style": default_style,
-            #     "storeType": layer['storeType'],
-            #     "bbox_x0": base['bbox_x0'],
-            #     "bbox_x1": base['bbox_x1'],
-            #     "bbox_y0": base['bbox_y0'],
-            #     "bbox_y1": base['bbox_y1'],
-            #     "spatial_representation_type": srt,
-            #     "supplemental_information_en": base['supplemental_information']
-            # })
-
-            # # Save layer
-            # new_layer = Layer.objects.model(**attrs)
-            # new_layer.save()
-            # layer_old_refs[layer_full['pk']] = new_layer
-
-            # Save mapslayer
+            # Save layer
             new_layer = Layer.objects.model(
                 owner=owner,
                 name=layer['name'],
-                #"category": (old_category_refs[base['category']]
-                #             if base['category'] is not None
-                #             else None),
-                #"license": (old_license_refs[base['license']]
-                #            if base['license'] is not None
-                #            else None),
+                category=(old_category_refs[base['category']]
+                          if base['category'] is not None
+                          else None),
+                license=(old_license_refs[base['license']]
+                         if base['license'] is not None
+                         else None),
                 typename=layer['typename'],
-                #"store": layer['store'],
-                #"workspace": layer['workspace'],
-                #"default_style": default_style,
-                #"storeType": layer['storeType'],
-                #"bbox_x0": base['bbox_x0'],
-                #"bbox_x1": base['bbox_x1'],
-                #"bbox_y0": base['bbox_y0'],
-                #"bbox_y1": base['bbox_y1'],
-                #"spatial_representation_type": srt,
-                #"supplemental_information_en": base['supplemental_information']
+                store=layer['store'],
+                workspace=layer['workspace'],
+                default_style=default_style,
+                storeType=layer['storeType'],
+                bbox_x0=base['bbox_x0'],
+                bbox_x1=base['bbox_x1'],
+                bbox_y0=base['bbox_y0'],
+                bbox_y1=base['bbox_y1'],
+                spatial_representation_type=srt,
+                supplemental_information_en=base['supplemental_information']
                 )
             new_layer.save()
             layer_old_refs[layer_full['pk']] = new_layer
@@ -523,31 +490,35 @@ class Command(BaseCommand):
                 'Imported layer: %s with pk: %s' % (
                     layer['name'], layer_full['pk']))
 
-        # # Import layer attribute
-        # for attr in layer_attr_load:
+        # Import layer attribute
+        for attr in layer_attr_load:
 
-        #     field = attr['fields']
-        #     layer_id = layer_old_refs[field['layer']]
+            field = attr['fields']
+            layer_id = layer_old_refs[field['layer']]
 
-        #     new_attr = Attribute.objects.model(
-        #         count=field['count'],
-        #         layer=layer_id,
-        #         description=field['description'],
-        #         min=field['min'],
-        #         attribute_label=field['attribute_label'],
-        #         attribute=field['attribute'],
-        #         display_order=field['display_order'],
-        #         unique_values=field['unique_values'],
-        #         median=field['median'],
-        #         sum=field['sum'],
-        #         visible=field['visible'],
-        #         last_stats_updated=field['last_stats_updated'],
-        #         stddev=field['stddev'],
-        #         attribute_type=field['attribute_type'],
-        #         average=field['average'],
-        #         max=field['max']
-        #         )
-        #     new_attr.save()
+            new_attr = Attribute.objects.model(
+                count=field['count'],
+                layer=layer_id,
+                description=field['description'],
+                min=field['min'],
+                attribute_label=field['attribute_label'],
+                attribute=field['attribute'],
+                display_order=field['display_order'],
+                unique_values=field['unique_values'],
+                median=field['median'],
+                sum=field['sum'],
+                visible=field['visible'],
+                last_stats_updated=field['last_stats_updated'],
+                stddev=field['stddev'],
+                attribute_type=field['attribute_type'],
+                average=field['average'],
+                max=field['max']
+                )
+            new_attr.save()
+
+            print(
+                'Imported attribute layer: %s with pk: %s' % (
+                    layer['name'], layer_full['pk']))
 
         # Import layer rating
         # for rating in layer_rating_load:
