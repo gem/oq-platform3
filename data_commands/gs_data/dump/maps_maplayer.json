@@ -8,7 +8,7 @@
         "format": "image/png",
         "visibility": true,
         "source_params": "",
-        "layer_params": "":
+        "layer_params": "",
         "ows_url": "https://platform.openquake.org/geoserver/wms",
         "stack_order": 6,
         "styles": "gem_active_faults",
