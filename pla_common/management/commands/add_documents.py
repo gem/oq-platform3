@@ -31,6 +31,9 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
+        # Delete all info
+        ResourceBase.objects.all().delete()
+
         # Read documents json
         doc_fname = (
                 '/usr/src/openquakeplatform/'
