@@ -21,6 +21,7 @@ def base_attrs(base):
     base_new['title_en'] = base['title']
     del base_new['thumbnail_url']
     del base_new['regions']
+    del base_new['polymorphic_ctype']
     return base_new
 
 
@@ -417,76 +418,110 @@ class Command(BaseCommand):
             srt_old_refs[srt_full['pk']] = new_srt
 
         # Import layers
-        # layer_old_refs = {}
-        # for layer_full in layer_load:
+        layer_old_refs = {}
+        for layer_full in layer_load:
 
-        #     layer = layer_full['fields']
-        #     base = new_resources[layer_full['pk']]
+            layer = layer_full['fields']
+            base = new_resources[layer_full['pk']]
 
-        #     # Instance default SpatialRepresentationType
-        #     srt = (srt_old_refs[srt_full['pk']]
-        #            if base['spatial_representation_type'] is not None
-        #            else None)
+            # Instance default SpatialRepresentationType
+            srt = (srt_old_refs[srt_full['pk']]
+                   if base['spatial_representation_type'] is not None
+                   else None)
 
-        #     # Istance user
-        #     User = get_user_model()
-        #     owner = User.objects.get(username=base['owner'][0])
+            # Istance content_type
+            ctype_name = base['polymorphic_ctype']
+            if ctype_name is not None:
+                ctype = [ctype for ctype in base['polymorphic_ctype']]
+                label_type = ctype[0]
+                cont_type = ctype[1]
+                content_type = ContentType.objects.get(
+                    app_label=label_type, model=cont_type)
 
-        #     # Instance default style
-        #     default_style = (old_style_refs[layer['default_style']]
-        #                      if layer['default_style'] is not None
-        #                      else None)
+            # Istance user
+            User = get_user_model()
+            owner = User.objects.get(username=base['owner'][0])
 
-        #     attrs = base_attrs(base)
-        #     attrs.update({
-        #         "owner": owner,
-        #         "name": layer['name'],
-        #         "category": (old_category_refs[base['category']]
-        #                      if base['category'] is not None
-        #                      else None),
-        #         "license": (old_license_refs[base['license']]
-        #                     if base['license'] is not None
-        #                     else None),
-        #         "typename": layer['typename'],
-        #         "store": layer['store'],
-        #         "workspace": layer['workspace'],
-        #         "default_style": default_style,
-        #         "storeType": layer['storeType'],
-        #         "bbox_x0": base['bbox_x0'],
-        #         "bbox_x1": base['bbox_x1'],
-        #         "bbox_y0": base['bbox_y0'],
-        #         "bbox_y1": base['bbox_y1'],
-        #         "spatial_representation_type": srt,
-        #         "supplemental_information_en": base['supplemental_information']
-        #     })
+            # Instance default style
+            default_style = (old_style_refs[layer['default_style']]
+                             if layer['default_style'] is not None
+                             else None)
 
-        #     # Save layer
-        #     new_layer = Layer.objects.model(**attrs)
-        #     new_layer.save()
-        #     layer_old_refs[layer_full['pk']] = new_layer
+            # attrs = base_attrs(base)
+            # attrs.update({
+            #     "owner": owner,
+            #     "name": layer['name'],
+            #     "category": (old_category_refs[base['category']]
+            #                  if base['category'] is not None
+            #                  else None),
+            #     "license": (old_license_refs[base['license']]
+            #                 if base['license'] is not None
+            #                 else None),
+            #     "typename": layer['typename'],
+            #     "store": layer['store'],
+            #     "workspace": layer['workspace'],
+            #     "default_style": default_style,
+            #     "storeType": layer['storeType'],
+            #     "bbox_x0": base['bbox_x0'],
+            #     "bbox_x1": base['bbox_x1'],
+            #     "bbox_y0": base['bbox_y0'],
+            #     "bbox_y1": base['bbox_y1'],
+            #     "spatial_representation_type": srt,
+            #     "supplemental_information_en": base['supplemental_information']
+            # })
 
-        #     # Istance and add regions
-        #     regions = [region for region in base['regions']]
+            # # Save layer
+            # new_layer = Layer.objects.model(**attrs)
+            # new_layer.save()
+            # layer_old_refs[layer_full['pk']] = new_layer
 
-        #     for reg in regions:
-        #         # Search in old region json
-        #         for region in region_load:
-        #             field = region['fields']
-        #             if region['pk'] == reg:
-        #                 name = field['name']
-        #             else:
-        #                 continue
-        #         # Add region to each document
-        #         Reg = Region.objects.get(name=name)
-        #         new_layer.regions.add(Reg)
+            # Save mapslayer
+            new_layer = Layer.objects.model(
+                owner=owner,
+                name=layer['name'],
+                #"category": (old_category_refs[base['category']]
+                #             if base['category'] is not None
+                #             else None),
+                #"license": (old_license_refs[base['license']]
+                #            if base['license'] is not None
+                #            else None),
+                typename=layer['typename'],
+                #"store": layer['store'],
+                #"workspace": layer['workspace'],
+                #"default_style": default_style,
+                #"storeType": layer['storeType'],
+                #"bbox_x0": base['bbox_x0'],
+                #"bbox_x1": base['bbox_x1'],
+                #"bbox_y0": base['bbox_y0'],
+                #"bbox_y1": base['bbox_y1'],
+                #"spatial_representation_type": srt,
+                #"supplemental_information_en": base['supplemental_information']
+                )
+            new_layer.save()
+            layer_old_refs[layer_full['pk']] = new_layer
 
-        #     # Instance and add styles
-        #     for sty in layer['styles']:
-        #         new_layer.styles.add(old_style_refs[sty])
+            # Istance and add regions
+            regions = [region for region in base['regions']]
 
-        #     print(
-        #         'Imported layer: %s with pk: %s' % (
-        #             layer['name'], layer_full['pk']))
+            for reg in regions:
+                # Search in old region json
+                for region in region_load:
+                    field = region['fields']
+                    if region['pk'] == reg:
+                        name = field['name']
+                    else:
+                        continue
+                # Add region to each document
+                Reg = Region.objects.get(name=name)
+                new_layer.regions.add(Reg)
+
+            # Instance and add styles
+            for sty in layer['styles']:
+                new_layer.styles.add(old_style_refs[sty])
+
+            print(
+                'Imported layer: %s with pk: %s' % (
+                    layer['name'], layer_full['pk']))
 
         # # Import layer attribute
         # for attr in layer_attr_load:
