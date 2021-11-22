@@ -59,7 +59,10 @@ cp -pr $HOME/geonode-project ./oq-platform3
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-pip install Django==3.2
+wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+tar zxvf geoserver_data.tar.gz
+
+pip install Django==3.2.6
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
