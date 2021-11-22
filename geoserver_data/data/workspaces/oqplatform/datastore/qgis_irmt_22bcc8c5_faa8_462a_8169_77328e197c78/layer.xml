@@ -1,0 +1,17 @@
+<layer>
+  <name>qgis_irmt_22bcc8c5_faa8_462a_8169_77328e197c78</name>
+  <id>LayerInfoImpl--2ba59d67:16cded6ac76:-73be</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--2ba59d67:16cded6ac76:-73bc</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--2ba59d67:16cded6ac76:-73c0</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

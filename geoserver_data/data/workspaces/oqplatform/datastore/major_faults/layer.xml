@@ -1,0 +1,18 @@
+<layer>
+  <name>major_faults</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7f6e</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd6</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7f70</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>orydor</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

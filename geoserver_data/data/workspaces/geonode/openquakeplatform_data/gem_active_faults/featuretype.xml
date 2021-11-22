@@ -1,0 +1,95 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-28b62c4:17d47cbcb31:-2d59</id>
+  <name>gem_active_faults</name>
+  <nativeName>gem_active_faults</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-78ff667e:12476299803:-7ffe</id>
+  </namespace>
+  <title>gem_active_faults</title>
+  <abstract>No abstract provided</abstract>
+  <keywords>
+    <string>features</string>
+    <string>gem_active_faults</string>
+  </keywords>
+  <metadataLinks>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=http%3A%2F%2Fwww.w3.org%2F2005%2FAtom&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=http%3A%2F%2Fgcmd.gsfc.nasa.gov%2FAboutus%2Fxml%2Fdif%2F&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=http%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2F2.0.2&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=urn%3Aoasis%3Anames%3Atc%3Aebxml-regrep%3Axsd%3Arim%3A3.0&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>text/xml</type>
+      <metadataType>FGDC</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=http%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2Fcsdgm&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/catalogue/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=a4d2a658-4b96-11ec-bbf4-0242ac1a0005&amp;outputschema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&amp;elementsetname=full</content>
+    </metadataLink>
+    <metadataLink>
+      <type>other</type>
+      <metadataType>other</metadataType>
+      <content>http://localhost/showmetadata/xsl/1</content>
+    </metadataLink>
+  </metadataLinks>
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, 
+  DATUM[&quot;World Geodetic System 1984&quot;, 
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-171.282075941822</minx>
+    <maxx>165.975285420372</maxx>
+    <miny>-64.7659508346957</miny>
+    <maxy>71.5910359257766</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-171.282075941822</minx>
+    <maxx>165.975285420372</maxx>
+    <miny>-64.7659508346957</miny>
+    <maxy>71.5910359257766</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>NONE</projectionPolicy>
+  <enabled>true</enabled>
+  <advertised>true</advertised>
+  <metadata>
+    <entry key="recalculate-bounds">true</entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-28b62c4:17d47cbcb31:-8000</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+  <encodeMeasures>false</encodeMeasures>
+</featureType>

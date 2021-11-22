@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_24d6d89d_20c3_4a14_bd54_464ab02d06d0</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7f4a</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fcc</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7f4c</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>Michael</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

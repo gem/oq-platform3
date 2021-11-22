@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_f71cec28_3a42_471f_bb6f_d506d1b8e54f</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e7a</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7f97</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7e7c</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>essam</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

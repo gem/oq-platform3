@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_0c7902da_535c_4dea_95c5_6a241d78f2bf</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7f5a</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd0</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7f5c</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>mjourneay</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

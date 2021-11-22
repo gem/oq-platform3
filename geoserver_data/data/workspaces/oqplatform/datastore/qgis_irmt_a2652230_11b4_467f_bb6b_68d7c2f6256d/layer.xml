@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_a2652230_11b4_467f_bb6b_68d7c2f6256d</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7ec6</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fab</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7ec8</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>christopher.burton</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

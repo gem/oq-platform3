@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_f8d45e45_ac02_4f6b_b9bb_18f9f1293686</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e76</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7f96</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7e78</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>pslh</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

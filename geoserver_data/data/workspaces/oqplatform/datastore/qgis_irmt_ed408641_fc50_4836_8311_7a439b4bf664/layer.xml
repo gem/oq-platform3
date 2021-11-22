@@ -1,0 +1,18 @@
+<layer>
+  <name>qgis_irmt_ed408641_fc50_4836_8311_7a439b4bf664</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e8a</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7f9b</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7e8c</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>MTOQUICA</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

@@ -1,0 +1,29 @@
+<layer>
+  <name>gaf_viewer_faulttrace</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e42</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fe0</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fe2</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fe1</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fe3</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7e44</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>GEM</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
