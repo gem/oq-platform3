@@ -1,0 +1,107 @@
+[
+{
+    "model": "maps.maplayer",
+    "pk": 1,
+    "fields": {
+        "map": 2,
+        "stack_order": 0,
+        "format": null,
+        "name": "mapnik",
+        "store": null,
+        "opacity": 1.0,
+        "styles": "[]",
+        "transparent": false,
+        "fixed": false,
+        "group": "background",
+        "visibility": true,
+        "ows_url": null,
+        "layer_params": "{\"id\": 1, \"title\": \"Open Street Map\", \"type\": \"osm\", \"singleTile\": false, \"dimensions\": [], \"hideLoading\": false, \"handleClickOnLayer\": false, \"useForElevation\": false, \"hidden\": false, \"extraParams\": {\"msId\": \"mapnik__0\"}, \"wrapDateLine\": true, \"displayOutsideMaxExtent\": true}",
+        "source_params": "{}",
+        "local": false
+    }
+},
+{
+    "model": "maps.maplayer",
+    "pk": 2,
+    "fields": {
+        "map": 2,
+        "stack_order": 1,
+        "format": null,
+        "name": "OpenTopoMap",
+        "store": null,
+        "opacity": 1.0,
+        "styles": "[]",
+        "transparent": false,
+        "fixed": false,
+        "group": "background",
+        "visibility": false,
+        "ows_url": null,
+        "layer_params": "{\"id\": 1, \"provider\": \"OpenTopoMap\", \"title\": \"OpenTopoMap\", \"type\": \"tileprovider\", \"singleTile\": false, \"dimensions\": [], \"hideLoading\": false, \"handleClickOnLayer\": false, \"useForElevation\": false, \"hidden\": false, \"extraParams\": {\"msId\": \"OpenTopoMap__1\"}, \"wrapDateLine\": true, \"displayOutsideMaxExtent\": true}",
+        "source_params": "{}",
+        "local": false
+    }
+},
+{
+    "model": "maps.maplayer",
+    "pk": 3,
+    "fields": {
+        "map": 2,
+        "stack_order": 2,
+        "format": "image/jpeg",
+        "name": "s2cloudless:s2cloudless",
+        "store": null,
+        "opacity": 1.0,
+        "styles": "[]",
+        "transparent": false,
+        "fixed": false,
+        "group": "background",
+        "visibility": false,
+        "ows_url": "https://maps.geo-solutions.it/geoserver/wms",
+        "layer_params": "{\"id\": 1, \"thumbURL\": \"http://localhost/static/mapstorestyle/img/s2cloudless-s2cloudless.png\", \"title\": \"Sentinel-2 cloudless - https://s2maps.eu\", \"type\": \"wms\", \"url\": \"https://maps.geo-solutions.it/geoserver/wms\", \"singleTile\": false, \"dimensions\": [], \"hideLoading\": false, \"handleClickOnLayer\": false, \"useForElevation\": false, \"hidden\": false, \"extraParams\": {\"msId\": \"s2cloudless\"}, \"wrapDateLine\": true, \"displayOutsideMaxExtent\": true}",
+        "source_params": "{}",
+        "local": false
+    }
+},
+{
+    "model": "maps.maplayer",
+    "pk": 4,
+    "fields": {
+        "map": 2,
+        "stack_order": 3,
+        "format": null,
+        "name": "empty",
+        "store": null,
+        "opacity": 1.0,
+        "styles": "[]",
+        "transparent": false,
+        "fixed": false,
+        "group": "background",
+        "visibility": false,
+        "ows_url": null,
+        "layer_params": "{\"id\": 1, \"title\": \"Empty Background\", \"type\": \"empty\", \"singleTile\": false, \"dimensions\": [], \"hideLoading\": false, \"handleClickOnLayer\": false, \"useForElevation\": false, \"hidden\": false, \"extraParams\": {\"msId\": \"none\"}, \"wrapDateLine\": true, \"displayOutsideMaxExtent\": true}",
+        "source_params": "{}",
+        "local": false
+    }
+},
+{
+    "model": "maps.maplayer",
+    "pk": 5,
+    "fields": {
+        "map": 2,
+        "stack_order": 4,
+        "format": "image/png",
+        "name": "geonode:gem_active_faults",
+        "store": null,
+        "opacity": 1.0,
+        "styles": "['gem_active_faults']",
+        "transparent": true,
+        "fixed": false,
+        "group": null,
+        "visibility": true,
+        "ows_url": "http://localhost/geoserver/ows",
+        "layer_params": "{\"id\": 1, \"search\": {\"type\": \"wfs\", \"url\": \"http://localhost/gs/ows\"}, \"style\": \"\", \"title\": \"gem_active_faults\", \"tiled\": true, \"type\": \"wms\", \"url\": \"http://localhost/geoserver/ows\", \"bbox\": {\"bounds\": {\"maxx\": 165.975285420372, \"maxy\": 71.5910359257766, \"minx\": -171.282075941822, \"miny\": -64.7659508346957}, \"crs\": \"EPSG:4326\"}, \"singleTile\": false, \"dimensions\": [], \"hideLoading\": false, \"handleClickOnLayer\": false, \"featureInfo\": {\"format\": \"TEMPLATE\", \"template\": \"<div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">fid:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.fid}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">accuracy:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.accuracy}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">activity_c:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.activity_c}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">average_di:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.average_di}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">average_ra:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.average_ra}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">catalog_na:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.catalog_na}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">dip_dir:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.dip_dir}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">downthrown:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.downthrown}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">downthro_1:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.downthro_1}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">epistemic_:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.epistemic_}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">exposure_q:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.exposure_q}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">fz_name:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.fz_name}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">is_active:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.is_active}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">last_movem:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.last_movem}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">name:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.name}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">net_slip_r:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.net_slip_r}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">notes:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.notes}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">ogc_fid:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.ogc_fid}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">reference:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.reference}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">shortening:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.shortening}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">slip_type:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.slip_type}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">strike_sli:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.strike_sli}</div></div><div class=\\\"row\\\"><div class=\\\"col-xs-6\\\" style=\\\"font-weight: bold; word-wrap: break-word;\\\">vert_slip_:</div>                                             <div class=\\\"col-xs-6\\\" style=\\\"word-wrap: break-word;\\\">${properties.vert_slip_}</div></div></div>\"}, \"useForElevation\": false, \"hidden\": false, \"tileSize\": 512, \"store\": null, \"extraParams\": {\"msId\": \"geonode:gem_active_faults__4\"}, \"getFeatureInfo\": {\"fields\": [\"fid\", \"accuracy\", \"activity_c\", \"average_di\", \"average_ra\", \"catalog_na\", \"dip_dir\", \"downthrown\", \"downthro_1\", \"epistemic_\", \"exposure_q\", \"fz_name\", \"is_active\", \"last_movem\", \"name\", \"net_slip_r\", \"notes\", \"ogc_fid\", \"reference\", \"shortening\", \"slip_type\", \"strike_sli\", \"vert_slip_\"], \"propertyNames\": {\"fid\": null, \"accuracy\": null, \"activity_c\": null, \"average_di\": null, \"average_ra\": null, \"catalog_na\": null, \"dip_dir\": null, \"downthrown\": null, \"downthro_1\": null, \"epistemic_\": null, \"exposure_q\": null, \"fz_name\": null, \"is_active\": null, \"last_movem\": null, \"name\": null, \"net_slip_r\": null, \"notes\": null, \"ogc_fid\": null, \"reference\": null, \"shortening\": null, \"slip_type\": null, \"strike_sli\": null, \"vert_slip_\": null}, \"displayTypes\": {\"fid\": \"type_property\", \"accuracy\": \"type_property\", \"activity_c\": \"type_property\", \"average_di\": \"type_property\", \"average_ra\": \"type_property\", \"catalog_na\": \"type_property\", \"dip_dir\": \"type_property\", \"downthrown\": \"type_property\", \"downthro_1\": \"type_property\", \"epistemic_\": \"type_property\", \"exposure_q\": \"type_property\", \"fz_name\": \"type_property\", \"is_active\": \"type_property\", \"last_movem\": \"type_property\", \"name\": \"type_property\", \"net_slip_r\": \"type_property\", \"notes\": \"type_property\", \"ogc_fid\": \"type_property\", \"reference\": \"type_property\", \"shortening\": \"type_property\", \"slip_type\": \"type_property\", \"strike_sli\": \"type_property\", \"vert_slip_\": \"type_property\"}}, \"capability\": {\"abstract\": \"No abstract provided\", \"store\": \"openquakeplatform_data\", \"name\": \"geonode:gem_active_faults\", \"title\": \"gem_active_faults\", \"style\": \"\", \"queryable\": true, \"storeType\": \"dataStore\", \"bbox\": {\"EPSG:4326\": {\"srs\": \"EPSG:4326\", \"bbox\": [-171.282075941822, 165.975285420372, -64.7659508346957, 71.5910359257766]}, \"EPSG:3857\": {\"srs\": \"EPSG:3857\", \"bbox\": [\"-19067033.482334785\", \"18476284.21046846\", \"-9546990.277250974\", \"11607454.131746445\"]}, \"EPSG:900913\": {\"srs\": \"EPSG:900913\", \"bbox\": [\"-19067033.482334785\", \"18476284.21046846\", \"-9546990.277250974\", \"11607454.131746445\"]}}, \"srs\": {\"EPSG:3857\": true}, \"formats\": [\"image/png\", \"application/atom xml\", \"application/atom+xml\", \"application/json;type=utfgrid\", \"application/openlayers\", \"application/pdf\", \"application/rss xml\", \"application/rss+xml\", \"application/vnd.google-earth.kml\", \"application/vnd.google-earth.kml xml\", \"application/vnd.google-earth.kml+xml\", \"application/vnd.google-earth.kml+xml;mode=networklink\", \"application/vnd.google-earth.kmz\", \"application/vnd.google-earth.kmz xml\", \"application/vnd.google-earth.kmz+xml\", \"application/vnd.google-earth.kmz;mode=networklink\", \"atom\", \"image/geotiff\", \"image/geotiff8\", \"image/gif\", \"image/gif;subtype=animated\", \"image/jpeg\", \"image/png8\", \"image/png; mode=8bit\", \"image/svg\", \"image/svg xml\", \"image/svg+xml\", \"image/tiff\", \"image/tiff8\", \"image/vnd.jpeg-png\", \"kml\", \"kmz\", \"openlayers\", \"rss\", \"text/html; subtype=openlayers\", \"utfgrid\"], \"attribution\": {\"title\": \"admin\"}, \"infoFormats\": [\"text/plain\", \"application/vnd.ogc.gml\", \"text/xml\", \"application/vnd.ogc.gml/3.1.1\", \"text/xml; subtype=gml/3.1.1\", \"text/html\", \"application/json\"], \"styles\": [{\"title\": \"gem_active_faults\", \"legend\": {\"height\": \"40\", \"width\": \"22\", \"href\": \"http://localhost/geoserver/ows?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=geonode%3Agem_active_faults\", \"format\": \"image/png\"}, \"name\": \"gem_active_faults\"}], \"prefix\": \"geonode\", \"keywords\": [], \"llbbox\": [-171.282075941822, 165.975285420372, -64.7659508346957, 71.5910359257766]}, \"wrapDateLine\": true, \"displayOutsideMaxExtent\": true}",
+        "source_params": "{}",
+        "local": true
+    }
+}
+]

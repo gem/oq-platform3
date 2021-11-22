@@ -1,0 +1,24 @@
+[
+{
+    "model": "documents.document",
+    "pk": 3,
+    "fields": {
+        "title_en": "Upload of national and global active fault",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "doc_file": "documents/document/YrttBs5aQxq60FQ8h2fPAg.pdf",
+        "extension": "pdf",
+        "doc_type": "presentation",
+        "doc_url": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": []
+    }
+}
+]
