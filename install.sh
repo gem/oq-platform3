@@ -66,11 +66,12 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 
 cd $NAME_PROJECT
 
-mkdir -p geoserver_data/data
-# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-# tar zxvf geoserver_data.tar.gz
+#mkdir -p geoserver_data/data
+wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+tar zxvf geoserver_data.tar.gz
 
 docker-compose build --no-cache
+exit 0
 docker-compose up -d db
 
 sleep 15
