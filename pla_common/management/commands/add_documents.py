@@ -255,19 +255,19 @@ class Command(BaseCommand):
             map_old_refs[map_full['pk']] = newmap
 
             # Istance and add regions
-            # regions = [region for region in mapp['regions']]
+            regions = [region for region in mapp['regions']]
 
-            # for reg in regions:
-            #     # Search in old region json
-            #     for region in region_load:
-            #         field = region['fields']
-            #         if region['pk'] == reg:
-            #             name = field['name']
-            #         else:
-            #             continue
-            #     # Add region to each document
-            #     Reg = Region.objects.get(name=name)
-            #     newmap.regions.add(Reg)
+            for reg in regions:
+                # Search in old region json
+                for region in region_load:
+                    field = region['fields']
+                    if region['pk'] == reg:
+                        name = field['name']
+                    else:
+                        continue
+                # Add region to each document
+                Reg = Region.objects.get(name=name)
+                newmap.regions.add(Reg)
 
             print(
                 'Imported map: %s with pk %s' % (
@@ -348,19 +348,19 @@ class Command(BaseCommand):
             doc_old_refs[doc_full['pk']] = newdoc
 
             # Istance and add regions
-            # regions = [region for region in res['regions']]
+            regions = [region for region in res['regions']]
 
-            # for reg in regions:
-            #     # Search in old region json
-            #     for region in region_load:
-            #         field = region['fields']
-            #         if region['pk'] == reg:
-            #             name = field['name']
-            #         else:
-            #             continue
-            #     # Add region to each document
-            #     Reg = Region.objects.get(name=name)
-            #     newdoc.regions.add(Reg)
+            for reg in regions:
+                # Search in old region json
+                for region in region_load:
+                    field = region['fields']
+                    if region['pk'] == reg:
+                        name = field['name']
+                    else:
+                        continue
+                # Add region to each document
+                Reg = Region.objects.get(name=name)
+                newdoc.regions.add(Reg)
 
             print('Imported document: %s' % res['title'])
 
@@ -471,19 +471,19 @@ class Command(BaseCommand):
             layer_old_refs[layer_full['pk']] = new_layer
 
             # Istance and add regions
-            # regions = [region for region in base['regions']]
+            regions = [region for region in base['regions']]
 
-            # for reg in regions:
-            #     # Search in old region json
-            #     for region in region_load:
-            #         field = region['fields']
-            #         if region['pk'] == reg:
-            #             name = field['name']
-            #         else:
-            #             continue
-            #     # Add region to each document
-            #     Reg = Region.objects.get(name=name)
-            #     new_layer.regions.add(Reg)
+            for reg in regions:
+                # Search in old region json
+                for region in region_load:
+                    field = region['fields']
+                    if region['pk'] == reg:
+                        name = field['name']
+                    else:
+                        continue
+                # Add region to each document
+                Reg = Region.objects.get(name=name)
+                new_layer.regions.add(Reg)
 
             # Instance and add styles
             for sty in layer['styles']:
