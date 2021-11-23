@@ -11,7 +11,7 @@ x-common-django:
   volumes:
     # - '.:/usr/src/openquakeplatform'
     - statics:/mnt/volumes/statics
-    - ./geoserver_data/data:/geoserver_data/data
+    - geoserver-data-dir:/geoserver_data/data
     - backup-restore:/backup_restore
     - data:/data
     - tmp:/tmp
@@ -93,7 +93,7 @@ services:
       - .env
     volumes:
       - statics:/mnt/volumes/statics
-      - ./geoserver_data/data:/geoserver_data/data
+      - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
       - tmp:/tmp
@@ -152,7 +152,7 @@ services:
       - data-dir-conf
     volumes:
       - statics:/mnt/volumes/statics
-      - ./geoserver_data/data:/geoserver_data/data
+      - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
       - tmp:/tmp
@@ -208,7 +208,7 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}_gsconf
     command: /bin/true
     volumes:
-      - ./geoserver_data/data:/geoserver_data/data
+      - geoserver-data-dir:/geoserver_data/data
     labels:
         org.geonode.component: conf
         org.geonode.instance.name: geonode
