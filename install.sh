@@ -19,9 +19,10 @@ NAME_PROJECT="openquakeplatform"
 set -x
 
 cd $HOME
-rm -rf platform3/ openquakeplatform/ geonode-project/
+sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
+sudo rm oq-platform3/geoserver_data.tar.gz
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
-rm -rf $GEM_GIT_REPO/geonode-project
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
@@ -59,14 +60,15 @@ cp -pr $HOME/geonode-project ./oq-platform3
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-tar zxvf geoserver_data.tar.gz
-
 pip install Django==3.2.6
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
+
+mkdir -p geoserver_data/data
+# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+# tar zxvf geoserver_data.tar.gz
 
 docker-compose build --no-cache
 docker-compose up -d db
@@ -113,16 +115,16 @@ exec_test () {
     # sleep 40000 || true
 }
  
-if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    exec_test
-fi
-
-do_logs () {
-    cd $HOME/$GEM_GIT_PACKAGE
-    docker-compose logs > $HOME/docker.log
-}
-
-do_logs
+# if [ "$NO_EXEC_TEST" != "notest" ] ; then
+#     exec_test
+# fi
+# 
+# do_logs () {
+#     cd $HOME/$GEM_GIT_PACKAGE
+#     docker-compose logs > $HOME/docker.log
+# }
+# 
+# do_logs
 
 
 
