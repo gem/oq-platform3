@@ -37,32 +37,32 @@ class Command(BaseCommand):
         # Read documents json
         doc_fname = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'documents_document2.json')
+                'data_commands/gs_data/dump/'
+                'documents_document.json')
         doc_json = open(doc_fname).read()
         doc_load = json.loads(doc_json)
 
         # Read documents resource link json
         doc_res_fname = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'documents_documentresourcelink2.json')
+                'data_commands/gs_data/dump/'
+                'documents_documentresourcelink.json')
         doc_res_json = open(doc_res_fname).read()
         doc_res_load = json.loads(doc_res_json)
 
         # Read Style layer json
         layer_style_fname = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'layers_style2.json')
+                'data_commands/gs_data/dump/'
+                'layers_style.json')
         layer_style_json = open(layer_style_fname).read()
         layer_style_load = json.loads(layer_style_json)
 
         # Read layer attribute json
         layer_attr_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'layers_attribute2.json')
+                'data_commands/gs_data/dump/'
+                'layers_attribute.json')
         layer_attr_json = open(layer_attr_name).read()
         layer_attr_load = json.loads(layer_attr_json)
 
@@ -77,32 +77,32 @@ class Command(BaseCommand):
         # Read layer json
         layer_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'layers_layer2.json')
+                'data_commands/gs_data/dump/'
+                'layers_layer.json')
         layer_json = open(layer_name).read()
         layer_load = json.loads(layer_json)
 
         # Read resourcebase json
         resource_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'base_resourcebase2.json')
+                'data_commands/gs_data/dump/'
+                'base_resourcebase.json')
         resource_json = open(resource_name).read()
         resource_load = json.loads(resource_json)
 
         # Read map json
         maps_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'maps_map2.json')
+                'data_commands/gs_data/dump/'
+                'maps_map.json')
         maps_json = open(maps_name).read()
         maps_load = json.loads(maps_json)
 
         # Read maplayer json
         maplayer_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'maps_maplayer2.json')
+                'data_commands/gs_data/dump/'
+                'maps_maplayer.json')
         maplayer_json = open(maplayer_name).read()
         maplayer_load = json.loads(maplayer_json)
 
@@ -138,24 +138,24 @@ class Command(BaseCommand):
         # Read SpatialRepresentationType json
         srt_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'base_spatialrepresentationtype2.json')
+                'data_commands/gs_data/dump/'
+                'base_spatialrepresentationtype.json')
         srt_json = open(srt_name).read()
         srt_load = json.loads(srt_json)
 
         # Read tag json
         tag_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'taggit_tag2.json')
+                'data_commands/gs_data/dump/'
+                'taggit_tag.json')
         tag_json = open(tag_name).read()
         tag_load = json.loads(tag_json)
         # print("tag load: %d" % len(tag_load))
 
         tag_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump2/'
-                'taggit_taggeditem2.json')
+                'data_commands/gs_data/dump/'
+                'taggit_taggeditem.json')
         tag_json = open(tag_name).read()
         tag_item_load = json.loads(tag_json)
 
