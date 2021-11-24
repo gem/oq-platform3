@@ -10,7 +10,7 @@
         "regions": [],
         "default_style": 73,
         "storeType": "dataStore",
-        "store": "datastore",
+        "store": "openquakeplatform_data",
         "styles": [
             73
         ],
