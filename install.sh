@@ -71,7 +71,7 @@ wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 tar zxvf geoserver_data.tar.gz
 
 docker-compose build --no-cache
-exit 0
+# exit 0
 docker-compose up -d db
 
 sleep 15
@@ -89,6 +89,7 @@ sleep 200
 echo "Installation complete."
 
 # Run commands on django container
+docker-compose exec -T django bash -c "psql -h 127.0.0.1 -U postgres openquakeplatform_data < /usr/src/openquakeplatform/data_commands/gs_data/sql/gem_active_faults.sql"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 docker-compose exec -T django bash -c "./manage.sh add_documents"
