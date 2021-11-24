@@ -90,6 +90,7 @@ echo "Installation complete."
 
 # Run commands on django container
 docker-compose exec -T django bash -c "psql -h 127.0.0.1 -U postgres openquakeplatform_data < /usr/src/openquakeplatform/data_commands/gs_data/sql/gem_active_faults.sql"
+docker-compose exec -T django bash -c "./manage.sh updatelayers"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 docker-compose exec -T django bash -c "./manage.sh add_documents"
