@@ -122,8 +122,8 @@ class Command(BaseCommand):
         # Read regions json
         region_name = (
                 '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump/'
-                'base_region.json')
+                'data_commands/gs_data/dump2/'
+                'base_region2.json')
         region_json = open(region_name).read()
         region_load = json.loads(region_json)
 
