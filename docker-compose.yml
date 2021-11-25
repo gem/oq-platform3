@@ -48,6 +48,7 @@ services:
     env_file:
       - .env
     volumes:
+      - ./data_commands:/data_commands
       - dbdata:/var/lib/postgresql/data
       - dbbackups:/pg_backups
     restart: on-failure
