@@ -19,9 +19,10 @@ NAME_PROJECT="openquakeplatform"
 set -x
 
 cd $HOME
-rm -rf platform3/ openquakeplatform/ geonode-project/
+sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
+sudo rm oq-platform3/geoserver_data.tar.gz
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
-rm -rf $GEM_GIT_REPO/geonode-project
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
@@ -59,13 +60,18 @@ cp -pr $HOME/geonode-project ./oq-platform3
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-pip install Django==3.2
+pip install Django==3.2.6
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
 
+#mkdir -p geoserver_data/data
+wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+tar zxvf geoserver_data.tar.gz
+
 docker-compose build --no-cache
+# exit 0
 docker-compose up -d db
 
 sleep 15
@@ -82,6 +88,15 @@ sleep 200
 
 echo "Installation complete."
 
+# Run commands on django container
+docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+docker-compose exec -T django bash -c "./manage.sh add_documents"
+#docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+
+docker-compose exec -T django bash -c "./manage.sh updatelayers"
+docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 #function complete procedure for tests
 exec_test () {    
@@ -105,16 +120,16 @@ exec_test () {
     # sleep 40000 || true
 }
  
-if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    exec_test
-fi
-
-do_logs () {
-    cd $HOME/$GEM_GIT_PACKAGE
-    docker-compose logs > $HOME/docker.log
-}
-
-do_logs
+# if [ "$NO_EXEC_TEST" != "notest" ] ; then
+#     exec_test
+# fi
+# 
+# do_logs () {
+#     cd $HOME/$GEM_GIT_PACKAGE
+#     docker-compose logs > $HOME/docker.log
+# }
+# 
+# do_logs
 
 
 

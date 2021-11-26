@@ -1,0 +1,22 @@
+[
+{
+    "fields": {
+        "opacity": 1.0,
+        "map": 185,
+        "group": null,
+        "name": "oqplatform:gem_active_faults",
+        "format": "image/png",
+        "visibility": true,
+        "source_params": "",
+        "layer_params": "",
+        "ows_url": "http://localhost/geoserver/wms",
+        "stack_order": 6,
+        "styles": "gem_active_faults",
+        "fixed": false,
+        "local": true,
+        "transparent": true
+    },
+    "model": "maps.maplayer",
+    "pk": 350
+}
+]
