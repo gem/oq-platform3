@@ -99,6 +99,8 @@ SITEURL = os.getenv('SITEURL', _default_siteurl)
 _surl = urlparse(SITEURL)
 HOSTNAME = _surl.hostname
 
+SITENAME = "Openquake Platform"
+
 # add trailing slash to site url. geoserver url will be relative to this
 if not SITEURL.endswith('/'):
     SITEURL = f'{SITEURL}/'
