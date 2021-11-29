@@ -291,7 +291,7 @@ devtest_run () {
 
     _wait_ssh $lxc_ip
     set +e
-    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id" ${plugins_branch_id} "$name_project"
+    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id" "$name_project"
     inner_ret=$?
 
     copy_common dev
