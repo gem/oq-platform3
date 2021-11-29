@@ -379,7 +379,7 @@ while [ $# -gt 0 ]; do
             #    usage 1
             #fi
             ACTION="$1"
-            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5" "$6"
+            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5" 
             break
             ;;
         *)
