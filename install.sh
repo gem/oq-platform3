@@ -120,9 +120,9 @@ exec_test () {
     # sleep 40000 || true
 }
  
-# if [ "$NO_EXEC_TEST" != "notest" ] ; then
-#     exec_test
-# fi
+if [ "$NO_EXEC_TEST" != "notest" ] ; then
+    exec_test
+fi
 # 
 # do_logs () {
 #     cd $HOME/$GEM_GIT_PACKAGE
