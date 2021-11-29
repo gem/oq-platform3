@@ -13,7 +13,7 @@ BRANCH_ID="$1"
 DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
-NAME_PROJECT="openquakeplatform"
+NAME_PROJECT="$5"
 
 #display each command before executing it
 set -x

@@ -255,7 +255,7 @@ _devtest_innervm_run () {
    	cd ${GEM_GIT_PACKAGE}
 	pwd
 
-	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${lxc_ip} ${notests} ${plugins_branch_id}
+	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${lxc_ip} ${notests} ${plugins_branch_id} ${name_project}
 EOF
 
     echo "_devtest_innervm_run: exit"
@@ -291,7 +291,7 @@ devtest_run () {
 
     _wait_ssh $lxc_ip
     set +e
-    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id"
+    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id" "$name_project"
     inner_ret=$?
 
     copy_common dev
@@ -379,7 +379,7 @@ while [ $# -gt 0 ]; do
             #    usage 1
             #fi
             ACTION="$1"
-            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5"
+            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5" "$6"
             break
             ;;
         *)
