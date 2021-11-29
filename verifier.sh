@@ -255,7 +255,7 @@ _devtest_innervm_run () {
    	cd ${GEM_GIT_PACKAGE}
 	pwd
 
-	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${lxc_ip} ${notests} ${plugins_branch_id} ${name_project}
+	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${notests} ${name_project}
 EOF
 
     echo "_devtest_innervm_run: exit"
@@ -270,7 +270,7 @@ EOF
 #      <notest|''>           name of variable for activate or deactivate tests
 #
 devtest_run () {
-    local deps old_ifs branch_id="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4"
+    local deps old_ifs branch_id="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4" name_project="$5"
 
     if [ "$branch_geonode" == "" ] ; then
         branch_geonode=$branch_id
