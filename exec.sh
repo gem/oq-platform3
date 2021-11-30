@@ -8,7 +8,7 @@
 # copy this file in /home before to exec
 #
 
-export nameproject="$1"
+export name_project="$1"
 
 cd $HOME/openquakeplatform
 docker-compose down
