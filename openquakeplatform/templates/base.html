@@ -45,6 +45,8 @@
 
     {% block head %}
 
+      <link href="{% static "css/oqplatform.css" %}" rel="stylesheet"/>
+
       {% if DEBUG_STATIC %}
           <link href="{% static "lib/css/jquery.dataTables.css" %}" rel="stylesheet" />
           <link href="{% static "lib/css/select2.css" %}" rel="stylesheet"/>
