@@ -4,7 +4,8 @@
     background-color: #1b75a5;
     height: 40px;
 }
-.home .navbar-inverse {
+.home .navbar-inverse,
+.navbar-inverse {
     background-color: #1b75a5!important;
 }
 .navbar-inverse .nav-container {
@@ -17,4 +18,11 @@
     padding-top: 15px!important;
     padding-bottom: 12px!important;
 }
-
+.footer-col-md-6 {
+    width: 100%;
+    text-align:center;
+    font-size: 14px;
+}    
+footer {
+    background: #1b75a5 url(/static/geonode/img/oq-header.png) no-repeat left top;
+}    
