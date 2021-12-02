@@ -19,10 +19,19 @@
     padding-bottom: 12px!important;
 }
 .footer-col-md-6 {
-    width: 100%;
-    text-align:center;
-    font-size: 14px;
+    width: 100%!important;
+    text-align:center!important;
+    font-size: 14px!important;
+    color: #fff!!important;
 }    
 footer {
     background: #1b75a5 url(/static/geonode/img/oq-header.png) no-repeat left top;
+    height: 40px;
+    padding: 0.6em!important;
+}    
+footer a {
+    color: #fff!important;
+}    
+footer ul {
+    margin-bottom: 0!important;
 }    
