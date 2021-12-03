@@ -14,10 +14,6 @@
 .navbar-brand {
     height: auto!important;
 }
-.navbar-inverse .navbar-nav > li > a {
-    padding-top: 15px!important;
-    padding-bottom: 12px!important;
-}
 .footer-col-md-6 {
     width: 100%!important;
     text-align:center!important;
@@ -35,3 +31,30 @@ footer a {
 footer ul {
     margin-bottom: 0!important;
 }    
+#nav_calculate {
+    border-bottom: solid #ffdc00 5px;
+}
+#nav_share {
+    border-bottom: solid #eb737d 5px;
+}
+#nav_explore {
+    border-bottom: solid #dc6522 5px;
+}
+.navbar-inverse .navbar-nav > li {
+    margin: 0 20px;
+}    
+.navbar-inverse .navbar-nav > li > a {
+    padding-top: 15px!important;
+    padding-bottom: 5px!important;
+    color: #fff!important;
+    font-size: 16px!important;
+    border: 0!important;
+    font-weight: 300!important;
+}
+.navbar-inverse .navbar-nav > li > a:hover, 
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: #fff!important;
+    font-size: 18px!important;
+    font-weight: 500!important;
+    background: none!important;
+}
