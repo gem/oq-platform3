@@ -40,6 +40,12 @@ footer ul {
 #nav_explore {
     border-bottom: solid #dc6522 5px;
 }
+#nav_calculate,
+#nav_share,
+#nav_explore {
+    width: 100px;
+    text-align: center;
+}    
 .navbar-inverse .navbar-nav > li {
     margin: 0 20px;
 }    
@@ -49,12 +55,11 @@ footer ul {
     color: #fff!important;
     font-size: 16px!important;
     border: 0!important;
-    font-weight: 300!important;
 }
 .navbar-inverse .navbar-nav > li > a:hover, 
 .navbar-inverse .navbar-nav > li > a:focus {
     color: #fff!important;
     font-size: 18px!important;
-    font-weight: 500!important;
+    font-weight: bold!important;
     background: none!important;
 }
