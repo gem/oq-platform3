@@ -63,3 +63,25 @@ footer ul {
     font-weight: bold!important;
     background: none!important;
 }
+.right-bar {
+    float: right;
+    width: 68px;
+    height: 42px;
+    position: absolute;
+    right: 4px;
+    top: 5px;
+}
+.oq-right-search,
+.oq-right-help,
+.oq-right-share {
+    margin: 0;
+}
+.oq-right-search a,
+.oq-right-help a,
+.oq-right-share a {
+    padding-top: 15px!important;
+    padding-bottom: 5px!important;
+}
+.navbar-right {
+    margin-right: 40px!important;
+}
