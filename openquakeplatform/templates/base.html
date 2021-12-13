@@ -275,6 +275,49 @@
           <link rel="stylesheet" type="text/css" href="{% static "geonode/css/geonode-rtl.min.css" %}">
         {% endif %}
     {% endif %}
+    <link href="{{ STATIC_URL }}img/favicon.png" rel="shortcut icon"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="/catalogue/opensearch" title="Openquake Platform Search"/>
+
+    <!--function for open modal menu -->
+    <script type="text/javascript">
+            function search_click() {
+                if(document.getElementById('search-inp').style.display == "none") {
+                          $("#search-inp").fadeIn();
+                          $("#oq-share").fadeOut();
+                          $("dropdown-menu").fadeOut();
+                          return false;
+                 } else {
+                          $("#search-inp").fadeOut();
+                          $("dropdown-menu").fadeOut();
+                          return false;
+                 }
+                 stopPropagation();
+             }
+             function share_click() {
+                 if(document.getElementById('oq-share').style.display == "none") {
+                          $("#oq-share").fadeIn();
+                          $("#search-inp").fadeOut();
+                          $("dropdown-menu").fadeOut();
+                          return false;
+                  } else {
+                          $("#oq-share").fadeOut();
+                          $("dropdown-menu").fadeOut();
+                          return false;
+                  }
+
+             }
+             function dropdown_click() {
+                 if(document.getElementById('dropdown-menu').style.display == "none") {
+                          $("#oq-share").fadeIn();
+                          $("#search-inp").fadeIn();
+                          return false;
+                  } else {
+                          $("#oq-share").fadeOut();
+                          $("#search-inp").fadeOut();
+                          return false;
+                  }
+             }
+      </script>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
@@ -291,7 +334,7 @@
         <a class="navbar-brand" href="{% url "home" %}">GeoNode</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav toolbar">
+        <ul class="nav navbar-nav toolbar oq-navbar">
 
           {% block tabs %}
           <li id="nav_calculate">
@@ -318,7 +361,37 @@
             {% endblock my_extra_right_tab %}
 
             <li>
-              <div class="search">
+               <div class="oq-search">
+                <form class="navbar-form" id="search" action="{% url "search" %}" >
+                 <div class="col-md-3">
+                  <div id="search-inp" class="input-group" style="display: none;">
+                    {% if HAYSTACK_SEARCH %}
+                    <input autocomplete="off" id="search_input" type="text" placeholder="{% trans 'Search' %}" name="q">
+                    {% else %}
+                    <input autocomplete="off" type="text" name="title__icontains" id="search_input" placeholder="{% trans 'Search' %}" class="oq-search-input">
+                    {% endif %}
+                    <span class="input-group-btn">
+                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div>
+                 </div>
+                </form>
+                <!--<form class="navbar-form" id="search" action="{% url "search" %}" >
+                 <div class="col-md-3">
+                  <div id="search-inp" class="input-group" style="display:none;">
+                   {% if HAYSTACK_SEARCH %}
+                    <input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
+                   {% else %}
+                    <input id="search_input" class="oq-search-input" type="text" placeholder="Search" class="form-control" name="title__icontains">
+                   {% endif %}
+                   <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                   </span>
+                  </div>
+                 </div>
+                </form>-->
+               </div>  
+              <!--<div class="search">
                 <form id="search" action="{% url "search" %}" >
                   <span class="fa fa-search"></span>
                   <div id="search-container" class="autocomplete-input">
@@ -335,13 +408,13 @@
                     {% endif %}
                   </div>
                 </form>
-              </div>
+              </div>-->
             </li>
             {% if not user.is_authenticated and ACCOUNT_OPEN_SIGNUP and not READ_ONLY_MODE %}
-              <li><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
+              <li class="oq-reg"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
             {% endif %}
             {% if user.is_authenticated %}
-            <li>
+            <li class="oq-user">
               <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 {% autoescape off %}{% avatar user 40 %}{% endautoescape %}
                 {% with full_name=user.first_name|add:' '|add:user.last_name %}
@@ -378,7 +451,7 @@
                 </ul>
               </li>
           {% else %}
-          <li><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
+          <li class="oq-signin"><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
               {% endif %}
               {% if user.is_authenticated %}
                  <li class="oq-right-search">

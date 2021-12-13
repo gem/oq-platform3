@@ -1,3 +1,7 @@
+.btn-primary {
+    background: #f7931e!important;
+    border-color: #f7931e!important;
+}
 .navbar-inverse {
     border: 0;
     background: url(/static/geonode/img/oq-header.png) no-repeat left top;
@@ -45,19 +49,20 @@ footer ul {
 #nav_explore {
     width: 100px;
     text-align: center;
-}    
-.navbar-inverse .navbar-nav > li {
     margin: 0 20px;
 }    
-.navbar-inverse .navbar-nav > li > a {
+.oq-navbar > li {
     padding-top: 15px!important;
     padding-bottom: 5px!important;
+}    
+.oq-navbar > li > a {
     color: #fff!important;
     font-size: 16px!important;
     border: 0!important;
+    padding: 0!important;
 }
-.navbar-inverse .navbar-nav > li > a:hover, 
-.navbar-inverse .navbar-nav > li > a:focus {
+.oq-navbar > li > a:hover, 
+.oq-navbar > li > a:focus {
     color: #fff!important;
     font-size: 18px!important;
     font-weight: bold!important;
@@ -74,14 +79,48 @@ footer ul {
 .oq-right-search,
 .oq-right-help,
 .oq-right-share {
-    margin: 0;
-}
+    margin: -8px 25px 0 -42px!important;
+
+}    
 .oq-right-search a,
 .oq-right-help a,
 .oq-right-share a {
     padding-top: 15px!important;
     padding-bottom: 5px!important;
+}    
+.oq-user {
+    margin: -8px 35px 0;
+}    
+.oq-user:hover {
+    background: none!important;
+}    
+.oq-reg,
+.oq-signin {
+    margin: -8px 25px 0 -25px;
+}    
+.oq-right-search,
+.oq-right-help,
+.oq-right-share,
+.oq-reg > a:hover, 
+.oq-reg > a:focus,
+.oq-signin > a:hover,
+.oq-signin > a:focus {
+    color: #fff!important;
+    background: none!important;
 }
+.oq-search {
+    height: auto;
+}
+.oq-search .col-md-3 {
+    position: fixed;
+    right: 90px;
+    width: auto;
+    z-index: 1;
+    top: 60px;
+}
+.oq-search-input {
+    width: 300px;
+}    
 .navbar-right {
     margin-right: 40px!important;
-}
+}    
