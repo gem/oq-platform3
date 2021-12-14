@@ -367,9 +367,9 @@
                  <div class="col-md-3">
                   <div id="search-inp" class="input-group" style="display: none;">
                     {% if HAYSTACK_SEARCH %}
-                    <input autocomplete="off" id="search_input" type="text" placeholder="{% trans 'Search' %}" name="q">
+                    <input autocomplete="on" id="search_input" type="text" placeholder="{% trans 'Search' %}" name="q">
                     {% else %}
-                    <input autocomplete="off" type="text" name="title__icontains" id="search_input" placeholder="{% trans 'Search' %}" class="oq-search-input">
+                    <input autocomplete="on" type="text" name="title__icontains" id="search_input" placeholder="{% trans 'Search' %}" class="oq-search-input">
                     {% endif %}
                     <span class="input-group-btn">
                      <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
