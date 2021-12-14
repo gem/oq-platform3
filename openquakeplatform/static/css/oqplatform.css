@@ -49,7 +49,7 @@ footer ul {
 #nav_explore {
     width: 100px;
     text-align: center;
-    margin: 0 20px;
+    margin: 0 15px;
 }    
 .oq-navbar > li {
     padding-top: 15px!important;
@@ -144,7 +144,7 @@ footer ul {
 .oq-share ul li {
     float: left;
     list-style: none;
-    padding: 0 7px;
+    padding: 0;
     width: 100%;
 }
 .oq-share ul li a:hover,
@@ -182,3 +182,16 @@ footer ul {
     top: -7px;
     right: 86px;
 }
+.modal-dialog {
+    width: 500px!important;
+    margin: 60px auto!important;
+}
+.form-signin {
+    max-width: 500px!important;
+    margin: 0px auto!important;
+    padding: 15px!important;
+}
+.modal-body .checkbox input[type="checkbox"] {
+    margin-left: 0!important;
+    position: relative!important;
+}    
