@@ -98,13 +98,18 @@ footer ul {
 .oq-signin {
     margin: -8px 25px 0 -25px;
 }    
-.oq-right-search,
-.oq-right-help,
-.oq-right-share,
+.oq-right-search > a:hover,
+.oq-right-search > a:focus,
+.oq-right-help > a:hover,
+.oq-right-help > a:focus,
+.oq-right-share > a:hover,
+.oq-right-share > a:focus,
 .oq-reg > a:hover, 
 .oq-reg > a:focus,
 .oq-signin > a:hover,
-.oq-signin > a:focus {
+.oq-signin > a:focus,
+.oq-user > a:focus,
+.oq-user > a:hover {
     color: #fff!important;
     background: none!important;
 }
@@ -113,7 +118,7 @@ footer ul {
 }
 .oq-search .col-md-3 {
     position: fixed;
-    right: 90px;
+    right: 0;
     width: auto;
     z-index: 1;
     top: 60px;
@@ -124,3 +129,56 @@ footer ul {
 .navbar-right {
     margin-right: 40px!important;
 }    
+.oq-share {
+    display: none;
+}
+.oq-share ul {
+    float: right;
+    margin: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 160px;
+    padding: 2px 0;
+}
+.oq-share ul li {
+    float: left;
+    list-style: none;
+    padding: 0 7px;
+    width: 100%;
+}
+.oq-share ul li a:hover,
+.oq-share ul li a:focus {
+    background:#2c689c;
+    color:#fff!important;
+}
+.oq-share ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    width: 100%;
+    padding: 4px 2px;
+    position: relative;
+    display: block;
+}
+.oq-share .col-md-3 {
+    position: fixed;
+    right: 0;
+    width: auto;
+    z-index: 999;
+    top: 60px;
+}
+.oq-share .col-md-3 > ul > li > a .fa {
+    width: 28px;
+}    
+.oq-share ul:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: -7px;
+    right: 86px;
+}
