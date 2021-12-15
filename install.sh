@@ -123,13 +123,22 @@ exec_test () {
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
     exec_test
 fi
-# 
-# do_logs () {
-#     cd $HOME/$GEM_GIT_PACKAGE
-#     docker-compose logs > $HOME/docker.log
-# }
-# 
-# do_logs
+
+do_logs () {
+    cd $HOME/$GEM_GIT_PACKAGE
+    docker-compose logs > $HOME/docker.log
+}
+
+do_logs
+
+rem_sig_hand() {
+    trap "" ERR
+    echo 'signal trapped'
+    set +e
+    exit 1
+}
+
+trap rem_sig_hand ERR
 
 
 
