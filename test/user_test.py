@@ -24,7 +24,7 @@ class UserLoginTest(unittest.TestCase):
 
         user_field = plb.xpath_find(
             "//form[@class='%s' or @class='%s']//input[@id="
-            "'id_username' and @type='text' and @name='username']" % (
+            "'id_username' and @type='text' and @name='login']" % (
                 ('sign-in', 'form-signin')))
         plb.wait_visibility(user_field, 2)
         user_field.send_keys(gem_user)
