@@ -461,6 +461,9 @@
           </div> <!--/.nav-collapse -->
         </div>
         <div class="right-bar"><a href="https://www.globalquakemodel.org/" target="_blank"><img alt="oq-gem" src="{{ STATIC_URL }}geonode/img/oq-gem.png" /></a></div>
+        {% if not user.is_authenticated %}
+          {% include 'includes/map_warning.html' %}
+        {% endif %}
       </nav>
       {% endblock header %}
       <!-- End of Navbar -->
