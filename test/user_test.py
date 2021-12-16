@@ -16,7 +16,7 @@ class UserLoginTest(unittest.TestCase):
 
         # New window with platform without other login
         plb = pla.platform_create(user=None, passwd=None)
-        plb.init(landing='/', autologin=False)
+        plb.init(autologin=False)
 
         # New login
         signin = plb.xpath_finduniq("//a[normalize-space(text()) = 'Sign in']")
