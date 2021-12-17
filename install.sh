@@ -66,7 +66,10 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 
 cd $NAME_PROJECT
 
-#mkdir -p geoserver_data/data
+wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
+tar zxvf geonode.tar.gz
+cp -r geonode/* openquakeplatform/
+
 wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 tar zxvf geoserver_data.tar.gz
 
