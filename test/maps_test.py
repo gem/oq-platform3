@@ -13,7 +13,7 @@ class MapsTest(unittest.TestCase):
 
         # New window with platform without login
         plb = pla.platform_create(user=None, passwd=None)
-        plb.init(landing='/', autologin=False)
+        plb.init(landing='http://localhost', autologin=False)
 
         # To visualize maps list
         list_maps = plb.xpath_finduniq(
