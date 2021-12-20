@@ -15,8 +15,22 @@ HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
 
+rem_sig_hand() {
+    trap "" ERR
+    echo 'signal trapped'
+    set +e
+    exit 1
+}
+
+trap rem_sig_hand ERR
+set -e
+if [ $GEM_SET_DEBUG ]; then
+    export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
+    set -x
+fi
+
 #display each command before executing it
-set -x
+#set -x
 
 cd $HOME
 sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
@@ -134,19 +148,6 @@ do_logs () {
 
 do_logs
 
-rem_sig_hand() {
-    trap "" ERR
-    echo 'signal trapped'
-    set +e
-    exit 1
-}
-
-trap rem_sig_hand ERR
-set -e
-if [ $GEM_SET_DEBUG ]; then
-    export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
-    set -x
-fi
 
 
 
