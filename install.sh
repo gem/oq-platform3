@@ -142,6 +142,11 @@ rem_sig_hand() {
 }
 
 trap rem_sig_hand ERR
+set -e
+if [ $GEM_SET_DEBUG ]; then
+    export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
+    set -x
+fi
 
 
 
