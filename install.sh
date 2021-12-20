@@ -15,6 +15,11 @@ HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
 
+cd $HOME
+sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
+sudo rm oq-platform3/geoserver_data.tar.gz
+sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
+
 rem_sig_hand() {
     trap "" ERR
     echo 'signal trapped'
@@ -31,11 +36,6 @@ fi
 
 #display each command before executing it
 #set -x
-
-cd $HOME
-sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
-sudo rm oq-platform3/geoserver_data.tar.gz
-sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
