@@ -15,11 +15,6 @@ HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
 
-cd $HOME
-sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
-sudo rm oq-platform3/geoserver_data.tar.gz
-sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
-
 rem_sig_hand() {
     trap "" ERR
     echo 'signal trapped'
@@ -34,8 +29,14 @@ if [ $GEM_SET_DEBUG ]; then
     set -x
 fi
 
-#display each command before executing it
-#set -x
+cd $HOME
+
+sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data || true
+sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
+
+# display each command before executing it
+# set -x
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -69,7 +70,7 @@ inst_docker
 
 #clone of repo 3.2.x 
 git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-cp -pr $HOME/geonode-project ./oq-platform3
+sudo cp -pr $HOME/geonode-project ./oq-platform3
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
