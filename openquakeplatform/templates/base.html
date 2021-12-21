@@ -420,7 +420,6 @@
                     <li><a href="{{ OGC_SERVER.default.WEB_UI_LOCATION }}"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> GeoServer</a></li>
                     {% endif %}
                     {% if USE_MONITORING %}
-                    <li role="separator" class="divider"></li>
                     <li><a href="{% url "monitoring:index" %}"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i> {% trans "Monitoring & Analytics" %}</a></li>
                     {% endif %}
                 {% endif %}

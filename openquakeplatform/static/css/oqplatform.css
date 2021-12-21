@@ -8,6 +8,29 @@
     background-color: #1b75a5;
     height: 40px;
 }
+.navbar-nav .dropdown-menu {
+    border-top: 1px solid #ccc;
+    background-color: #fff!important;
+}
+.navbar-nav > li > .dropdown-menu:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: -7px;
+    right: 50px;
+}
+.navbar-nav .dropdown-menu a {
+    color: #000;
+    font-size: 13px;
+    margin: 0;
+}
+.navbar-nav .dropdown-menu > li > a {
+    padding: 3px 2px;
+}
 .home .navbar-inverse,
 .navbar-inverse {
     background-color: #1b75a5!important;
