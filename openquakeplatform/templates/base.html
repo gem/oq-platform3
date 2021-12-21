@@ -419,9 +419,6 @@
                     {% if 'geonode.geoserver' in INSTALLED_APPS %}
                     <li><a href="{{ OGC_SERVER.default.WEB_UI_LOCATION }}"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> GeoServer</a></li>
                     {% endif %}
-                    {% if USE_MONITORING %}
-                    <li><a href="{% url "monitoring:index" %}"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i> {% trans "Monitoring & Analytics" %}</a></li>
-                    {% endif %}
                 {% endif %}
                 <li><a href="{% url "recent-activity" %}"><i class="fa fa-fire fa-2x" aria-hidden="true"></i> {% trans "Recent Activity" %}</a></li>
                 <li role="separator" class="divider"></li>

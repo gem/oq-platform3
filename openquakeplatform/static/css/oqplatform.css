@@ -31,6 +31,9 @@
 .navbar-nav .dropdown-menu > li > a {
     padding: 3px 2px;
 }
+.navbar-nav .dropdown-menu > li > a:hover {
+    color: #fff!important;
+}
 .home .navbar-inverse,
 .navbar-inverse {
     background-color: #1b75a5!important;
