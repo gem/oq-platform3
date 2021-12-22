@@ -1,4 +1,4 @@
-<!-- -----------------------------------------------------------------
+<!--
 -
 - Copyright (C) 2019 OSGeo
 -
@@ -15,7 +15,7 @@
 - You should have received a copy of the GNU General Public License
 - along with this program. If not, see <http://www.gnu.org/licenses/>.
 -
----------------------------------------------------------------------- -->
+-->
 
 {% load i18n avatar_tags %}
 {% load static from staticfiles %}
@@ -194,20 +194,6 @@
           right: 0;
           position: absolute;
           z-index: 0;
-        }
-        {% endif %}
-
-        {% if custom_theme.search_bg_color or custom_theme.search_title_color %}
-        .home .big-search {
-          background: {{ custom_theme.search_bg_color }};
-          color: {{ custom_theme.search_title_color }};
-          padding-bottom: 3em;
-          padding-top: 1em;
-        }
-        .home .big-search .btn-default {
-          background: transparent;
-          border: none;
-          color: {{ custom_theme.search_link_color }};
         }
         {% endif %}
 

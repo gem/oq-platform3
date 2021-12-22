@@ -1,3 +1,61 @@
+body {
+    background: #fff;
+}    
+body.home {
+    background: url(/static/img/back_platform.jpg) no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}    
+.home #wrap {
+    min-height: 772px;
+    background: none!important;
+}
+#wrap {
+    background: none!important;
+}    
+.home .jumbotron {
+    margin: 20px auto 0!important;
+    width: 80%;
+    background: rgba(0, 0, 0, 0.75)!important;
+    padding: 0!important;
+    height: 500px;
+}    
+.jumbotron .gn-container {
+    float: left;
+    padding: 0 0 0 10px!important;
+    width: 80%!important;
+}
+.jumbotron h1 {
+    color: #1b75a7;
+    font-size: 40px!important;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+.oq-button-home {
+    float: left;
+    width: 20%;
+    padding: 30px;
+}    
+.oq-button-home .bt .oq-button-home-btn {
+    display: block!important;
+    font-size: 18px;
+    margin: 0 0 15px;
+    background: #f7931e;
+    border-color: #f7931e;
+    font-weight: normal;
+    color: #fff!important;
+    width: 195px;
+    text-align: left;
+}
+.oq-button-home .bt .oq-button-home-btn:hover,
+.oq-button-home .bt .oq-button-home-btn:focus {
+    background: #f05a24;
+    border-color: #f05a24;
+}
 .btn-primary {
     background: #f7931e!important;
     border-color: #f7931e!important;
@@ -51,9 +109,15 @@
     color: #fff!!important;
 }    
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     background: #1b75a5 url(/static/geonode/img/oq-header.png) no-repeat left top;
     height: 40px;
     padding: 0.6em!important;
+    width: 100%!important;
+    z-index: 1000;
+    font-size: 14px;
 }    
 footer a {
     color: #fff!important;
