@@ -16,7 +16,7 @@ else
     cd $HOME/oq-platform3
     export GEM_SET_DEBUG="True"
     export GEM_GIT_PACKAGE="oq-platform3"
-    export GEM_GIT_REPO="git://github.com/gem"
+    export GEM_GIT_REPO="git@github.com:gem"
     export NO_EXEC_TEST="notest"
     echo "exec install.sh"
     ./install.sh "" "" "" "" $name_project
