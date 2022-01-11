@@ -153,6 +153,7 @@ footer ul {
     font-size: 16px!important;
     border: 0!important;
     padding: 0!important;
+    background: none!important;
 }
 .oq-navbar > li > a:hover, 
 .oq-navbar > li > a:focus {
