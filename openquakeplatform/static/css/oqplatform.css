@@ -297,3 +297,7 @@ footer ul {
     width: auto;
     left: 100px;
 }
+span.user-contrib {
+    font-size: 15px;
+    font-style: italic;
+}
