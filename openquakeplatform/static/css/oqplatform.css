@@ -63,6 +63,10 @@ body.home {
     background: #f7931e!important;
     border-color: #f7931e!important;
 }
+.btn-primary:hover, .btn-primary:focus {
+    background: #f05a24!important;
+    border-color: #f05a24!important;
+}
 .navbar-inverse {
     border: 0;
     background: url(/static/geonode/img/oq-header.png) no-repeat left top;
