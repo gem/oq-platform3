@@ -79,6 +79,9 @@ urlpatterns = [
     url(r'^privacy_cookies/$',
         TemplateView.as_view(template_name='privacy-cookies.html'),
         name='privacy-cookies'),
+    url(r'^terms/$',
+        TemplateView.as_view(template_name='terms.html'),
+        name='terms'),
 
     # Meta
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
