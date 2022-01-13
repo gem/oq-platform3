@@ -12,8 +12,7 @@ x-common-django:
     # - '.:/usr/src/openquakeplatform'
     - statics:/mnt/volumes/statics
     - ./geoserver_data/data:/geoserver_data/data
-    - ./openquakeplatform/static/:/usr/src/geonode/geonode/static
-    - ./openquakeplatform/templates/:/usr/src/geonode/geonode/templates
+    - ./openquakeplatform:/usr/src/geonode/geonode
     - backup-restore:/backup_restore
     - data:/data
     - tmp:/tmp

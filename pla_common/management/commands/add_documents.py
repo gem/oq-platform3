@@ -490,7 +490,7 @@ class Command(BaseCommand):
                 new_layer.styles.add(old_style_refs[sty])
 
             print(
-                'Imported layer: %s with pk: %s' % (
+                'Imported layerand attribute: %s with pk: %s' % (
                     layer['name'], layer_full['pk']))
 
         # Import layer attribute
@@ -518,10 +518,6 @@ class Command(BaseCommand):
                 max=field['max']
                 )
             new_attr.save()
-
-            print(
-                'Imported attribute layer: %s with pk: %s' % (
-                    layer['name'], layer_full['pk']))
 
         # Import layer rating
         # for rating in layer_rating_load:

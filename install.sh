@@ -13,15 +13,30 @@ BRANCH_ID="$1"
 DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
-NAME_PROJECT="openquakeplatform"
+NAME_PROJECT="$5"
 
-#display each command before executing it
-set -x
+rem_sig_hand() {
+    trap "" ERR
+    echo 'signal trapped'
+    set +e
+    exit 1
+}
+
+trap rem_sig_hand ERR
+set -e
+if [ $GEM_SET_DEBUG ]; then
+    export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '
+    set -x
+fi
 
 cd $HOME
-sudo rm -rf openquakeplatform/ geonode-project/ oq-platform3/geoserver_data/
-sudo rm oq-platform3/geoserver_data.tar.gz
-sudo rm /usr/share/keyrings/docker-archive-keyring.gpg
+
+sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data || true
+sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
+
+# display each command before executing it
+# set -x
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -55,7 +70,7 @@ inst_docker
 
 #clone of repo 3.2.x 
 git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-cp -pr $HOME/geonode-project ./oq-platform3
+sudo cp -pr $HOME/geonode-project ./oq-platform3
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
@@ -66,9 +81,12 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 
 cd $NAME_PROJECT
 
-#mkdir -p geoserver_data/data
+wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
+tar zxf geonode.tar.gz
+cp -r geonode/* openquakeplatform/
+
 wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-tar zxvf geoserver_data.tar.gz
+tar zxf geoserver_data.tar.gz
 
 docker-compose build --no-cache
 # exit 0
@@ -116,20 +134,21 @@ exec_test () {
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
 
     export DISPLAY=:1
-    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test || true
+    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
  
-# if [ "$NO_EXEC_TEST" != "notest" ] ; then
-#     exec_test
-# fi
-# 
-# do_logs () {
-#     cd $HOME/$GEM_GIT_PACKAGE
-#     docker-compose logs > $HOME/docker.log
-# }
-# 
-# do_logs
+if [ "$NO_EXEC_TEST" != "notest" ] ; then
+    exec_test
+fi
+
+do_logs () {
+    cd $HOME/$GEM_GIT_PACKAGE
+    docker-compose logs > $HOME/docker.log
+}
+
+do_logs
+
 
 
 

@@ -55,7 +55,7 @@ fi
 
 set -e
 
-GEM_GIT_REPO="git://github.com/gem"
+GEM_GIT_REPO="$(echo "${repository:-git@github.com:gem/oq-platform3.git}" | sed 's@/[^/]*$@@g')"
 GEM_GIT_PACKAGE="oq-platform3"
 
 if [ "$GEM_EPHEM_CMD" = "" ]; then
@@ -227,7 +227,7 @@ _lxc_name_and_ip_get()
 #      <plugins_branch_id>  name of preferred branch for plugins
 #
 _devtest_innervm_run () {
-    local i old_ifs pkgs_list dep git_branch="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4"
+    local i old_ifs pkgs_list dep git_branch="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4" name_project="$5"
 
     trap 'local LASTERR="$?" ; trap ERR ; (exit $LASTERR) ; return' ERR
 
@@ -255,7 +255,7 @@ _devtest_innervm_run () {
    	cd ${GEM_GIT_PACKAGE}
 	pwd
 
-	./install.sh ${branch_id} ${branch_geonode} ${GEM_GIT_PACKAGE} ${lxc_ip} ${notests} ${plugins_branch_id}
+	./install.sh "" "" "" "" ${name_project}
 EOF
 
     echo "_devtest_innervm_run: exit"
@@ -270,7 +270,7 @@ EOF
 #      <notest|''>           name of variable for activate or deactivate tests
 #
 devtest_run () {
-    local deps old_ifs branch_id="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4"
+    local deps old_ifs branch_id="$1" branch_geonode="$2" notests="$3" plugins_branch_id="$4" name_project="$5"
 
     if [ "$branch_geonode" == "" ] ; then
         branch_geonode=$branch_id
@@ -291,7 +291,7 @@ devtest_run () {
 
     _wait_ssh $lxc_ip
     set +e
-    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id"
+    _devtest_innervm_run "$branch_id" "$branch_geonode" "$notests" "$plugins_branch_id" "$name_project"
     inner_ret=$?
 
     copy_common dev
@@ -338,9 +338,9 @@ sig_hand () {
     if [ "$lxc_name" != "" ]; then
         ssh -t  $lxc_ip ". env/bin/activate ; export PYTHONPATH=:$HOME/oq-platform3; export DJANGO_SETTINGS_MODULE='openquakeplatform.settings ; sleep 3 ;"
 
-        copy_common "$ACTION"
-        copy_dev
-        copy_prod
+        # copy_common "$ACTION"
+        # copy_dev
+        # copy_prod
 
         echo "Destroying [$lxc_name] lxc"
         if [ "$LXC_DESTROY" = "true" ]; then
@@ -379,7 +379,7 @@ while [ $# -gt 0 ]; do
             #    usage 1
             #fi
             ACTION="$1"
-            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5"
+            devtest_run $(echo "$2" | sed 's@.*/@@g') "$3" "$4" "$5" "$6"
             break
             ;;
         *)
