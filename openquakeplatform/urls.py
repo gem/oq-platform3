@@ -82,6 +82,15 @@ urlpatterns = [
     url(r'^terms/$',
         TemplateView.as_view(template_name='terms.html'),
         name='terms'),
+    url(r'^explore/$',
+        TemplateView.as_view(template_name='explore.html'),
+        name='explore'),
+    url(r'^share/$',
+        TemplateView.as_view(template_name='share.html'),
+        name='share'),
+    url(r'^calculate/$',
+        TemplateView.as_view(template_name='calculate.html'),
+        name='calculate'),
 
     # Meta
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
