@@ -130,6 +130,10 @@ exec_test () {
     pip install -U selenium==${GEM_SELENIUM_VERSION}
 
     cp $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py.tmpl $HOME/$GEM_GIT_PACKAGE/test/config/moon_config.py
+    github_key="$(ssh-keyscan -t rsa github.com)"
+    if ! grep -q "$github_key" $HOME/.ssh/known_hosts; then
+        echo "$github_key" >> $HOME/.ssh/known_hosts
+    fi
     git clone -b "$GEM_GIT_PACKAGE" --depth=1  $GEM_GIT_REPO/oq-moon.git || git clone --depth=1 $GEM_GIT_REPO/oq-moon.git
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
 
