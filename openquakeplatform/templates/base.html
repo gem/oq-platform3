@@ -324,13 +324,13 @@
 
           {% block tabs %}
           <li id="nav_calculate">
-               <a href="">Calculate</a>
+               <a href="{% url "calculate" %}">Calculate</a>
           </li>
           <li id="nav_share">
-               <a href="">Share</a>
+               <a href="{% url "share" %}">Share</a>
           </li>
           <li id="nav_explore">
-               <a href="">Explore</a>
+               <a href="{% url "explore" %}">Explore</a>
           </li>
 
           {% block extra_tab %}
@@ -483,7 +483,7 @@
       <div class="row">
         <div class="col-md-6 text-right footer-col-md-6">
           <ul class="list-unstyled">
-              <li><a href="/versions">{% trans "OpenQuake Platform" %} {% now "Y" %}</a> | <a target="_blank" href="https://www.globalquakemodel.org/openquake?tab=oq-platform">{% trans "About" %}</a> | <a href="/terms">{% trans "Terms of use" %}</a> | <a target="_blank" href="https://www.globalquakemodel.org/contact-us">{% trans "Contact us" %}</a>
+              <li><a href="/versions">{% trans "OpenQuake Platform" %} {% now "Y" %}</a> | <a target="_blank" href="/about/">{% trans "About" %}</a> | <a href="/terms">{% trans "Terms of use" %}</a> | <a target="_blank" href="https://www.globalquakemodel.org/contact-us">{% trans "Contact us" %}</a>
             <li>
           </ul>
         </div>
