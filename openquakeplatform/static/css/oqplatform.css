@@ -43,6 +43,9 @@ body.home {
     width: 20%;
     padding: 30px 22px;
 }    
+.oq-button-home .oq-calc {
+    margin-top: 4px;
+}    
 .oq-button-home .bt .oq-button-home-btn {
     display: block!important;
     font-size: 18px;
