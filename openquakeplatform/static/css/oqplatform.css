@@ -28,7 +28,7 @@ body.home {
 }
 .jumbotron .gn-container {
     float: left;
-    padding: 0 0 0 10px!important;
+    padding: 0 45px;
     width: 80%;
 }
 .jumbotron h1 {
@@ -111,6 +111,10 @@ body.home {
 }
 .navbar-brand {
     height: auto!important;
+}
+.ac-results {
+    background-color: #fff;
+    padding: 5px;
 }
 .footer-col-md-6 {
     width: 100%!important;
@@ -312,10 +316,10 @@ span.user-contrib {
 
 /*Responsive */
 @media (max-width: 1300px) {
-    .home.jumbotron {
+    .home .jumbotron {
         width: 85%;
     }
     .jumbotron .gn-container {
-        width: 74%;
+        width: 70%;
     }
 }    
