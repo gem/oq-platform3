@@ -27,7 +27,7 @@ class MapsTest(unittest.TestCase):
         create_new_map.click()
 
         # Check page new map
-        plb.wait_new_page(create_new_map, '/maps/new', timeout=10)
+        plb.wait_new_page(create_new_map, '/maps/new#', timeout=10)
 
         # Check warning must login
         plb.xpath_finduniq(
