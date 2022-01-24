@@ -83,10 +83,13 @@ cd $NAME_PROJECT
 
 # wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
 # tar zxf geonode.tar.gz
-# cp -r geonode/* openquakeplatform/
-# 
-# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-# tar zxf geoserver_data.tar.gz
+
+git clone -b 3.2.x git@github.com:GeoNode/geonode.git
+cd geonode
+cp -r geonode/* openquakeplatform/
+
+wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+tar zxf geoserver_data.tar.gz
 
 docker-compose build --no-cache
 # exit 0
