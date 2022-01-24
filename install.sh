@@ -81,12 +81,12 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 
 cd $NAME_PROJECT
 
-wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
-tar zxf geonode.tar.gz
-cp -r geonode/* openquakeplatform/
-
-wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-tar zxf geoserver_data.tar.gz
+# wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
+# tar zxf geonode.tar.gz
+# cp -r geonode/* openquakeplatform/
+# 
+# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+# tar zxf geoserver_data.tar.gz
 
 docker-compose build --no-cache
 # exit 0
@@ -107,14 +107,14 @@ sleep 200
 echo "Installation complete."
 
 # Run commands on django container
-docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
-docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T django bash -c "./manage.sh add_documents"
-#docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
-
-docker-compose exec -T django bash -c "./manage.sh updatelayers"
-docker-compose exec -T django bash -c "./manage.sh fixsitename"
+#docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+#docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+#docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+#docker-compose exec -T django bash -c "./manage.sh add_documents"
+##docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+#
+#docker-compose exec -T django bash -c "./manage.sh updatelayers"
+#docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 #function complete procedure for tests
 exec_test () {    
