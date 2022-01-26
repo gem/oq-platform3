@@ -88,6 +88,9 @@ cp -r geonode/* openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 tar zxf geoserver_data.tar.gz
 
+wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
+tar zxf allauth.tar.gz
+
 docker-compose build --no-cache
 # exit 0
 docker-compose up -d db
@@ -104,8 +107,6 @@ docker-compose up -d
 
 sleep 200
 
-echo "Installation complete."
-
 # Run commands on django container
 docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
@@ -115,6 +116,8 @@ docker-compose exec -T django bash -c "./manage.sh add_documents"
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 docker-compose exec -T django bash -c "./manage.sh fixsitename"
+
+echo "Installation complete."
 
 #function complete procedure for tests
 exec_test () {    

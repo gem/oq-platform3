@@ -14,6 +14,7 @@ x-common-django:
     - ./geoserver_data/data:/geoserver_data/data
     - ./openquakeplatform:/usr/src/geonode/geonode
     - backup-restore:/backup_restore
+    - ./allauth:/usr/local/lib/python3.8/site-packages/allauth
     - data:/data
     - tmp:/tmp
 
