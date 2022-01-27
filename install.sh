@@ -139,14 +139,24 @@ exec_test () {
     fi
     git clone -b "$GEM_GIT_PACKAGE" --depth=1  $GEM_GIT_REPO/oq-moon.git || git clone --depth=1 $GEM_GIT_REPO/oq-moon.git
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
+}
 
+run_test () {
     export DISPLAY=:1
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
- 
+
+#set thumbnails
+exec_set_map_thumbs () {
+    export DISPLAY=:1
+    python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
+}
+
+exec_set_map_thumbs
+
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    exec_test
+    run_test
 fi
 
 do_logs () {
