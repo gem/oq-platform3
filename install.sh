@@ -88,6 +88,9 @@ cp -r geonode/* openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 tar zxf geoserver_data.tar.gz
 
+wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
+tar zxf allauth.tar.gz
+
 docker-compose build --no-cache
 # exit 0
 docker-compose up -d db
@@ -104,8 +107,6 @@ docker-compose up -d
 
 sleep 200
 
-echo "Installation complete."
-
 # Run commands on django container
 docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
@@ -115,6 +116,8 @@ docker-compose exec -T django bash -c "./manage.sh add_documents"
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 docker-compose exec -T django bash -c "./manage.sh fixsitename"
+
+echo "Installation complete."
 
 #function complete procedure for tests
 exec_test () {    
@@ -136,16 +139,32 @@ exec_test () {
     fi
     git clone -b "$GEM_GIT_PACKAGE" --depth=1  $GEM_GIT_REPO/oq-moon.git || git clone --depth=1 $GEM_GIT_REPO/oq-moon.git
     export PYTHONPATH=oq-moon:$HOME/$GEM_GIT_PACKAGE:$HOME/$GEM_GIT_PACKAGE/test/config
+}
 
+run_test () {
     export DISPLAY=:1
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
- 
+
+#set thumbnails
+exec_set_map_thumbs () {
+    export DISPLAY=:1
+    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
+}
+
+# install environment for testing
+exec_test
+
+# script to generate map thumbnails
+exec_set_map_thumbs
+
+# tests
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    exec_test
+    run_test
 fi
 
+# logs
 do_logs () {
     cd $HOME/$GEM_GIT_PACKAGE
     docker-compose logs > $HOME/docker.log

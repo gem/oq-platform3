@@ -1,0 +1,58 @@
+{% extends "geonode_base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "Openquake Calculate" %} — {{ block.super }} {% endblock %}
+
+{% block body_outer %}
+<div class="page-header">
+  <h2>{% trans "Openquake Calculate" %}</h2>
+</div>
+<style>
+    .oq-button-home {padding: 0 22px}
+</style>
+<div style="float:left; width: 80%; padding: 0 0 50px;">
+    <b>The OpenQuake Engine:</b><br/>
+            Seismic hazard and risk calculations can be performed using the OpenQuake engine.
+            <ul>
+                <li><a class="static-link" href="https://github.com/gem/oq-engine#openquake-engine" target="_blank">learn more</a> about the Engine and it's calculators</li>
+                <li>
+                  read the <a class="static-link" href="https://docs.openquake.org/manuals/OpenQuake%20Manual%20(latest).pdf" target="_blank">OpenQuake Engine manual</a>
+                </li>
+            </ul>
+
+            <b>Calculate on a desktop computer or server:</b>
+              <ul>
+                <li><a class="static-link" href="https://github.com/gem/oq-engine#installation" target="_blank">Download the OpenQuake Engine</a></li>
+              </ul>
+
+            <b>Modelling Tools:</b>
+              <ul>
+                <li>
+                  <a class="static-link" href="http://docs.openquake.org/oq-hazardlib/stable/openquake.hmtk.html" target="_blank">Hazard Modeller's Toolkit</a> - A suite of tools used to create PSHA input models, mostly developed by GEM scientists. It's provided by the <a class="static-link" href="https://github.com/gem/oq-engine#installation">OpenQuake Engine</a> packages.
+                </li>
+                <li>
+                  <a class="static-link" href="https://github.com/GEMScienceTools/gmpe-smtk" target="_blank">GMPE Strong Motion Modeller's Toolkit</a> - Python and OpenQuake-based Toolkit for Analysis of Strong Motions and Interpretation of GMPEs
+                </li>
+                <li>
+                  <a class="static-link" href="https://github.com/GEMScienceTools/rmtk" target="_blank">The Risk Modeller’s Toolkit (RMTK)</a> is a library of Python scripts and IPython notebooks that provide engineers with tools to create exposure, fragility, and vulnerability input models required for running seismic risk calculations using the OpenQuake engine. The RMTK is currently under development.
+                </li>
+              </ul>
+            <b>Social Vulnerability and Integrated Risk</b><br/>
+            Integrated Risk calculations, combining Social and Economic Vulnerability with Physical Risk can be performed using GEM's <a class="static-link" target="_blank" href="http://plugins.qgis.org/plugins/svir/">QGIS plugin</a>.
+              <ul>
+                <li>
+                  To install the plugin in QGIS simply search for 'SVIR' in the QGIS Plugin Manager and then click "Install Plugin".
+                </li>
+              </ul>
+
+            <b>Supporting material:</b>
+              <ul>
+                <li>
+                  GEM respository for <a class="static-link" href="https://github.com/GEMScienceTools/notebooks" target="_blank">ipython notebook examples</a> demonstrating use of GEM scientific libraries (e.g., oq-hazardlib, hmtk etc.)
+                </li>
+              </ul>
+</div>            
+
+{% include 'includes/sidebar.html' %}
+{% endblock %}
+

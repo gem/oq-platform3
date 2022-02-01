@@ -28,8 +28,8 @@ body.home {
 }
 .jumbotron .gn-container {
     float: left;
-    padding: 0 0 0 10px!important;
-    width: 80%!important;
+    padding: 0 45px;
+    width: 80%;
 }
 .jumbotron h1 {
     color: #1b75a7;
@@ -111,6 +111,11 @@ body.home {
 }
 .navbar-brand {
     height: auto!important;
+    padding: 12px 15px!important
+}
+.ac-results {
+    background-color: #fff;
+    padding: 5px;
 }
 .footer-col-md-6 {
     width: 100%!important;
@@ -161,6 +166,7 @@ footer ul {
     border: 0!important;
     padding: 0!important;
     background: none!important;
+    line-height: 14px!important;
 }
 .oq-navbar > li > a:hover, 
 .oq-navbar > li > a:focus {
@@ -175,12 +181,12 @@ footer ul {
     height: 42px;
     position: absolute;
     right: 4px;
-    top: 5px;
+    top: 1.5px;
 }
 .oq-right-search,
 .oq-right-help,
 .oq-right-share {
-    margin: -8px 25px 0 -42px!important;
+    margin: -13px 25px 0 -42px!important;
 
 }    
 .oq-right-search a,
@@ -190,14 +196,14 @@ footer ul {
     padding-bottom: 5px!important;
 }    
 .oq-user {
-    margin: -8px 35px 0;
+    margin: -13px 35px 0;
 }    
 .oq-user:hover {
     background: none!important;
 }    
 .oq-reg,
 .oq-signin {
-    margin: -8px 25px 0 -25px;
+    margin: -13px 25px 0 -25px;
 }    
 .oq-right-search > a:hover,
 .oq-right-search > a:focus,
@@ -227,8 +233,12 @@ footer ul {
 .oq-search-input {
     width: 300px;
 }    
+.navbar {
+    min-height: 42px!important;
+}    
 .navbar-right {
     margin-right: 40px!important;
+    height: 42px;
 }    
 .oq-share {
     display: none;
@@ -308,4 +318,42 @@ footer ul {
 span.user-contrib {
     font-size: 15px;
     font-style: italic;
+}
+
+/*Responsive */
+@media (min-width: 1024px) {
+    .col-lg-4 {
+        width: 33.33333333%!important;
+    }
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+        float: left;
+    }
+    .col-lg-8 {
+        width: 66.66666667%!important;
+    }
+}
+@media (max-width: 1024px) {
+    .home .jumbotron {
+        width: 85%;
+    }
+    .jumbotron .gn-container {
+        width: 70%;
+    }
+}    
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .home .jumbotron {
+        width: 870px;
+    }
+    .jumbotron .gn-container {
+        width: 70%;
+    }
+}
+@media (min-width: 1281px) {
+    .home .jumbotron {
+        width: 1160px;
+    }
+    .jumbotron .gn-container {
+        width: 78%;
+        padding: 0 40px;
+    }
 }
