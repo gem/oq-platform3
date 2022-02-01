@@ -150,15 +150,21 @@ run_test () {
 #set thumbnails
 exec_set_map_thumbs () {
     export DISPLAY=:1
-    python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
+    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
 }
 
+# install environment for testing
+exec_test
+
+# script to generate map thumbnails
 exec_set_map_thumbs
 
+# tests
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
     run_test
 fi
 
+# logs
 do_logs () {
     cd $HOME/$GEM_GIT_PACKAGE
     docker-compose logs > $HOME/docker.log

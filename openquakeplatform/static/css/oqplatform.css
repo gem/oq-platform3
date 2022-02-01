@@ -111,6 +111,7 @@ body.home {
 }
 .navbar-brand {
     height: auto!important;
+    padding: 12px 15px!important
 }
 .ac-results {
     background-color: #fff;
@@ -165,6 +166,7 @@ footer ul {
     border: 0!important;
     padding: 0!important;
     background: none!important;
+    line-height: 14px!important;
 }
 .oq-navbar > li > a:hover, 
 .oq-navbar > li > a:focus {
@@ -231,8 +233,12 @@ footer ul {
 .oq-search-input {
     width: 300px;
 }    
+.navbar {
+    min-height: 42px!important;
+}    
 .navbar-right {
     margin-right: 40px!important;
+    height: 42px;
 }    
 .oq-share {
     display: none;
