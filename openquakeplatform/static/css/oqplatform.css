@@ -181,12 +181,12 @@ footer ul {
     height: 42px;
     position: absolute;
     right: 4px;
-    top: 5px;
+    top: 1.5px;
 }
 .oq-right-search,
 .oq-right-help,
 .oq-right-share {
-    margin: -8px 25px 0 -42px!important;
+    margin: -13px 25px 0 -42px!important;
 
 }    
 .oq-right-search a,
@@ -196,14 +196,14 @@ footer ul {
     padding-bottom: 5px!important;
 }    
 .oq-user {
-    margin: -8px 35px 0;
+    margin: -13px 35px 0;
 }    
 .oq-user:hover {
     background: none!important;
 }    
 .oq-reg,
 .oq-signin {
-    margin: -8px 25px 0 -25px;
+    margin: -13px 25px 0 -25px;
 }    
 .oq-right-search > a:hover,
 .oq-right-search > a:focus,
