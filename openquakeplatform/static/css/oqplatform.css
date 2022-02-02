@@ -38,6 +38,11 @@ body.home {
     font-weight: 300;
     margin-bottom: 25px;
 }
+.navbar-nav .avatar img {
+    margin-top: -20px!important;
+    height: 30px!important;
+    width: 30px!important;
+}
 .oq-button-home {
     float: left;
     width: 20%;
