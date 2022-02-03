@@ -97,7 +97,7 @@ docker-compose up -d db
 
 sleep 15
 
-docker-compose up -d
+COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 
 # sleep 10
 
