@@ -42,6 +42,15 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/usaid.jpg)
 
 ### Private Partners
+#### Governors
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/eucentre.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/FMGlobal.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/hannoverRE.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/munichRe.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/swissRe.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/verisk.png)
+
+#### Advisors
 ### Associate Partners
 ### Project Partners
 ### Products Distribution Partners
@@ -57,10 +66,7 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 
 ***
 
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/FMGlobal.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/hannoverRe.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/Nephila.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/munichre_HwOCwR4.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/zurich_3eh504q.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/Air_JlQh6Ke.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/sur_170x104.jpg)
