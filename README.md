@@ -25,7 +25,18 @@ The OpenQuake Platform is released under the **[GNU Affero Public License 3](htt
 
 ## Thanks
 
+
 The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (GEM)](http://gem.foundation)** with the support of
+
+## Public Partners
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/nerc.png)
+
+
+## Private Partners
+## Associate Partners
+## Project Partners
+## Products Distribution Partners
+
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/aus.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/cidigen.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/sg_170x104.jpg)
@@ -38,7 +49,6 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/swiss_1.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/tem.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/TCIP-01.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/nerc.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/usaid_BsOsE8Z_QZnaG6c.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/FUNVISIS_GEM_logo.png)
 
