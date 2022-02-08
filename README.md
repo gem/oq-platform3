@@ -33,24 +33,26 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/nerc.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/dpc.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/gns_science.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/aus.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/nrcan.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/NTU.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/nset.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/swiss_1.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/tem.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/usaid.jpg)
 
-## Private Partners
-## Associate Partners
-## Project Partners
-## Products Distribution Partners
+### Private Partners
+### Associate Partners
+### Project Partners
+### Products Distribution Partners
 
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/aus.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/cidigen.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/sg_170x104.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/gfz.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/nied.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/nset.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/morst.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/RCN.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/swiss_1.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/tem.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/TCIP-01.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/usaid_BsOsE8Z_QZnaG6c.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/FUNVISIS_GEM_logo.png)
 
 ***
