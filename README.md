@@ -46,47 +46,29 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/eucentre.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/FMGlobal.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/hannoverRe.jpg)
+
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/munichRe.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/swissRe.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/verisk.png)
 
 #### Advisors
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/axa.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/descartes.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/global_parametrics.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/guycarpenter.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/oneconcern.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/partnerRe.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/safehub.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/wtw.png)
 ### Associate Partners
 ### Project Partners
 ### Products Distribution Partners
 
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/cidigen.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/sg_170x104.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/gfz.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/nied.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/morst.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/RCN.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/TCIP-01.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/FUNVISIS_GEM_logo.png)
 
 ***
 
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/Nephila.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/zurich_3eh504q.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/Air_JlQh6Ke.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/sur_170x104.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/EUCENTRE_BRAw8x4.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/GiroJ.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/arup.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/OYO_1.jpg)
 
 ***
-
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/OECD.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/worldbank_2.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/ISDR.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/Unesco.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/iaspei.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/iaee.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/istructe.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/cssc.jpg)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/IRDRICSU.png)
-![](https://github.com/gem/oq-infrastructure/raw/master/logos/EERI_GEM.png)
 
 If you would like to help support development of OpenQuake, please contact us at [partnership@globalquakemodel.org](mailto:partnership@globalquakemodel.org).
 For more info visit the GEM website at https://www.globalquakemodel.org/partners/
