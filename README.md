@@ -60,7 +60,19 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/global_parametrics.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/safehub.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/wtw.png)
+
 ### Associate Partners
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/apdim.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/cssc.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/EERI_GEM.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/iaee.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/iaspei.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/IRDRICSU.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/istructe.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/oecd.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/undrr.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/unesco.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/usgs.jpg)
 ### Project Partners
 ### Products Distribution Partners
 
