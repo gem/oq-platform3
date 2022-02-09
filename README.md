@@ -84,13 +84,13 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 
 ## Project Partners
 
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/project/aon.png)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/project/sg.jpg)
+![](https://github.com/gem/oq-infrastructure/raw/master/logos/project/sura.png)
 
 
 ## Products Distribution Partners
 
-
-
-***
 
 
 ***
