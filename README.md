@@ -25,9 +25,13 @@ The OpenQuake Platform is released under the **[GNU Affero Public License 3](htt
 
 ## Thanks
 
+
 ***
 
+
 The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (GEM)](http://gem.foundation)** with the support of
+
+
 
 ### Public Partners
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/nerc.png)
@@ -41,6 +45,8 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/tem.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/public/usaid.jpg)
 
+
+
 ### Private Partners
 #### Governors
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/eucentre.png)
@@ -51,6 +57,8 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/swissRe.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/governors/verisk.png)
 
+
+
 #### Advisors
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/axa.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/descartes.png)
@@ -60,6 +68,8 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/global_parametrics.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/safehub.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/private/advisors/wtw.png)
+
+
 
 ### Associate Partners
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/apdim.png)
@@ -73,7 +83,13 @@ The OpenQuake Engine is developed by the **[Global Earthquake Model Foundation (
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/undrr.jpg)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/unesco.png)
 ![](https://github.com/gem/oq-infrastructure/raw/master/logos/associate/usgs.jpg)
+
+
+
 ### Project Partners
+
+
+
 ### Products Distribution Partners
 
 
