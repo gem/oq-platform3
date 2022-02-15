@@ -48,6 +48,10 @@ sudo apt-get -y install git ca-certificates wget
 cd $GEM_GIT_PACKAGE
 cp .env-sample .env
 
+cd $GEM_GIT_PACKAGE/data_commands/gs_data
+wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
+tar zxf sql.tar.gz
+
 cd $HOME
 
 inst_docker () {
@@ -91,9 +95,6 @@ tar zxf geoserver_data.tar.gz
 
 wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
 tar zxf allauth.tar.gz
-
-wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
-tar zxf sql.tar.gz
 
 docker-compose build --no-cache
 # exit 0
