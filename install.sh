@@ -48,7 +48,7 @@ sudo apt-get -y install git ca-certificates wget
 cd $GEM_GIT_PACKAGE
 cp .env-sample .env
 
-cd $GEM_GIT_PACKAGE/data_commands/gs_data
+cd data_commands/gs_data
 wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
 tar zxf sql.tar.gz
 
