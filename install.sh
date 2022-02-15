@@ -14,6 +14,7 @@ DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
+DEV_PROD="$6"
 
 rem_sig_hand() {
     trap "" ERR
@@ -91,6 +92,9 @@ tar zxf geoserver_data.tar.gz
 wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
 tar zxf allauth.tar.gz
 
+wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
+tar zxf sql.tar.gz
+
 docker-compose build --no-cache
 # exit 0
 docker-compose up -d db
@@ -108,10 +112,19 @@ COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 sleep 200
 
 # Run commands on django container
-docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+docker-compose exec -T db bash -c "dump.bash"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T django bash -c "./manage.sh add_documents"
+
+if [ "$DEV_PROD" == "dev" ] ; then
+    docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+    docker-compose exec -T django bash -c "./manage.sh add_documents"
+fi
+
+if [ "$DEV_PROD" == "prod" ] ; then
+    docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/all_user.json"
+    docker-compose exec -T django bash -c "./manage.sh add_documents_prod"
+fi
+
 #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"

@@ -1,0 +1,242 @@
+[
+{
+    "fields": {
+        "name": "Hakim",
+        "slug": "hakim"
+    },
+    "model": "taggit.tag",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "BMKG",
+        "slug": "bmkg"
+    },
+    "model": "taggit.tag",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "disaster waste",
+        "slug": "disaster-waste"
+    },
+    "model": "taggit.tag",
+    "pk": 3
+},
+{
+    "fields": {
+        "name": "GIS",
+        "slug": "gis"
+    },
+    "model": "taggit.tag",
+    "pk": 4
+},
+{
+    "fields": {
+        "name": "remote sensing",
+        "slug": "remote-sensing"
+    },
+    "model": "taggit.tag",
+    "pk": 5
+},
+{
+    "fields": {
+        "name": "3DLaserScanning",
+        "slug": "3dlaserscanning"
+    },
+    "model": "taggit.tag",
+    "pk": 6
+},
+{
+    "fields": {
+        "name": "Surveys",
+        "slug": "surveys"
+    },
+    "model": "taggit.tag",
+    "pk": 7
+},
+{
+    "fields": {
+        "name": "DGPS",
+        "slug": "dgps"
+    },
+    "model": "taggit.tag",
+    "pk": 8
+},
+{
+    "fields": {
+        "name": "Quarry",
+        "slug": "quarry"
+    },
+    "model": "taggit.tag",
+    "pk": 9
+},
+{
+    "fields": {
+        "name": "Geology",
+        "slug": "geology"
+    },
+    "model": "taggit.tag",
+    "pk": 10
+},
+{
+    "fields": {
+        "name": "Mine",
+        "slug": "mine"
+    },
+    "model": "taggit.tag",
+    "pk": 11
+},
+{
+    "fields": {
+        "name": "LiDAR",
+        "slug": "lidar"
+    },
+    "model": "taggit.tag",
+    "pk": 12
+},
+{
+    "fields": {
+        "name": "RemoteSensing",
+        "slug": "remotesensing"
+    },
+    "model": "taggit.tag",
+    "pk": 13
+},
+{
+    "fields": {
+        "name": "Surveying",
+        "slug": "surveying"
+    },
+    "model": "taggit.tag",
+    "pk": 14
+},
+{
+    "fields": {
+        "name": "Stockpiles Volumes",
+        "slug": "stockpiles-volumes"
+    },
+    "model": "taggit.tag",
+    "pk": 15
+},
+{
+    "fields": {
+        "name": "Drones",
+        "slug": "drones"
+    },
+    "model": "taggit.tag",
+    "pk": 16
+},
+{
+    "fields": {
+        "name": "Seismic",
+        "slug": "seismic"
+    },
+    "model": "taggit.tag",
+    "pk": 17
+},
+{
+    "fields": {
+        "name": "vulnerability",
+        "slug": "vulnerability"
+    },
+    "model": "taggit.tag",
+    "pk": 18
+},
+{
+    "fields": {
+        "name": "risk",
+        "slug": "risk"
+    },
+    "model": "taggit.tag",
+    "pk": 19
+},
+{
+    "fields": {
+        "name": "hazard",
+        "slug": "hazard"
+    },
+    "model": "taggit.tag",
+    "pk": 20
+},
+{
+    "fields": {
+        "name": "Himalaya",
+        "slug": "himalaya"
+    },
+    "model": "taggit.tag",
+    "pk": 21
+},
+{
+    "fields": {
+        "name": "Seismic Hazard",
+        "slug": "seismic-hazard"
+    },
+    "model": "taggit.tag",
+    "pk": 22
+},
+{
+    "fields": {
+        "name": "Seismicity",
+        "slug": "seismicity"
+    },
+    "model": "taggit.tag",
+    "pk": 23
+},
+{
+    "fields": {
+        "name": "Catalogue",
+        "slug": "catalogue"
+    },
+    "model": "taggit.tag",
+    "pk": 24
+},
+{
+    "fields": {
+        "name": "Earthquake",
+        "slug": "earthquake"
+    },
+    "model": "taggit.tag",
+    "pk": 25
+},
+{
+    "fields": {
+        "name": "historical EQs",
+        "slug": "historical-eqs"
+    },
+    "model": "taggit.tag",
+    "pk": 26
+},
+{
+    "fields": {
+        "name": "seismogenic sources",
+        "slug": "seismogenic-sources"
+    },
+    "model": "taggit.tag",
+    "pk": 27
+},
+{
+    "fields": {
+        "name": "astrophysics",
+        "slug": "astrophysics"
+    },
+    "model": "taggit.tag",
+    "pk": 28
+},
+{
+    "fields": {
+        "name": "geodynamo",
+        "slug": "geodynamo"
+    },
+    "model": "taggit.tag",
+    "pk": 29
+},
+{
+    "fields": {
+        "name": "earthquakes",
+        "slug": "earthquakes"
+    },
+    "model": "taggit.tag",
+    "pk": 30
+}
+]
