@@ -33,8 +33,10 @@ fi
 cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data || true
-sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm oq-platform3/geoserver_data.tar.* || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
+sudo rm -rf oq-platform3/data_commands/gs_data/sql.tar.* || true
+sudo rm -rf oq-platform3/data_commands/gs_data/sql || true
 
 # display each command before executing it
 # set -x
@@ -51,6 +53,7 @@ cp .env-sample .env
 cd data_commands/gs_data
 wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
 tar zxf sql.tar.gz
+cp  $HOME/$GEM_GIT_PACKAGE/dump.bash sql
 
 cd $HOME
 
@@ -110,10 +113,10 @@ COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 #while since apache is up
 #while ! ps aux | grep apache; do echo "wait for apache be ready"; done
 
-sleep 200
+sleep 190
 
 # Run commands on django container
-docker-compose exec -T db bash -c "dump.bash"
+docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 
 if [ "$DEV_PROD" == "dev" ] ; then
