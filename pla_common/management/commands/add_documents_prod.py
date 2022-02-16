@@ -43,12 +43,12 @@ class Command(BaseCommand):
         doc_load = json.loads(doc_json)
 
         # Read documents resource link json
-        doc_res_fname = (
-                '/usr/src/openquakeplatform/'
-                'data_commands/gs_data/dump_prod/'
-                'documents_documentresourcelink.json')
-        doc_res_json = open(doc_res_fname).read()
-        doc_res_load = json.loads(doc_res_json)
+        # doc_res_fname = (
+        #         '/usr/src/openquakeplatform/'
+        #         'data_commands/gs_data/dump_prod/'
+        #         'documents_documentresourcelink.json')
+        # doc_res_json = open(doc_res_fname).read()
+        # doc_res_load = json.loads(doc_res_json)
 
         # Read Style layer json
         layer_style_fname = (
@@ -365,40 +365,40 @@ class Command(BaseCommand):
             print('Imported document: %s' % res['title'])
 
         # Import document resource link
-        for doc_res_full in doc_res_load:
+        # for doc_res_full in doc_res_load:
 
-            doc_res = doc_res_full['fields']
-            doc_res_id = doc_old_refs[doc_res['document']].pk
+        #     doc_res = doc_res_full['fields']
+        #     doc_res_id = doc_old_refs[doc_res['document']].pk
 
-            # Istance Map
-            if doc_res_id is not None:
-                doc_res_id = Document.objects.get(id=doc_res_id)
-            else:
-                doc_res_id = None
+        #     # Istance Map
+        #     if doc_res_id is not None:
+        #         doc_res_id = Document.objects.get(id=doc_res_id)
+        #     else:
+        #         doc_res_id = None
 
-            # Istance content_type
-            ctype_name = doc_res['content_type']
-            if ctype_name is not None:
-                ctype = [ctype for ctype in doc_res['content_type']]
-                label_type = ctype[0]
-                cont_type = ctype[1]
-                content_type = ContentType.objects.get(
-                    app_label=label_type, model=cont_type)
+        #     # Istance content_type
+        #     ctype_name = doc_res['content_type']
+        #     if ctype_name is not None:
+        #         ctype = [ctype for ctype in doc_res['content_type']]
+        #         label_type = ctype[0]
+        #         cont_type = ctype[1]
+        #         content_type = ContentType.objects.get(
+        #             app_label=label_type, model=cont_type)
 
-            object_id = None
-            # associate optional map with document
-            if doc_res['object_id'] is not None:
-                object_id = map_old_refs[doc_res['object_id']].pk
+        #     object_id = None
+        #     # associate optional map with document
+        #     if doc_res['object_id'] is not None:
+        #         object_id = map_old_refs[doc_res['object_id']].pk
 
-            # Save documents
-            newdoc_res = DocumentResourceLink.objects.model(
-                document=doc_res_id,    
-                object_id=object_id,
-                content_type=content_type,
-                )
-            newdoc_res.save()
+        #     # Save documents
+        #     newdoc_res = DocumentResourceLink.objects.model(
+        #         document=doc_res_id,    
+        #         object_id=object_id,
+        #         content_type=content_type,
+        #         )
+        #     newdoc_res.save()
 
-            print('Imported resource for document: %s' % doc_res['document'])
+        #     print('Imported resource for document: %s' % doc_res['document'])
 
         # Delete all layer
         Layer.objects.all().exclude(
