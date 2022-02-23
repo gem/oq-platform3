@@ -449,6 +449,7 @@ class Command(BaseCommand):
             new_layer = Layer.objects.model(
                 owner=owner,
                 name=layer['name'],
+                alternate=layer['name'],
                 category=(old_category_refs[base['category']]
                           if base['category'] is not None
                           else None),
@@ -460,10 +461,10 @@ class Command(BaseCommand):
                 workspace=layer['workspace'],
                 default_style=default_style,
                 storeType=layer['storeType'],
-                # bbox_x0=base['bbox_x0'],
-                # bbox_x1=base['bbox_x1'],
-                # bbox_y0=base['bbox_y0'],
-                # bbox_y1=base['bbox_y1'],
+                bbox_x0=base['bbox_x0'],
+                bbox_x1=base['bbox_x1'],
+                bbox_y0=base['bbox_y0'],
+                bbox_y1=base['bbox_y1'],
                 spatial_representation_type=srt,
                 supplemental_information_en=base['supplemental_information']
                 )
