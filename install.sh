@@ -45,7 +45,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y install git ca-certificates wget
 
 cd $GEM_GIT_PACKAGE
-cp .env-sample .env
+cp .env.https://raw.githubusercontent.com/GeoNode/geonode-project/3.3.x/.env.samplesample .env
 
 cd $HOME
 
@@ -69,53 +69,47 @@ inst_docker () {
 inst_docker
 
 #clone of repo 3.2.x 
-git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
+git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 sudo cp -pr $HOME/geonode-project ./oq-platform3
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-pip install Django==3.2.6
+pip install Django==3.2.12
 
 django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
 
-wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
-tar zxf geonode.tar.gz
-cp -r geonode/* openquakeplatform/
+# wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
+# tar zxf geonode.tar.gz
+# cp -r geonode/* openquakeplatform/
 
-wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-tar zxf geoserver_data.tar.gz
-
-wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
-tar zxf allauth.tar.gz
+# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
+# tar zxf geoserver_data.tar.gz
+# 
+# wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
+# tar zxf allauth.tar.gz
 
 docker-compose build --no-cache
-# exit 0
+set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
 
 sleep 15
 
 COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 
-# sleep 10
-
-# sudo chown -R ubuntu:users $HOME/$GEM_GIT_PACKAGE/site
-#while since apache is up
-#while ! ps aux | grep apache; do echo "wait for apache be ready"; done
-
 sleep 200
 
 # Run commands on django container
-docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
-docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T django bash -c "./manage.sh add_documents"
-#docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
-
-docker-compose exec -T django bash -c "./manage.sh updatelayers"
-docker-compose exec -T django bash -c "./manage.sh fixsitename"
+# docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+# docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+# docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+# docker-compose exec -T django bash -c "./manage.sh add_documents"
+# #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+# 
+# docker-compose exec -T django bash -c "./manage.sh updatelayers"
+# docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 echo "Installation complete."
 
@@ -143,24 +137,19 @@ exec_test () {
 
 run_test () {
     export DISPLAY=:1
+    #set thumbnails
+    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
 
-#set thumbnails
-exec_set_map_thumbs () {
-    export DISPLAY=:1
-    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
-}
-
-# install environment for testing
-exec_test
-
-# script to generate map thumbnails
-exec_set_map_thumbs
-
 # tests
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
+    # script to generate map thumbnails
+    exec_set_map_thumbs
+    # install environment for testing
+    exec_test
+    # run tests
     run_test
 fi
 
