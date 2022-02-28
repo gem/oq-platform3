@@ -45,10 +45,10 @@ sudo apt-get -y upgrade
 sudo apt-get -y install git ca-certificates wget
 
 cd $GEM_GIT_PACKAGE
-cp .env.https://raw.githubusercontent.com/GeoNode/geonode-project/3.3.x/.env.samplesample .env
+cp .env.sample .env
 
 cd $HOME
-
+ 
 inst_docker () {
     # install requirements for docker
     sudo apt-get -y install apt-transport-https ca-certificates curl \
@@ -71,6 +71,7 @@ inst_docker
 #clone of repo 3.2.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 sudo cp -pr $HOME/geonode-project ./oq-platform3
+sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
@@ -145,10 +146,10 @@ run_test () {
 
 # tests
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    # script to generate map thumbnails
-    exec_set_map_thumbs
     # install environment for testing
     exec_test
+    # script to generate map thumbnails
+    exec_set_map_thumbs
     # run tests
     run_test
 fi
