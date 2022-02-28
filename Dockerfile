@@ -44,24 +44,24 @@ RUN pip install pylibmc \
     && pip install sherlock
 
 # add bower and grunt command
-COPY src /usr/src/{{project_name}}/
-WORKDIR /usr/src/{{project_name}}
+COPY geonode-project/ /usr/src/{{project_name}}/
+WORKDIR /usr/src/{{project_name}}/src
 
-COPY src/monitoring-cron /etc/cron.d/monitoring-cron
+COPY geonode-project/src/monitoring-cron /etc/cron.d/monitoring-cron
 RUN chmod 0644 /etc/cron.d/monitoring-cron
 RUN crontab /etc/cron.d/monitoring-cron
 RUN touch /var/log/cron.log
 RUN service cron start
 
-COPY src/wait-for-databases.sh /usr/bin/wait-for-databases
+COPY geonode-project/src/wait-for-databases.sh /usr/bin/wait-for-databases
 RUN chmod +x /usr/bin/wait-for-databases
-RUN chmod +x /usr/src/{{project_name}}/tasks.py \
-    && chmod +x /usr/src/{{project_name}}/entrypoint.sh
+RUN chmod +x /usr/src/{{project_name}}/src/tasks.py \
+    && chmod +x /usr/src/{{project_name}}/src/entrypoint.sh
 
-COPY src/celery.sh /usr/bin/celery-commands
+COPY geonode-project/src/celery.sh /usr/bin/celery-commands
 RUN chmod +x /usr/bin/celery-commands
 
-COPY src/celery-cmd /usr/bin/celery-cmd
+COPY geonode-project/src/celery-cmd /usr/bin/celery-cmd
 RUN chmod +x /usr/bin/celery-cmd
 
 # Install "geonode-contribs" apps
@@ -70,8 +70,8 @@ RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b ma
 RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install --upgrade  -e . \
     cd /usr/src/geonode-contribs/ldap; pip install --upgrade  -e .
 
-RUN pip install --upgrade --no-cache-dir  --src /usr/src -r requirements.txt
-RUN pip install --upgrade  -e .
+RUN pip install --upgrade --no-cache-dir  --src /usr/src/ -r /usr/src/{{project_name}}/src/requirements.txt
+RUN pip install --upgrade  -e /usr/src/{{project_name}}/src
 
 # Export ports
 EXPOSE 8000
