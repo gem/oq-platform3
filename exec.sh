@@ -3,6 +3,7 @@
 # containers and images
 
 export name_project="$1"
+export no_exec_test="$2"
 
 if [ "$name_project" = "" ]; then
     echo "Need to add name project as argument"
@@ -19,5 +20,5 @@ else
     export GEM_GIT_REPO="git@github.com:gem"
     export NO_EXEC_TEST="notest"
     echo "exec install.sh"
-    ./install.sh "" "" "" "" $name_project
+    ./install.sh "" "" "" $no_exec_test $name_project
 fi
