@@ -71,6 +71,11 @@ RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install --upgrade  -e . \
     cd /usr/src/geonode-contribs/ldap; pip install --upgrade  -e .
 
 RUN pip install --upgrade --no-cache-dir  --src /usr/src/ -r /usr/src/{{project_name}}/src/requirements.txt
+
+COPY pla_common /usr/src/geonode/pla_common
+ADD local_settings.tmpl /usr/src/openquakeplatform/openquakeplatform/local_settings.py
+COPY data_commands /usr/src/openquakeplatform/data_commands
+
 RUN pip install --upgrade  -e /usr/src/{{project_name}}/src
 
 # Export ports

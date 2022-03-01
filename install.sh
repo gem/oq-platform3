@@ -85,7 +85,7 @@ cd $NAME_PROJECT
 git clone -b 3.3.x https://github.com/GeoNode/geonode.git
 # wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
 # tar zxf geonode.tar.gz
-cp -r geonode/* openquakeplatform/
+cp -r geonode/geonode/* openquakeplatform/
 
 # wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 # tar zxf geoserver_data.tar.gz
