@@ -73,8 +73,8 @@ RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install --upgrade  -e . \
 RUN pip install --upgrade --no-cache-dir  --src /usr/src/ -r /usr/src/{{project_name}}/src/requirements.txt
 
 COPY pla_common /usr/src/geonode/pla_common
-ADD local_settings.tmpl /usr/src/openquakeplatform/openquakeplatform/local_settings.py
-COPY data_commands /usr/src/openquakeplatform/data_commands
+ADD local_settings.tmpl /usr/src/openquakeplatform/src/openquakeplatform/local_settings.py
+COPY data_commands /usr/src/openquakeplatform/src/data_commands
 
 RUN pip install --upgrade  -e /usr/src/{{project_name}}/src
 
@@ -82,4 +82,4 @@ RUN pip install --upgrade  -e /usr/src/{{project_name}}/src
 EXPOSE 8000
 
 # We provide no command or entrypoint as this image can be used to serve the django project or run celery tasks
-# ENTRYPOINT /usr/src/{{project_name}}/entrypoint.sh
+# ENTRYPOINT /usr/src/{{project_name}}/src/entrypoint.sh

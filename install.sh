@@ -68,7 +68,7 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
-#clone of repo 3.2.x 
+#clone of repo 3.3.x
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 sudo cp -pr $HOME/geonode-project ./oq-platform3
 sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
@@ -83,9 +83,18 @@ django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini
 cd $NAME_PROJECT
 
 git clone -b 3.3.x https://github.com/GeoNode/geonode.git
+# sudo chmod u+x geonode
 # wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
 # tar zxf geonode.tar.gz
+
+rm geonode/geonode/templates/base.html
+rm geonode/geonode/templates/index.html
+rm geonode/geonode/urls.py
+cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
 cp -r geonode/geonode/* openquakeplatform/
+# cp -r geonode/* openquakeplatform/
 
 # wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
 # tar zxf geoserver_data.tar.gz
@@ -101,12 +110,14 @@ sleep 15
 
 COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 
-sleep 200
+sleep 250
+
+pwd
 
 # Run commands on django container
-# docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
-# docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-# docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 # #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # 
