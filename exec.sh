@@ -18,7 +18,7 @@ else
     export GEM_SET_DEBUG="True"
     export GEM_GIT_PACKAGE="oq-platform3"
     export GEM_GIT_REPO="git@github.com:gem"
-    export NO_EXEC_TEST="notest"
+    export NO_EXEC_TEST=$no_exec_test
     echo "exec install.sh"
-    ./install.sh "" "" "" $no_exec_test $name_project
+    ./install.sh "" "" "" $NO_EXEC_TEST $name_project
 fi
