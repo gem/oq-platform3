@@ -31,8 +31,8 @@ fi
 
 cd $HOME
 
-sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data || true
-sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data oq || true
+# sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
@@ -48,7 +48,7 @@ cd $GEM_GIT_PACKAGE
 cp .env.sample .env
 
 cd $HOME
- 
+
 inst_docker () {
     # install requirements for docker
     sudo apt-get -y install apt-transport-https ca-certificates curl \
@@ -68,24 +68,32 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
-#clone of repo 3.3.x
+#clone of repo 3.2.12 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-sudo cp -pr $HOME/geonode-project ./oq-platform3
-sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
+# sudo cp -pr $HOME/geonode-project ./oq-platform3
+# sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
+
+cp $HOME/oq-platform3/.env $HOME/geonode-project/
+# cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
+# cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
+cp $HOME/oq-platform3/local_settings.tmpl $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
 pip install Django==3.2.12
 
-django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+# cd $HOME/oq-platform3
+
+django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+
+# sleep 500000  
 
 cd $NAME_PROJECT
 
 git clone -b 3.3.x https://github.com/GeoNode/geonode.git
-# sudo chmod u+x geonode
-# wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
-# tar zxf geonode.tar.gz
 
 rm geonode/geonode/templates/base.html
 rm geonode/geonode/templates/index.html
@@ -93,14 +101,9 @@ rm geonode/geonode/urls.py
 cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
-cp -r geonode/geonode/* openquakeplatform/
-# cp -r geonode/* openquakeplatform/
+cp -pr geonode/geonode/* $HOME/openquakeplatform/
 
-# wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-# tar zxf geoserver_data.tar.gz
-# 
-# wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
-# tar zxf allauth.tar.gz
+pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
@@ -110,19 +113,23 @@ sleep 15
 
 COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
 
-sleep 250
+# sleep 10
 
-pwd
+# sudo chown -R ubuntu:users $HOME/$GEM_GIT_PACKAGE/site
+#while since apache is up
+#while ! ps aux | grep apache; do echo "wait for apache be ready"; done
+
+sleep 200
 
 # Run commands on django container
 docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-# docker-compose exec -T django bash -c "./manage.sh add_documents"
-# #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
-# 
-# docker-compose exec -T django bash -c "./manage.sh updatelayers"
-# docker-compose exec -T django bash -c "./manage.sh fixsitename"
+docker-compose exec -T django bash -c "./manage.sh add_documents"
+#docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+
+docker-compose exec -T django bash -c "./manage.sh updatelayers"
+docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 echo "Installation complete."
 
@@ -150,19 +157,24 @@ exec_test () {
 
 run_test () {
     export DISPLAY=:1
-    #set thumbnails
-    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
 
+#set thumbnails
+exec_set_map_thumbs () {
+    export DISPLAY=:1
+    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
+}
+
+# install environment for testing
+exec_test
+
+# script to generate map thumbnails
+exec_set_map_thumbs
+
 # tests
 if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    # install environment for testing
-    exec_test
-    # script to generate map thumbnails
-    exec_set_map_thumbs
-    # run tests
     run_test
 fi
 
