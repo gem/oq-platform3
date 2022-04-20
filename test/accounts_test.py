@@ -18,7 +18,7 @@ class AccountsTest(unittest.TestCase):
 
         # check navbar
         pla.xpath_find(
-            "//a[@class='navbar-brand' and normalize-space(text())='GeoNode']")    
+            "//a[@class='navbar-brand' and normalize-space(text())='OpenQuake Platform']")
 
         # Click button Sign in
         submit_logout_button = pla.xpath_findfirst(
@@ -33,7 +33,7 @@ class AccountsTest(unittest.TestCase):
 
         # check navbar
         pla.xpath_find(
-            "//a[@class='navbar-brand' and normalize-space(text())='GeoNode']")
+            "//a[@class='navbar-brand' and normalize-space(text())='OpenQuake Platform']")
 
         # New login
         signin = pla.xpath_finduniq("//a[normalize-space(text()) = 'Sign in']")
