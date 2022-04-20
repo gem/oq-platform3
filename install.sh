@@ -188,7 +188,7 @@ if [ "$NO_EXEC_TEST" != "notest" ] ; then
     # install environment for testing
     exec_test
     # script to generate map thumbnails
-    exec_set_map_thumbs
+    # exec_set_map_thumbs
     # run tests
     run_test
     # docker logs
