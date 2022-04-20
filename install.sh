@@ -8,12 +8,12 @@
 # (at your option) any later version.
 
 
-
 BRANCH_ID="$1"
 DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
+GEOSERVER_VERSION="2.19.x"
 
 rem_sig_hand() {
     trap "" ERR
@@ -31,8 +31,9 @@ fi
 
 cd $HOME
 
-sudo rm -rf oq-moon openquakeplatform geonode-project oq-platform3/geoserver_data || true
-sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+sudo rm -rf oq-platform3/openquakeplatform/geonode || true
+# sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
@@ -45,7 +46,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y install git ca-certificates wget
 
 cd $GEM_GIT_PACKAGE
-cp .env-sample .env
+cp .env.sample .env
 
 cd $HOME
 
@@ -68,54 +69,77 @@ inst_docker () {
 #installation of docker and docker-compose
 inst_docker
 
-#clone of repo 3.2.x 
-git clone -b 3.2.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-sudo cp -pr $HOME/geonode-project ./oq-platform3
+#clone of repo 3.3.x 
+git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
+# sudo cp -pr $HOME/geonode-project ./oq-platform3
+# sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
 
+cp $HOME/oq-platform3/.env $HOME/geonode-project/
+cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
+cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
+cp $HOME/oq-platform3/local_settings.tmpl $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
+
+# Geoserver
+# wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+# unzip -q geoserver.war -d geoserver
+# mkdir geoserver_data
+# cp -pr $HOME/geoserver/* geoserver_data
+
+# virtual env
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
-pip install Django==3.2.6
+# install django
+pip install Django==3.2.12
 
-django-admin startproject --template=./oq-platform3 -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+# start django project
+django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+
+# sleep 500000  
 
 cd $NAME_PROJECT
 
-wget https://ftp.openquake.org/oq-platform3/geonode.tar.gz
-tar zxf geonode.tar.gz
-cp -r geonode/* openquakeplatform/
+git clone -b 3.3.x https://github.com/GeoNode/geonode.git
 
-wget https://ftp.openquake.org/oq-platform3/geoserver_data.tar.gz
-tar zxf geoserver_data.tar.gz
+rm geonode/geonode/templates/base.html
+rm geonode/geonode/templates/index.html
+rm geonode/geonode/urls.py
+cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
+cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
+cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
+cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
+cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
 
-wget https://ftp.openquake.org/oq-platform3/allauth.tar.gz
-tar zxf allauth.tar.gz
+mkdir openquakeplatform
+cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
+
+pwd
 
 docker-compose build --no-cache
-# exit 0
+set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
 
 sleep 15
 
-COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d
-
-# sleep 10
-
-# sudo chown -R ubuntu:users $HOME/$GEM_GIT_PACKAGE/site
-#while since apache is up
-#while ! ps aux | grep apache; do echo "wait for apache be ready"; done
+COMPOSE_HTTP_TIMEOUT=180 docker-compose up -d
 
 sleep 200
 
 # Run commands on django container
-docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
-docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T django bash -c "./manage.sh add_documents"
+# docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
+# docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+# docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+# docker-compose exec -T django bash -c "./manage.sh add_documents"
 #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
-docker-compose exec -T django bash -c "./manage.sh updatelayers"
-docker-compose exec -T django bash -c "./manage.sh fixsitename"
+# docker-compose exec -T django bash -c "./manage.sh updatelayers"
+# docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 echo "Installation complete."
 
@@ -153,29 +177,21 @@ exec_set_map_thumbs () {
     python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
 }
 
-# install environment for testing
-exec_test
-
-# script to generate map thumbnails
-exec_set_map_thumbs
-
-# tests
-if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    run_test
-fi
-
 # logs
 do_logs () {
-    cd $HOME/$GEM_GIT_PACKAGE
+    cd $HOME/$NAME_PROJECT
     docker-compose logs > $HOME/docker.log
 }
 
-do_logs
-
-
-
-
-
-
-
+# tests
+if [ "$NO_EXEC_TEST" != "notest" ] ; then
+    # install environment for testing
+    exec_test
+    # script to generate map thumbnails
+    # exec_set_map_thumbs
+    # run tests
+    run_test
+    # docker logs
+    do_logs
+fi
 
