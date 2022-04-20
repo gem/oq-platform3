@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #########################################################################
 #
 # Copyright (C) 2016 OSGeo
@@ -25,7 +24,7 @@ import ast
 import sys
 import subprocess
 import dj_database_url
-
+from schema import Optional
 from datetime import timedelta
 from distutils.util import strtobool  # noqa
 from urllib.parse import urlparse, urljoin
@@ -38,13 +37,15 @@ from geonode import get_version
 from kombu import Queue, Exchange
 from kombu.serialization import register
 
-from geonode import serializer
+from . import serializer
 
 SILENCED_SYSTEM_CHECKS = [
     '1_8.W001',
     'fields.W340',
     'auth.W004',
-    'urls.W002'
+    'urls.W002',
+    'drf_spectacular.W001',
+    'drf_spectacular.W002'
 ]
 
 # GeoNode Version
@@ -98,8 +99,6 @@ SITEURL = os.getenv('SITEURL', _default_siteurl)
 # we need hostname for deployed
 _surl = urlparse(SITEURL)
 HOSTNAME = _surl.hostname
-
-SITENAME = "Openquake Platform"
 
 # add trailing slash to site url. geoserver url will be relative to this
 if not SITEURL.endswith('/'):
@@ -222,6 +221,7 @@ _DEFAULT_LANGUAGES = """(
     ('zh-cn', '中文'),
     ('ja', '日本語'),
     ('ko', '한국어'),
+    ('sk', 'Slovensky'),
 )"""
 
 LANGUAGES = ast.literal_eval(os.getenv('LANGUAGES', _DEFAULT_LANGUAGES))
@@ -436,6 +436,7 @@ GEONODE_INTERNAL_APPS = (
     'geonode.social',
     'geonode.groups',
     'geonode.services',
+    'geonode.management_commands_http',
 
     # GeoServer Apps
     # Geoserver needs to come last because
@@ -492,6 +493,7 @@ INSTALLED_APPS = (
     'django_celery_beat',
     'django_celery_results',
     'markdownify',
+    'django_user_agents',
 
     # REST APIs
     'rest_framework',
@@ -523,7 +525,6 @@ INSTALLED_APPS = (
 
     # GeoNode
     'geonode',
-    'pla_common',
 )
 
 markdown_white_listed_tags = [
@@ -620,7 +621,7 @@ except ValueError:
         'bm', 'bmp', 'dwg', 'dxf', 'fif', 'gif', 'jpg', 'jpe', 'jpeg', 'png', 'tif',
         'tiff', 'pbm', 'odp', 'ppt', 'pptx', 'pdf', 'tar', 'tgz', 'rar', 'gz', '7z',
         'zip', 'aif', 'aifc', 'aiff', 'au', 'mp3', 'mpga', 'wav', 'afl', 'avi', 'avs',
-        'fli', 'mp2', 'mp4', 'mpg', 'ogg', 'webm', '3gp', 'flv', 'vdo'
+        'fli', 'mp2', 'mp4', 'mpg', 'ogg', 'webm', '3gp', 'flv', 'vdo', 'glb', 'pcd', 'gltf'
     ] if os.getenv('ALLOWED_DOCUMENT_TYPES') is None \
         else re.split(r' *[,|:|;] *', os.getenv('ALLOWED_DOCUMENT_TYPES'))
 
@@ -769,6 +770,7 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'geonode.base.middleware.MaintenanceMiddleware',
     'geonode.base.middleware.ReadOnlyMiddleware',   # a Middleware enabling Read Only mode of Geonode
 )
@@ -847,6 +849,8 @@ OAUTH2_PROVIDER_ID_TOKEN_MODEL = "oauth2_provider.IDToken"
 OAUTH2_PROVIDER_GRANT_MODEL = "oauth2_provider.Grant"
 OAUTH2_PROVIDER_REFRESH_TOKEN_MODEL = "oauth2_provider.RefreshToken"
 
+OAUTH2_DEFAULT_BACKEND_CLIENT_NAME = os.environ.get('OAUTH2_DEFAULT_BACKEND_CLIENT_NAME', 'GeoServer')
+
 # In order to protect oauth2 REST endpoints, used by GeoServer to fetch user roles and
 # infos, you should set this key and configure the "geonode REST role service"
 # accordingly. Keep it secret!
@@ -912,6 +916,9 @@ PINAX_RATINGS_CATEGORY_CHOICES = {
     },
     "documents.Document": {
         "document": "How good is this document?"
+    },
+    "geoapps.GeoApp": {
+        "geoapp": "How good is this geoapp?"
     }
 }
 
@@ -1043,7 +1050,7 @@ USE_GEOSERVER = 'geonode.geoserver' in INSTALLED_APPS and OGC_SERVER['default'][
 # Uploader Settings
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
 """
-    DEFAULT_BACKEND_UPLOADER = {'geonode.rest', 'geonode.importer'}
+    DEFAULT_BACKEND_UPLOADER = {'geonode.importer'}
 """
 UPLOADER = {
     'BACKEND': os.getenv('DEFAULT_BACKEND_UPLOADER', 'geonode.importer'),
@@ -1510,6 +1517,7 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == 'mapstore':
             'mapstore2_adapter',
             'mapstore2_adapter.geoapps',
             'mapstore2_adapter.geoapps.geostories',
+            'mapstore2_adapter.geoapps.dashboards',
             'geonode_mapstore_client',)
 
     def get_geonode_catalogue_service():
@@ -1619,6 +1627,57 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == 'mapstore':
 
     MAPSTORE_BASELAYERS = DEFAULT_MS2_BACKGROUNDS
 
+    # list of projections available in the mapstore client
+    # properties:
+    # - code: epsg code of the projection
+    # - def: definition of projection in Proj4js string
+    # - extent: max extent in projected coordinates [minx, miny, maxx, maxy]
+    # - worldExtent: max extent in WGS84 coordinates [minx, miny, maxx, maxy]
+    # example:
+    # MAPSTORE_PROJECTION_DEFS = [
+    #   {
+    #        "code": "EPSG:3395",
+    #        "def": "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs",
+    #        "extent": [-20026376.39, -15496570.74, 20026376.39, 18764656.23 ],
+    #        "worldExtent": [ -180.0, -80.0, 180.0, 84.0 ]
+    #    }
+    # ]
+    MAPSTORE_PROJECTION_DEFS = []
+
+    # list of rules to change the plugins configuration
+    # allowed operation: add, remove and replace
+    # example: remove Measure plugin from map_edit page
+    # MAPSTORE_PLUGINS_CONFIG_PATCH_RULES = [
+    #     {
+    #         "op": "remove",
+    #         "jsonpath": "$.map_edit..[?(@.name == 'Measure')]"
+    #     }
+    # ]
+    # example: add SearchServicesConfig plugin to map_edit page
+    # MAPSTORE_PLUGINS_CONFIG_PATCH_RULES = [
+    #     {
+    #         "op": "add",
+    #         "jsonpath": "/map_edit/-",
+    #         "value": {
+    #             "name": "SearchServicesConfig"
+    #         }
+    #     }
+    # ]
+    # example: replace default configuration of Print plugin in map_edit page
+    # MAPSTORE_PLUGINS_CONFIG_PATCH_RULES = [
+    #     {
+    #         "op": "replace",
+    #         "jsonpath": "$.map_edit..[?(@.name == 'Print')].cfg",
+    #         "value": {
+    #             "useFixedScales": False
+    #         }
+    #     }
+    # ]
+    MAPSTORE_PLUGINS_CONFIG_PATCH_RULES = []
+
+    # Extensions path to use in importing custom extensions into geonode
+    MAPSTORE_EXTENSIONS_FOLDER_PATH = '/static/mapstore/extensions/'
+
 # -- END Client Hooksets Setup
 
 SERVICE_UPDATE_INTERVAL = 0
@@ -1642,10 +1701,11 @@ SEARCH_FILTERS = {
 TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 200,
-    "plugins": 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',  # noqa
+    "plugins": 'preview paste searchreplace autolink directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars',  # noqa
     "imagetools_cors_hosts": ['picsum.photos'],
-    "menubar": 'file edit view insert format tools table help',
-    "toolbar": 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save | insertfile image media template link anchor codesample | ltr rtl',  # noqa
+    "menubar": False,
+    "statusbar": False,
+    "toolbar": 'bold italic underline | formatselect removeformat | outdent indent |  numlist bullist | insertfile image media link codesample | preview',  # noqa
     "toolbar_sticky": "true",
     "autosave_ask_before_unload": "true",
     "autosave_interval": "30s",
@@ -1767,6 +1827,7 @@ CELERY_TASK_QUEUES = (
     Queue('cleanup', GEONODE_EXCHANGE, routing_key='cleanup', priority=0),
     Queue('email', GEONODE_EXCHANGE, routing_key='email', priority=0),
     Queue('security', GEONODE_EXCHANGE, routing_key='security', priority=0),
+    Queue('management_commands_http', GEONODE_EXCHANGE, routing_key='management_commands_http', priority=0),
 )
 
 if USE_GEOSERVER:
@@ -1802,7 +1863,9 @@ if USE_GEOSERVER:
 #          'task': 'my_app.tasks.send_notification',
 #          'schedule': crontab(hour=16, day_of_week=5),
 #     },
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+CELERY_BEAT_SCHEDULER = os.environ.get(
+    'CELERY_BEAT_SCHEDULER', "celery.beat:PersistentScheduler")
 CELERY_BEAT_SCHEDULE = {}
 
 DELAYED_SECURITY_SIGNALS = ast.literal_eval(os.environ.get('DELAYED_SECURITY_SIGNALS', 'False'))
@@ -1899,29 +1962,6 @@ if os.name == 'nt':
 # ######################################################## #
 # Advanced Resource Publishing Worklow Settings - START    #
 # ######################################################## #
-"""
-    - if [ RESOURCE_PUBLISHING == True ]
-      1. "unpublished" won't be visibile to Anonymous users
-      2. "unpublished" will be visible to registered users **IF** they have view permissions
-      3. "unpublished" will be always visible to the owner and Group Managers
-      By default the uploaded resources will be "unpublished".
-      The owner will be able to change them to "published" **UNLESS** the ADMIN_MODERATE_UPLOADS is activated.
-      If the owner assigns unpublished resources to a Group, both from Metadata and Permissions, in any case
-       the Group "Managers" will be able to edit the Resource.
-
-    - if [ ADMIN_MODERATE_UPLOADS == True ]
-      1. The owner won't be able to change to neither "approved" nor "published" state (unless he is a superuser)
-      2. If the Resource belongs to a Group somehow, the Managers will be able to change the state to "approved"
-         but **NOT** to "published". Only a superuser can publish a resource.
-      3. Superusers can do enything.
-
-    - if [ GROUP_PRIVATE_RESOURCES == True ]
-      The "unapproved" and "unpublished" Resources will be accessible **ONLY** by owners, superusers and member of
-       the belonging groups.
-
-    - if [ GROUP_MANDATORY_RESOURCES == True ]
-      Editor will be **FORCED** to select a Group when editing the resource metadata.
-"""
 
 # option to enable/disable resource unpublishing for administrators and members
 RESOURCE_PUBLISHING = ast.literal_eval(os.getenv('RESOURCE_PUBLISHING', 'False'))
@@ -1936,6 +1976,7 @@ GROUP_PRIVATE_RESOURCES = ast.literal_eval(os.environ.get('GROUP_PRIVATE_RESOURC
 # If this option is enabled, Groups will become strictly Mandatory on
 # Metadata Wizard
 GROUP_MANDATORY_RESOURCES = ast.literal_eval(os.environ.get('GROUP_MANDATORY_RESOURCES', 'False'))
+
 # ######################################################## #
 # Advanced Resource Publishing Worklow Settings - END      #
 # ######################################################## #
@@ -2035,9 +2076,16 @@ THUMBNAIL_BACKGROUND = {
     # 'class': 'geonode.thumbs.background.GenericXYZBackground',
     # initialization parameters for generator instance, valid only for generic classes
     'options': {
-        # 'url': URL for the generic xyz service
+        # 'url': URL for the generic xyz / tms service
+        # 'tms': False by default. Set to True if the service is TMS
         # 'tile_size': tile size for the generic xyz service, default is 256
     },
+    # example options for a TMS service
+    # 'class': 'geonode.thumbs.background.GenericXYZBackground',
+    # 'options': {
+    #    'url': 'http://maps.geosolutionsgroup.com/geoserver/gwc/service/tms/1.0.0/osm%3Aosm_simple_light@EPSG%3A900913@png/{z}/{x}/{y}.png',
+    #    'tms': True
+    # },
 }
 
 # define the urls after the settings are overridden
@@ -2131,3 +2179,58 @@ UI_DEFAULT_MANDATORY_FIELDS = [
 UI_REQUIRED_FIELDS = ast.literal_eval(os.getenv('UI_REQUIRED_FIELDS ', '[]'))
 
 UPLOAD_SESSION_EXPIRY_HOURS = os.getenv('UPLOAD_SESSION_EXPIRY_HOURS ', 24)
+
+# If a command name is listed here, the command will be available to admins over http
+# This list is used by the management_commands_http app
+MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP = set([
+    "ping_mngmt_commands_http",
+    "updatelayers",
+    "sync_geonode_layers",
+    "sync_geonode_maps",
+    "importlayers",
+    "set_all_layers_metadata",
+] + ast.literal_eval(os.getenv('MANAGEMENT_COMMANDS_EXPOSED_OVER_HTTP ', '[]')))
+
+
+FILE_UPLOAD_HANDLERS = [
+    'geonode.upload.uploadhandler.SizeRestrictedFileUploadHandler',
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+DEFAULT_MAX_UPLOAD_SIZE = int(os.getenv('DEFAULT_MAX_UPLOAD_SIZE', 104857600))  # 100 MB
+DEFAULT_BUFFER_CHUNK_SIZE = int(os.getenv('DEFAULT_BUFFER_CHUNK_SIZE', 64 * 1024))
+DEFAULT_MAX_PARALLEL_UPLOADS_PER_USER = int(os.getenv('DEFAULT_MAX_PARALLEL_UPLOADS_PER_USER', 5))
+
+'''
+Default schema used to store extra and dynamic metadata for the resource
+'''
+
+DEFAULT_EXTRA_METADATA_SCHEMA = {
+    Optional("id"): int,
+    "filter_header": object,
+    "field_name": object,
+    "field_label": object,
+    "field_value": object,
+}
+
+'''
+If present, will extend the available metadata schema used for store
+new value for each resource. By default overrided the existing one.
+The expected schema is the same as the default
+'''
+CUSTOM_METADATA_SCHEMA = os.getenv('CUSTOM_METADATA_SCHEMA ', {})
+
+'''
+Variable used to actually get the expected metadata schema for each resource_type.
+In this way, each resource type can have a different metadata schema
+'''
+
+EXTRA_METADATA_SCHEMA = {**{
+    "map": os.getenv('MAP_EXTRA_METADATA_SCHEMA', DEFAULT_EXTRA_METADATA_SCHEMA),
+    "layer": os.getenv('DATASET_EXTRA_METADATA_SCHEMA', DEFAULT_EXTRA_METADATA_SCHEMA),
+    "document": os.getenv('DOCUMENT_EXTRA_METADATA_SCHEMA', DEFAULT_EXTRA_METADATA_SCHEMA),
+    "geoapp": os.getenv('GEOAPP_EXTRA_METADATA_SCHEMA', DEFAULT_EXTRA_METADATA_SCHEMA)
+}, **CUSTOM_METADATA_SCHEMA}
+
+OAUTH2_DEFAULT_BACKEND_CLIENT_NAME = "GeoServer"

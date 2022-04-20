@@ -32,6 +32,7 @@ fi
 cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+sudo rm -rf oq-platform3/openquakeplatform/geonode || true
 # sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
@@ -81,17 +82,17 @@ cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 
 # Geoserver
-wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-unzip -q geoserver.war -d geoserver
-mkdir geoserver_data
-cp -pr $HOME/geoserver/* geoserver_data
+# wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+# unzip -q geoserver.war -d geoserver
+# mkdir geoserver_data
+# cp -pr $HOME/geoserver/* geoserver_data
 
 # virtual env
 python3.8 -m venv $HOME/platform3
 source $HOME/platform3/bin/activate
 
 # install django
-pip install Django==2.2.15
+pip install Django==3.2.12
 
 # start django project
 django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
@@ -102,13 +103,20 @@ cd $NAME_PROJECT
 
 git clone -b 3.3.x https://github.com/GeoNode/geonode.git
 
-# rm geonode/geonode/templates/base.html
-# rm geonode/geonode/templates/index.html
-# rm geonode/geonode/urls.py
-# cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
-mkdir $HOME/openquakeplatform/openquakeplatform
+rm geonode/geonode/templates/base.html
+rm geonode/geonode/templates/index.html
+rm geonode/geonode/urls.py
+cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
+cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
+cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
+cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
+cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
+
+mkdir openquakeplatform
 cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
 
 pwd
@@ -186,12 +194,4 @@ if [ "$NO_EXEC_TEST" != "notest" ] ; then
     # docker logs
     do_logs
 fi
-
-
-
-
-
-
-
-
 
