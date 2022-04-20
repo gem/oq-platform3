@@ -23,7 +23,7 @@ class AccountsTest(unittest.TestCase):
         # Click button Sign in
         submit_logout_button = pla.xpath_findfirst(
             "//button[@type='submit' and normalize-space(text())='%s']" %
-            ("Sign Out"))
+            ("Log out"))
         submit_logout_button.click()
 
         # click register
