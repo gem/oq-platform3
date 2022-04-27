@@ -31,7 +31,7 @@ fi
 
 cd $HOME
 
-sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq geonode || true
 sudo rm -rf oq-platform3/openquakeplatform/geonode || true
 # sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
@@ -77,7 +77,7 @@ git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
-cp $HOME/oq-platform3/local_settings.tmpl $HOME/geonode-project/
+cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 
@@ -111,6 +111,7 @@ cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/temp
 cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
 cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
 cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
@@ -138,6 +139,9 @@ sleep 200
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 #docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
+# docker-compose exec -T django bash -c "chmod +x *.sh*"
+# docker-compose exec -T django bash -c "./manage.sh makemigrations"
+# docker-compose exec -T django bash -c "./manage.sh migrate"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 # docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
