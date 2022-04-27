@@ -37,7 +37,7 @@ from geonode import get_version
 from kombu import Queue, Exchange
 from kombu.serialization import register
 
-from . import serializer
+from geonode import serializer
 
 SILENCED_SYSTEM_CHECKS = [
     '1_8.W001',
@@ -525,6 +525,7 @@ INSTALLED_APPS = (
 
     # GeoNode
     'geonode',
+    'pla_common',
 )
 
 markdown_white_listed_tags = [

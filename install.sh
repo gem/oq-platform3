@@ -77,7 +77,7 @@ git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
-cp $HOME/oq-platform3/local_settings.tmpl $HOME/geonode-project/
+cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 
@@ -111,6 +111,7 @@ cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/temp
 cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
 cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
+cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
 cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
 cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
@@ -127,11 +128,12 @@ docker-compose up -d db
 
 sleep 15
 
-COMPOSE_HTTP_TIMEOUT=180 docker-compose up -d
+COMPOSE_HTTP_TIMEOUT=200 docker-compose up -d
 
 sleep 200
 
 # Run commands on django container
+docker-compose exec -T django bash -c "chmod +x *.sh"
 # docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
 # docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 # docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
