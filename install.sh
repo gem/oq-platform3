@@ -135,7 +135,7 @@ sleep 200
 # Run commands on django container
 docker-compose exec -T django bash -c "chmod +x *.sh"
 # docker-compose exec -T db bash -c "/data_commands/gs_data/sql/dump.bash"
-# docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 # docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
