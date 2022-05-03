@@ -83,7 +83,7 @@ COPY data_commands /usr/src/geonode/data_commands
 # ADD local_settings.py.tmpl /usr/src/geonode/geonode/local_settings.py
 ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
 COPY openquakeplatform/templates /usr/src/{{project_name}}/{{project_name}}/templates
-RUN cp -pr openquakeplatform/static/* /usr/src/geonode/geonode/static/geonode/
+COPY openquakeplatform/static /usr/src/{{project_name}}/{{project_name}}/static
 
 # Export ports
 EXPOSE 8000
