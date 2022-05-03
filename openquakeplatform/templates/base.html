@@ -35,7 +35,7 @@
 
     <title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
 
-    <link rel="shortcut icon" href="{% static 'geonode/img/favicon.png' %}" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" />
     <link href="{% static "lib/css/ol.css" %}" rel="stylesheet" />
     <script src="{% static "lib/js/ol.js" %}"></script>
     <link rel="preload" as="style" href="{% static "geonode/css/font-awesome.min.css" %}" />
@@ -45,7 +45,7 @@
 
     {% block head %}
 
-      <link href="{% static "geonode/css/oqplatform.css" %}" rel="stylesheet"/>
+      <link href="{% static "css/oqplatform.css" %}" rel="stylesheet"/>
 
       {% if DEBUG_STATIC %}
           <link href="{% static "lib/css/jquery.dataTables.css" %}" rel="stylesheet" />
@@ -408,26 +408,26 @@
               {% if user.is_authenticated %}
                  <li class="oq-right-search">
                    <a href="javascript:void(0)" onclick="search_click()">
-                     <img alt="" src="/static/geonode/img/oq-search.png" />
+			   <img alt="" src="{% static 'img/oq-search.png'%}" />
                    </a>
                  </li>
               {% endif %}
                  <li class="oq-right-help">
                    <a href="https://www.globalquakemodel.org/openquake/support/documentation/platform/" target="_blank">
-                     <img alt="" src="/static/geonode/img/oq-help.png" />
+			   <img alt="" src="{% static 'img/oq-help.png' %}" />
                    </a>
                  </li>
               {% if user.is_authenticated %}
                  <li class="oq-right-share">
                    <a href="javascript:void(0)" onclick="share_click()">
-                     <img alt="" src="/static/geonode/img/oq-share.png" />
+			   <img alt="" src="{% static 'img/oq-share.png' %}" />
                    </a>
                  </li>
               {% endif %}
             </ul>
           </div> <!--/.nav-collapse -->
         </div>
-        <div class="right-bar"><a href="https://www.globalquakemodel.org/" target="_blank"><img alt="oq-gem" src="{{ STATIC_URL }}geonode/img/oq-gem.png" /></a></div>
+        <div class="right-bar"><a href="https://www.globalquakemodel.org/" target="_blank"><img alt="oq-gem" src="{{ STATIC_URL }}img/oq-gem.png" /></a></div>
         {% if not user.is_authenticated %}
           {% include 'includes/map_warning.html' %}
         {% endif %}
