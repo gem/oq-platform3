@@ -80,18 +80,20 @@ cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
+
+# template
 mkdir $HOME/geonode-project/openquakeplatform
 mkdir $HOME/geonode-project/openquakeplatform/templates
-cp $HOME/oq-platform3/openquakeplatform/templates/index.html $HOME/geonode-project/openquakeplatform/templates
-# cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
+cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/openquakeplatform/templates/
 # cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
 # cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
-# cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
+cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
+
+#static
+mkdir $HOME/geonode-project/openquakeplatform/static
+mkdir $HOME/geonode-project/openquakeplatform/static/css
+cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
+cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 # Geoserver
 # wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
