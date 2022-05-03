@@ -77,9 +77,10 @@ RUN pip install --upgrade  -e .
 # Cleanup apt update lists
 RUN rm -rf /var/lib/apt/lists/*
 
+RUN pwd
 COPY pla_common /usr/src/geonode/pla_common
-ADD local_settings.py.tmpl /usr/src/openquakeplatform/openquakeplatform/local_settings.py
-COPY data_commands /usr/src/{{project_name}}/data_commands
+COPY data_commands /usr/src/geonode/data_commands
+ADD local_settings.py.tmpl /usr/src/geonode/geonode/local_settings.py
 
 # Export ports
 EXPOSE 8000

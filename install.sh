@@ -101,26 +101,26 @@ django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,
 
 cd $NAME_PROJECT
 
-git clone -b 3.3.x https://github.com/GeoNode/geonode.git
-
-rm geonode/geonode/templates/base.html
-rm geonode/geonode/templates/index.html
-rm geonode/geonode/urls.py
-cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
-cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
-cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
-cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
-cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
-cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
-cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
-cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
-cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
-cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
-
-mkdir openquakeplatform
-cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
-
-pwd
+# git clone -b 3.3.x https://github.com/GeoNode/geonode.git
+# 
+# rm geonode/geonode/templates/base.html
+# rm geonode/geonode/templates/index.html
+# rm geonode/geonode/urls.py
+# cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
+# cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
+# cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
+# cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
+# cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
+# cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
+# cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
+# cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
+# cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
+# cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
+# 
+# mkdir openquakeplatform
+# cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
+# 
+# pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
