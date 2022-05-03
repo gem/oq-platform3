@@ -81,6 +81,7 @@ RUN pwd
 COPY pla_common /usr/src/geonode/pla_common
 COPY data_commands /usr/src/geonode/data_commands
 ADD local_settings.py.tmpl /usr/src/geonode/geonode/local_settings.py
+ADD openquakeplatform/templates/index.html /usr/src/geonode/geonode/templates/
 
 # Export ports
 EXPOSE 8000
