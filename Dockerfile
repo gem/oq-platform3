@@ -81,7 +81,7 @@ RUN pwd
 COPY pla_common /usr/src/geonode/pla_common
 COPY data_commands /usr/src/geonode/data_commands
 ADD local_settings.py.tmpl /usr/src/geonode/geonode/local_settings.py
-ADD urls.py /usr/src/geonode/geonode/urls.py
+ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
 RUN cp -pr openquakeplatform/templates/* /usr/src/geonode/geonode/templates/
 RUN cp -pr openquakeplatform/static/* /usr/src/geonode/geonode/static/geonode/
 
