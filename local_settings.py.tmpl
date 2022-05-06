@@ -27,3 +27,23 @@ TIME_ZONE = 'UTC'
 INSTALLED_APPS += (
     'pla_common',)
 
+# Defines the directory that contains the settings file as the PROJECT_ROOT
+# It is used for relative settings elsewhere.
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+# Setting debug to true makes Django serve static media and
+# present pretty error pages.
+# DEBUG = ast.literal_eval(os.getenv('DEBUG', 'True'))
+
+# Set to True to load non-minified versions of (static) client dependencies
+# Requires to set-up Node and tools that are required for static development
+# otherwise it will raise errors for the missing non-minified dependencies
+DEBUG_STATIC = ast.literal_eval(os.getenv('DEBUG_STATIC', 'False'))
+
+# Additional directories which hold static files
+_DEFAULT_STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, STATICFILES_LOCATION),
+]
+
+STATICFILES_DIRS = os.getenv('STATICFILES_DIRS', _DEFAULT_STATICFILES_DIRS)
+
