@@ -78,8 +78,8 @@ RUN pip install --upgrade  -e .
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN pwd
-COPY pla_common /usr/src/geonode/pla_common
-COPY data_commands /usr/src/geonode/data_commands
+COPY pla_common /usr/src/{{project_name}}/pla_common
+COPY data_commands /usr/src/{{project_name}}/data_commands
 ADD local_settings.py.tmpl /usr/src/{{project_name}}/{{project_name}}/local_settings.py
 ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
 COPY openquakeplatform/templates /usr/src/{{project_name}}/{{project_name}}/templates
