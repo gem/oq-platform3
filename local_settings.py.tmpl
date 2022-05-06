@@ -26,31 +26,31 @@
 
 import ast
 import os
-# try:  # python2
-#     from urlparse import urlparse, urlunparse, urlsplit, urljoin
-# except ImportError:
-#     # Python 3 fallback
-#     from urllib.parse import urlparse, urlunparse, urlsplit, urljoin
+try:  # python2
+    from urlparse import urlparse, urlunparse, urlsplit, urljoin
+except ImportError:
+    # Python 3 fallback
+    from urllib.parse import urlparse, urlunparse, urlsplit, urljoin
 from geonode.settings import *
-# 
-# PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-# 
-# MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(PROJECT_ROOT, "uploaded"))
-# 
-# STATIC_ROOT = os.getenv('STATIC_ROOT',
-#                         os.path.join(PROJECT_ROOT, "static_root")
-#                         )
 
-# TIME_ZONE = 'UTC'
-# 
-# # Login and logout urls override
-# LOGIN_URL = os.getenv('LOGIN_URL', '{}account/login/'.format(SITEURL))
-# LOGOUT_URL = os.getenv('LOGOUT_URL', '{}account/logout/'.format(SITEURL))
-# 
-# ACCOUNT_LOGIN_REDIRECT_URL = os.getenv('LOGIN_REDIRECT_URL', SITEURL)
-# ACCOUNT_LOGOUT_REDIRECT_URL =  os.getenv('LOGOUT_REDIRECT_URL', SITEURL)
-# 
-# AVATAR_GRAVATAR_SSL = ast.literal_eval(os.getenv('AVATAR_GRAVATAR_SSL', 'True'))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(PROJECT_ROOT, "uploaded"))
+
+STATIC_ROOT = os.getenv('STATIC_ROOT',
+                        os.path.join(PROJECT_ROOT, "static_root")
+                        )
+
+TIME_ZONE = 'UTC'
+
+# Login and logout urls override
+LOGIN_URL = os.getenv('LOGIN_URL', '{}account/login/'.format(SITEURL))
+LOGOUT_URL = os.getenv('LOGOUT_URL', '{}account/logout/'.format(SITEURL))
+
+ACCOUNT_LOGIN_REDIRECT_URL = os.getenv('LOGIN_REDIRECT_URL', SITEURL)
+ACCOUNT_LOGOUT_REDIRECT_URL =  os.getenv('LOGOUT_REDIRECT_URL', SITEURL)
+
+AVATAR_GRAVATAR_SSL = ast.literal_eval(os.getenv('AVATAR_GRAVATAR_SSL', 'True'))
 
 # Backend
 # DATABASES = {
@@ -84,36 +84,36 @@ from geonode.settings import *
 #     }
 # }
 
-# GEOSERVER_LOCATION = os.getenv(
-#     'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
-# )
-# 
-# GEOSERVER_PUBLIC_HOST = os.getenv(
-#     'GEOSERVER_PUBLIC_HOST', SITE_HOST_NAME
-# )
-# 
-# GEOSERVER_PUBLIC_PORT = os.getenv(
-#     'GEOSERVER_PUBLIC_PORT', 8080
-# )
-# 
-# _default_public_location = 'http://{}:{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST, GEOSERVER_PUBLIC_PORT) if GEOSERVER_PUBLIC_PORT else 'http://{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST)
-# 
-# GEOSERVER_WEB_UI_LOCATION = os.getenv(
-#     'GEOSERVER_WEB_UI_LOCATION', GEOSERVER_LOCATION
-# )
-# 
-# GEOSERVER_PUBLIC_LOCATION = os.getenv(
-#     'GEOSERVER_PUBLIC_LOCATION', _default_public_location
-# )
-# 
-# OGC_SERVER_DEFAULT_USER = os.getenv(
-#     'GEOSERVER_ADMIN_USER', 'admin'
-# )
-# 
-# OGC_SERVER_DEFAULT_PASSWORD = os.getenv(
-#     'GEOSERVER_ADMIN_PASSWORD', 'geoserver'
-# )
-# 
+GEOSERVER_LOCATION = os.getenv(
+    'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
+)
+
+GEOSERVER_PUBLIC_HOST = os.getenv(
+    'GEOSERVER_PUBLIC_HOST', SITE_HOST_NAME
+)
+
+GEOSERVER_PUBLIC_PORT = os.getenv(
+    'GEOSERVER_PUBLIC_PORT', 8080
+)
+
+_default_public_location = 'http://{}:{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST, GEOSERVER_PUBLIC_PORT) if GEOSERVER_PUBLIC_PORT else 'http://{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST)
+
+GEOSERVER_WEB_UI_LOCATION = os.getenv(
+    'GEOSERVER_WEB_UI_LOCATION', GEOSERVER_LOCATION
+)
+
+GEOSERVER_PUBLIC_LOCATION = os.getenv(
+    'GEOSERVER_PUBLIC_LOCATION', _default_public_location
+)
+
+OGC_SERVER_DEFAULT_USER = os.getenv(
+    'GEOSERVER_ADMIN_USER', 'admin'
+)
+
+OGC_SERVER_DEFAULT_PASSWORD = os.getenv(
+    'GEOSERVER_ADMIN_PASSWORD', 'geoserver'
+)
+ 
 # # OGC (WMS/WFS/WCS) Server Settings
 # OGC_SERVER = {
 #     'default': {
@@ -145,35 +145,35 @@ from geonode.settings import *
 #         'POOL_CONNECTIONS': int(os.getenv('OGC_REQUEST_POOL_CONNECTIONS', '10')),
 #     }
 # }
-# 
-# # If you want to enable Mosaics use the following configuration
-# UPLOADER = {
-#     'BACKEND': 'geonode.importer',
-#     'OPTIONS': {
-#         'TIME_ENABLED': True,
-#         'MOSAIC_ENABLED': False,
-#     },
-#     'SUPPORTED_CRS': [
-#         'EPSG:4326',
-#         'EPSG:3785',
-#         'EPSG:3857',
-#         'EPSG:32647',
-#         'EPSG:32736'
-#     ],
-#     'SUPPORTED_EXT': [
-#         '.shp',
-#         '.csv',
-#         '.kml',
-#         '.kmz',
-#         '.json',
-#         '.geojson',
-#         '.tif',
-#         '.tiff',
-#         '.geotiff',
-#         '.gml',
-#         '.xml'
-#     ]
-# }
+
+# If you want to enable Mosaics use the following configuration
+UPLOADER = {
+    'BACKEND': 'geonode.importer',
+    'OPTIONS': {
+        'TIME_ENABLED': True,
+        'MOSAIC_ENABLED': False,
+    },
+    'SUPPORTED_CRS': [
+        'EPSG:4326',
+        'EPSG:3785',
+        'EPSG:3857',
+        'EPSG:32647',
+        'EPSG:32736'
+    ],
+    'SUPPORTED_EXT': [
+        '.shp',
+        '.csv',
+        '.kml',
+        '.kmz',
+        '.json',
+        '.geojson',
+        '.tif',
+        '.tiff',
+        '.geotiff',
+        '.gml',
+        '.xml'
+    ]
+}
 # 
 # # CSW settings
 # CATALOGUE = {
@@ -260,31 +260,31 @@ from geonode.settings import *
 #         }
 #     }
 # }
-# 
-# # -- START Client Hooksets Setup
-# 
-# # GeoNode javascript client configuration
-# 
-# # default map projection
-# # Note: If set to EPSG:4326, then only EPSG:4326 basemaps will work.
-# DEFAULT_MAP_CRS = os.environ.get('DEFAULT_MAP_CRS', "EPSG:3857")
-# 
-# DEFAULT_LAYER_FORMAT = os.environ.get('DEFAULT_LAYER_FORMAT', "image/png")
-# 
-# # Where should newly created maps be focused?
-# DEFAULT_MAP_CENTER = (os.environ.get('DEFAULT_MAP_CENTER_X', 0), os.environ.get('DEFAULT_MAP_CENTER_Y', 0))
-# 
-# # How tightly zoomed should newly created maps be?
-# # 0 = entire world;
-# # maximum zoom is between 12 and 15 (for Google Maps, coverage varies by area)
-# DEFAULT_MAP_ZOOM = int(os.environ.get('DEFAULT_MAP_ZOOM', 3))
-# 
-# MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', None)
-# BING_API_KEY = os.environ.get('BING_API_KEY', None)
-# GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', None)
-# 
-# GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY = os.getenv('GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY', 'mapstore')
-# 
+
+# -- START Client Hooksets Setup
+
+# GeoNode javascript client configuration
+
+# default map projection
+# Note: If set to EPSG:4326, then only EPSG:4326 basemaps will work.
+DEFAULT_MAP_CRS = os.environ.get('DEFAULT_MAP_CRS', "EPSG:3857")
+
+DEFAULT_LAYER_FORMAT = os.environ.get('DEFAULT_LAYER_FORMAT', "image/png")
+
+# Where should newly created maps be focused?
+DEFAULT_MAP_CENTER = (os.environ.get('DEFAULT_MAP_CENTER_X', 0), os.environ.get('DEFAULT_MAP_CENTER_Y', 0))
+
+# How tightly zoomed should newly created maps be?
+# 0 = entire world;
+# maximum zoom is between 12 and 15 (for Google Maps, coverage varies by area)
+DEFAULT_MAP_ZOOM = int(os.environ.get('DEFAULT_MAP_ZOOM', 3))
+
+MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', None)
+BING_API_KEY = os.environ.get('BING_API_KEY', None)
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', None)
+
+GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY = os.getenv('GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY', 'mapstore')
+
 # MAP_BASELAYERS = [{}]
 # 
 # """
