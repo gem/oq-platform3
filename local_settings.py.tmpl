@@ -2,9 +2,11 @@ import os
 from geonode.settings import TEMPLATES, INSTALLED_APPS
 import geonode.settings
 
+DEBUG = True
+
 SITENAME = "OpenQuake Platform"
 
-DEBUG = True
+SITEURL = os.getenv('SITEURL', _default_siteurl)
 
 TIME_ZONE = 'UTC'
 
