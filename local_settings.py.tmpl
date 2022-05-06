@@ -31,7 +31,7 @@ import os
 # except ImportError:
 #     # Python 3 fallback
 #     from urllib.parse import urlparse, urlunparse, urlsplit, urljoin
-# from geonode.settings import *
+from geonode.settings import *
 # 
 # PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # 
@@ -503,11 +503,11 @@ import os
 #     },
 # }
 # 
-# # Additional settings
-# X_FRAME_OPTIONS = 'ALLOW-FROM %s' % SITEURL
-# CORS_ORIGIN_ALLOW_ALL = True
-# 
-# GEOIP_PATH = "/usr/local/share/GeoIP"
+# Additional settings
+X_FRAME_OPTIONS = 'ALLOW-FROM %s' % SITEURL
+CORS_ORIGIN_ALLOW_ALL = True
+
+GEOIP_PATH = "/usr/local/share/GeoIP"
 
 INSTALLED_APPS += (
     'pla_common',)
