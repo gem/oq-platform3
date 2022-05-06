@@ -6,7 +6,17 @@ DEBUG = True
 
 SITENAME = "OpenQuake Platform"
 
+_default_siteurl = f"{SITE_HOST_SCHEMA}://{SITE_HOST_NAME}:{SITE_HOST_PORT}/" \
+                   if SITE_HOST_PORT else f"{SITE_HOST_SCHEMA}://{SITE_HOST_NAME}/"
 SITEURL = os.getenv('SITEURL', _default_siteurl)
+
+# we need hostname for deployed
+_surl = urlparse(SITEURL)
+HOSTNAME = _surl.hostname
+
+# add trailing slash to site url. geoserver url will be relative to this
+if not SITEURL.endswith('/'):
+    SITEURL = f'{SITEURL}/'
 
 TIME_ZONE = 'UTC'
 
