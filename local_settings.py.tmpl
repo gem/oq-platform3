@@ -80,14 +80,12 @@ if not SITEURL.endswith('/'):
 
 TIME_ZONE = 'UTC'
 
-HAYSTACK_SEARCH = ast.literal_eval(os.getenv('HAYSTACK_SEARCH', 'False'))
+HAYSTACK_SEARCH = ast.literal_eval(os.getenv('HAYSTACK_SEARCH', 'True'))
 # Avoid permissions prefiltering
 SKIP_PERMS_FILTER = ast.literal_eval(os.getenv('SKIP_PERMS_FILTER', 'False'))
 # Update facet counts from Haystack
 HAYSTACK_FACET_COUNTS = ast.literal_eval(os.getenv('HAYSTACK_FACET_COUNTS', 'True'))
 if HAYSTACK_SEARCH:
-    if 'haystack' not in INSTALLED_APPS:
-        INSTALLED_APPS += ('haystack', )
     HAYSTACK_CONNECTIONS = {
         'default': {
             'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
