@@ -1,31 +1,63 @@
-# Django settings for the GeoNode project.
-import os
-import re
 import ast
-import sys
-import subprocess
-import dj_database_url
-from schema import Optional
-from datetime import timedelta
-from distutils.util import strtobool  # noqa
-from urllib.parse import urlparse, urljoin
+import os
+try:  # python2
+    from urlparse import urlparse, urlunparse, urlsplit, urljoin
+except ImportError:
+    # Python 3 fallback
+    from urllib.parse import urlparse, urlunparse, urlsplit, urljoin
+from geonode.settings import *
 
-#
-# General Django development settings
-#
-from django.conf.global_settings import DATETIME_INPUT_FORMATS
-from geonode import get_version
-from kombu import Queue, Exchange
-from kombu.serialization import register
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-from geonode import serializer
-from geonode.settings import TEMPLATES, INSTALLED_APPS
-import geonode.settings
-from urllib.parse import urlparse, urljoin
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(PROJECT_ROOT, "uploaded"))
+
+STATIC_ROOT = os.getenv('STATIC_ROOT',
+                        os.path.join(PROJECT_ROOT, "static_root")
+                        )
+TIME_ZONE = 'UTC'
+
+# Login and logout urls override
+LOGIN_URL = os.getenv('LOGIN_URL', '{}account/login/'.format(SITEURL))
+LOGOUT_URL = os.getenv('LOGOUT_URL', '{}account/logout/'.format(SITEURL))
+
+ACCOUNT_LOGIN_REDIRECT_URL = os.getenv('LOGIN_REDIRECT_URL', SITEURL)
+ACCOUNT_LOGOUT_REDIRECT_URL =  os.getenv('LOGOUT_REDIRECT_URL', SITEURL)
+
+AVATAR_GRAVATAR_SSL = ast.literal_eval(os.getenv('AVATAR_GRAVATAR_SSL', 'True'))
 
 DEBUG = True
 
 SITENAME = "OpenQuake Platform"
+
+GEOSERVER_LOCATION = os.getenv(
+    'GEOSERVER_LOCATION', 'http://localhost:8080/geoserver/'
+)
+
+GEOSERVER_PUBLIC_HOST = os.getenv(
+    'GEOSERVER_PUBLIC_HOST', SITE_HOST_NAME
+)
+
+GEOSERVER_PUBLIC_PORT = os.getenv(
+    'GEOSERVER_PUBLIC_PORT', 8080
+)
+
+_default_public_location = 'http://{}:{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST, GEOSERVER_PUBLIC_PORT) if GEOSERVER_PUBLIC_PORT else 'http://{}/geoserver/'.format(GEOSERVER_PUBLIC_HOST)
+
+GEOSERVER_WEB_UI_LOCATION = os.getenv(
+    'GEOSERVER_WEB_UI_LOCATION', GEOSERVER_LOCATION
+)
+
+GEOSERVER_PUBLIC_LOCATION = os.getenv(
+    'GEOSERVER_PUBLIC_LOCATION', _default_public_location
+)
+
+OGC_SERVER_DEFAULT_USER = os.getenv(
+    'GEOSERVER_ADMIN_USER', 'admin'
+)
+
+OGC_SERVER_DEFAULT_PASSWORD = os.getenv(
+    'GEOSERVER_ADMIN_PASSWORD', 'geoserver'
+)
 
 # Make this unique, and don't share it with anybody.
 _DEFAULT_SECRET_KEY = 'myv-y4#7j-d*p-__@j#*3z@!y24fz8%^z2v6atuy4bo9vqr1_a'
@@ -51,14 +83,6 @@ TIME_ZONE = 'UTC'
 INSTALLED_APPS += (
     'pla_common',)
 
-# Defines the directory that contains the settings file as the PROJECT_ROOT
-# It is used for relative settings elsewhere.
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-
-# Setting debug to true makes Django serve static media and
-# present pretty error pages.
-# DEBUG = ast.literal_eval(os.getenv('DEBUG', 'True'))
-
 # Set to True to load non-minified versions of (static) client dependencies
 # Requires to set-up Node and tools that are required for static development
 # otherwise it will raise errors for the missing non-minified dependencies
@@ -82,5 +106,3 @@ _DEFAULT_LOCALE_PATHS = (
 
 LOCALE_PATHS = os.getenv('LOCALE_PATHS', _DEFAULT_LOCALE_PATHS)
 
-# Location of url mappings
-ROOT_URLCONF = os.getenv('ROOT_URLCONF', 'geonode.urls')
