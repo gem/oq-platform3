@@ -52,3 +52,12 @@ _DEFAULT_STATICFILES_DIRS = [
 
 STATICFILES_DIRS = os.getenv('STATICFILES_DIRS', _DEFAULT_STATICFILES_DIRS)
 
+# Location of translation files
+_DEFAULT_LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, "locale"),
+)
+
+LOCALE_PATHS = os.getenv('LOCALE_PATHS', _DEFAULT_LOCALE_PATHS)
+
+# Location of url mappings
+ROOT_URLCONF = os.getenv('ROOT_URLCONF', 'geonode.urls')
