@@ -41,6 +41,10 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # otherwise it will raise errors for the missing non-minified dependencies
 DEBUG_STATIC = ast.literal_eval(os.getenv('DEBUG_STATIC', 'False'))
 
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'uploaded'
+THUMBNAIL_LOCATION = 'thumbs'
+
 # Additional directories which hold static files
 _DEFAULT_STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, STATICFILES_LOCATION),
