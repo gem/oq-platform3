@@ -1,5 +1,24 @@
+# Django settings for the GeoNode project.
 import os
+import re
 import ast
+import sys
+import subprocess
+import dj_database_url
+from schema import Optional
+from datetime import timedelta
+from distutils.util import strtobool  # noqa
+from urllib.parse import urlparse, urljoin
+
+#
+# General Django development settings
+#
+from django.conf.global_settings import DATETIME_INPUT_FORMATS
+from geonode import get_version
+from kombu import Queue, Exchange
+from kombu.serialization import register
+
+from geonode import serializer
 from geonode.settings import TEMPLATES, INSTALLED_APPS
 import geonode.settings
 from urllib.parse import urlparse, urljoin
