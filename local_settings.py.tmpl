@@ -80,21 +80,13 @@ if not SITEURL.endswith('/'):
 
 TIME_ZONE = 'UTC'
 
-HAYSTACK_SEARCH = ast.literal_eval(os.getenv('HAYSTACK_SEARCH', 'True'))
-# Avoid permissions prefiltering
-SKIP_PERMS_FILTER = ast.literal_eval(os.getenv('SKIP_PERMS_FILTER', 'False'))
-# Update facet counts from Haystack
-HAYSTACK_FACET_COUNTS = ast.literal_eval(os.getenv('HAYSTACK_FACET_COUNTS', 'True'))
-if HAYSTACK_SEARCH:
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
-            'URL': os.getenv('HAYSTACK_ENGINE_URL', 'http://127.0.0.1:9200/'),
-            'INDEX_NAME': os.getenv('HAYSTACK_ENGINE_INDEX_NAME', 'haystack'),
-        },
-    }
-    HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-    HAYSTACK_SEARCH_RESULTS_PER_PAGE = int(os.getenv('HAYSTACK_SEARCH_RESULTS_PER_PAGE', '200'))
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': os.getenv('HAYSTACK_ENGINE_URL', 'http://127.0.0.1:9200/'),
+        'INDEX_NAME': os.getenv('HAYSTACK_ENGINE_INDEX_NAME', 'haystack'),
+    },
+}
 
 INSTALLED_APPS += (
     'haystack',
