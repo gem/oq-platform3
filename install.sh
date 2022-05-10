@@ -150,13 +150,13 @@ sleep 200
 docker-compose exec -T django bash -c "chmod +x *.sh"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
-# docker-compose exec -T django bash -c "./manage.sh create_gem_user"
+docker-compose exec -T django bash -c "./manage.sh fixsitename"
+docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 # docker-compose exec -T db bash -c "/usr/src/openquakeplatform/data_commands/gs_data/sql/dump.bash"
 # docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
-docker-compose exec -T django bash -c "./manage.sh fixsitename"
 
 echo "Installation complete."
 
