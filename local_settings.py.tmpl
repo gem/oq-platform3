@@ -2,7 +2,7 @@
 import os
 import ast
 
-from settings import *
+from openquakeplatform.settings import *
 
 #
 # General Django development settings
@@ -11,6 +11,10 @@ PROJECT_NAME = 'openquakeplatform'
 OQ_COMMANDS = 'pla_common'
 
 SITENAME = os.getenv("SITENAME", 'openquakeplatform')
+
+# add trailing slash to site url. geoserver url will be relative to this
+if not SITEURL.endswith('/'):
+    SITEURL = '{}/'.format(SITEURL)
 
 # Defines the directory that contains the settings file as the LOCAL_ROOT
 # It is used for relative settings elsewhere.
