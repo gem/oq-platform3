@@ -2,7 +2,21 @@
 import os
 import ast
 
-from geonode.settings import INSTALLED_APPS
+from geonode.settings import *
+
+try:
+    from urllib.parse import urlparse, urlunparse
+    from urllib.request import urlopen, Request
+except ImportError:
+    from urllib2 import urlopen, Request
+    from urlparse import urlparse, urlunparse
+# Load more settings from a file called local_settings.py if it exists
+try:
+    from openquakeplatform.local_settings import *
+#    from geonode.local_settings import *
+except ImportError:
+    from geonode.settings import *
+
 from openquakeplatform.settings import *
 
 #
@@ -10,6 +24,10 @@ from openquakeplatform.settings import *
 #
 PROJECT_NAME = 'openquakeplatform'
 OQ_COMMANDS = 'pla_common'
+
+# add trailing slash to site url. geoserver url will be relative to this
+if not SITEURL.endswith('/'):
+    SITEURL = '{}/'.format(SITEURL)
 
 SITENAME = os.getenv("SITENAME", 'openquakeplatform')
 
@@ -104,6 +122,3 @@ if CENTRALIZED_DASHBOARD_ENABLED and USER_ANALYTICS_ENABLED and 'geonode_logstas
 LDAP_ENABLED = ast.literal_eval(os.getenv('LDAP_ENABLED', 'False'))
 if LDAP_ENABLED and 'geonode_ldap' not in INSTALLED_APPS:
     INSTALLED_APPS += ('geonode_ldap',)
-
-# Add your specific LDAP configuration after this comment:
-# https://docs.geonode.org/en/master/advanced/contrib/#configuration
