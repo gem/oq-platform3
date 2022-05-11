@@ -11,7 +11,7 @@ PROJECT_NAME = 'openquakeplatform'
 OQ_COMMANDS = 'pla_common'
 
 SITENAME = os.getenv("SITENAME", 'openquakeplatform')
-
+SITEURL = 'localhost'
 # add trailing slash to site url. geoserver url will be relative to this
 if not SITEURL.endswith('/'):
     SITEURL = '{}/'.format(SITEURL)
