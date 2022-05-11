@@ -1,5 +1,8 @@
 import ast
 import os
+from geonode.settings import INSTALLED_APPS
+import geonode.settings
+
 try:  # python2
     from urlparse import urlparse, urlunparse, urlsplit, urljoin
 except ImportError:
