@@ -2,7 +2,7 @@ body {
     background: #fff!important;
 }    
 body.home {
-    background: url(/static/img/back_platform.jpg) no-repeat center top!important;
+    background: url(../img/back_platform.jpg) no-repeat center top!important;
     -webkit-background-size: cover!important;
     -moz-background-size: cover!important;
     -o-background-size: cover!important;
@@ -76,6 +76,9 @@ body.home {
     background-color: #1b75a5;
     height: 40px;
 }
+.navbar-nav .avatar img {
+    margin-top: -20px;	
+}	
 .navbar-nav .dropdown-menu {
     border-top: 1px solid #ccc;
     background-color: #fff!important;
@@ -110,9 +113,11 @@ body.home {
     margin: 0!important;
 }
 .navbar-brand {
-    background: url("static/geonode/img/logo.png") 0 10px no-repeat!important;
+    background: url("../img/logo.png") 0 10px no-repeat!important;
     height: auto!important;
-    padding: 12px 15px!important
+    padding: 21px 15px !important;
+    width: 215px !important;
+    margin: -8px 0px !important;
 }
 .ac-results {
     background-color: #fff;
