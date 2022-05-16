@@ -126,10 +126,10 @@ services:
       - dbbackups:/pg_backups
     restart: unless-stopped
     ports:
-      - "127.0.0.1:5432:5432"
-    labels:
-        org.geonode.component: db
-        org.geonode.instance.name: geonode
+      - "5432:5432"
+    # labels:
+    #     org.geonode.component: db
+    #     org.geonode.instance.name: geonode
     # uncomment to enable remote connections to postgres
     #ports:
     #  - "5432:5432"
