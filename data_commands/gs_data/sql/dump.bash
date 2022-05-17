@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+pwd
 cd /data_commands/gs_data/sql/
 #
 for i in *.sql ; do
