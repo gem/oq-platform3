@@ -71,8 +71,6 @@ inst_docker
 
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-# sudo cp -pr $HOME/geonode-project ./oq-platform3
-# sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
 
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
@@ -85,8 +83,6 @@ cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 mkdir $HOME/geonode-project/openquakeplatform
 mkdir $HOME/geonode-project/openquakeplatform/templates
 cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/openquakeplatform/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
-# cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
 cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
 
 #static
@@ -111,30 +107,7 @@ pip install Django==3.2.12
 # start django project
 django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
-# sleep 500000  
-
 cd $NAME_PROJECT
-
-# git clone -b 3.3.x https://github.com/GeoNode/geonode.git
-# 
-# rm geonode/geonode/templates/base.html
-# rm geonode/geonode/templates/index.html
-# rm geonode/geonode/urls.py
-# cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
-# cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
-# cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
-# 
-# mkdir openquakeplatform
-# cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
-# 
-# pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
@@ -153,7 +126,6 @@ docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh fixsitename"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-# docker-compose exec -T db bash -c "/usr/src/openquakeplatform/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
