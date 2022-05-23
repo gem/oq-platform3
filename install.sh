@@ -13,7 +13,7 @@ DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
-GEOSERVER_VERSION="2.19.x"
+GEOSERVER_VERSION="2.19.6"
 
 rem_sig_hand() {
     trap "" ERR
@@ -92,10 +92,10 @@ cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 # Geoserver
-# wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-# unzip -q geoserver.war -d geoserver
-# mkdir geoserver_data
-# cp -pr $HOME/geoserver/* geoserver_data
+wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+unzip -q geoserver.war -d geoserver
+mkdir geoserver_data
+cp -pr $HOME/geoserver/* geoserver_data
 
 # virtual env
 python3.8 -m venv $HOME/platform3
@@ -139,6 +139,7 @@ docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sq
 docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
 docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
 docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
+# docker-compose exec -T geoserver bash -c "cp -r /usr/local/tomcat/tmp/data /usr/local/tomcat/webapps/geoserver"
 
 # docker-compose stop
 # docker-compose start

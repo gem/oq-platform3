@@ -11,7 +11,8 @@ x-common-django:
   volumes:
     # - '.:/usr/src/{{project_name}}'
     - statics:/mnt/volumes/statics
-    - geoserver-data-dir:/geoserver_data/data
+    # - geoserver-data-dir:/geoserver_data/data
+    - ./geoserver_data/data:/geoserver_data/data
     # - ./openquakeplatform:/usr/src/geonode/geonode   
     - backup-restore:/backup_restore
     - data:/data
@@ -99,8 +100,8 @@ services:
       - .env
     volumes:
       - statics:/mnt/volumes/statics
-      - geoserver-data-dir:/geoserver_data/data
-      # - ./geoserver_data/data:/geoserver_data/data  
+      # - geoserver-data-dir:/geoserver_data/data
+      - ./geoserver_data/data:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
       - tmp:/tmp
@@ -110,8 +111,8 @@ services:
     container_name: gsconf4${COMPOSE_PROJECT_NAME}
     command: /bin/true
     volumes:
-      - geoserver-data-dir:/geoserver_data/data
-      # - ./geoserver_data/data:/geoserver_data/data  
+      # - geoserver-data-dir:/geoserver_data/data
+      - ./geoserver_data/data:/geoserver_data/data  
 
   # PostGIS database.
   db:
