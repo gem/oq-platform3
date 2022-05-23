@@ -136,9 +136,9 @@ docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sq
 # wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 # tar zxf data.tar.gz
 
-docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
-docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
-docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
+# docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
+# docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
+# docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
 # docker-compose exec -T geoserver bash -c "cp -r /usr/local/tomcat/tmp/data /usr/local/tomcat/webapps/geoserver"
 
 # docker-compose stop
