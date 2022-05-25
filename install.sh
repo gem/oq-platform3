@@ -109,15 +109,14 @@ django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,
 
 cd $NAME_PROJECT
 
-docker-compose build --no-cache
-set COMPOSE_CONVERT_WINDOWS_PATHS=1
-
 mkdir geoserver_data
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
 
 cp -r data geoserver_data
 
+docker-compose build --no-cache
+set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
 
 sleep 15
