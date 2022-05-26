@@ -169,8 +169,8 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-nginxconfd
   nginx-certificates:
     name: ${COMPOSE_PROJECT_NAME}-nginxcerts
-  geoserver-data-dir:
-    name: ${COMPOSE_PROJECT_NAME}-gsdatadir
+  # geoserver-data-dir:
+  # name: ${COMPOSE_PROJECT_NAME}-gsdatadir
   dbdata:
     name: ${COMPOSE_PROJECT_NAME}-dbdata
   dbbackups:

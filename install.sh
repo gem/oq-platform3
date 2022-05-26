@@ -72,19 +72,12 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
-mkdir $HOME/geoserver_data
-cd $HOME/geoserver_data
-wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-tar zxf data.tar.gz
-# cp -pr data geoserver_data
-
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-cp -pr $HOME/geoserver_data $HOME/geonode-project/
 
 # template
 mkdir $HOME/geonode-project/openquakeplatform
@@ -116,6 +109,15 @@ django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,
 
 cd $NAME_PROJECT
 
+mkdir geoserver_data
+cd geoserver_data
+wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+tar zxf data.tar.gz
+rm data.tar.gz
+# cp -pr data geoserver_data
+
+cd ..
+pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
