@@ -84,7 +84,7 @@ cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-cp -pr $HOME/oq-platform3/geoserver_data $HOME/geonode-project/
+cp -pr $HOME/geoserver_data $HOME/geonode-project/
 
 # template
 mkdir $HOME/geonode-project/openquakeplatform
