@@ -91,6 +91,13 @@ mkdir $HOME/geonode-project/openquakeplatform/static/css
 cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
+mkdir $HOME/geonode-project/openquakeplatform/geoserver_data
+cd $HOME/geonode-project/openquakeplatform/geoserver_data
+wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+tar zxf data.tar.gz
+
+#cp -r data geoserver_data
+
 # Geoserver
 # wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 # unzip -q geoserver.war -d geoserver
@@ -108,12 +115,6 @@ pip install Django==3.2.12
 django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
 cd $NAME_PROJECT
-
-mkdir geoserver_data
-wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-tar zxf data.tar.gz
-
-cp -r data geoserver_data
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
