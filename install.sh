@@ -72,12 +72,19 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
+mkdir $HOME/geoserver_data
+cd $HOME/geoserver_data
+wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+tar zxf data.tar.gz
+# cp -pr data geoserver_data
+
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/geoserver_data $HOME/geonode-project/
 
 # template
 mkdir $HOME/geonode-project/openquakeplatform
@@ -91,11 +98,6 @@ mkdir $HOME/geonode-project/openquakeplatform/static/css
 cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
-mkdir $HOME/geoserver_data
-cd $HOME/geoserver_data
-wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-tar zxf data.tar.gz
-# cp -pr data geoserver_data
 
 # Geoserver
 # wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
