@@ -78,6 +78,7 @@ RUN pip install --upgrade  -e .
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN pwd
+COPY geoserver_data /usr/src/{{project_name}}/geoserver_data
 COPY pla_common /usr/src/{{project_name}}/pla_common
 COPY data_commands /usr/src/{{project_name}}/data_commands
 ADD local_settings.py.tmpl /usr/src/{{project_name}}/local_settings.py
