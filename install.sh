@@ -92,9 +92,6 @@ cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 
-# Geoserver
-# wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-# unzip -q geoserver.war -d geoserver
 # mkdir geoserver_data
 
 # virtual env
@@ -109,15 +106,18 @@ django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,
 
 cd $NAME_PROJECT
 
+# Geoserver
+wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
-cd geoserver_data
-wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-tar zxf data.tar.gz
-rm data.tar.gz
-# cp -pr data geoserver_data
+# cd geoserver_data
+# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+# tar zxf data.tar.gz
+# rm data.tar.gz
+cp -pr geoserver/data geoserver_data
 
-cd ..
-pwd
+# cd ..
+# pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
@@ -131,10 +131,10 @@ sleep 200
 
 # Run commands on django container
 docker-compose exec -T django bash -c "chmod +x *.sh"
-docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh fixsitename"
+docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
 docker-compose exec -T django bash -c "./manage.sh add_documents"
