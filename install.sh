@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# verifier.sh  Copyright (c) 2021, GEM Foundation.
+# verifier.sh  Copyright (c) 2022, GEM Foundation.
 #
 # OpenQuake is free software: you can redistribute it and/or modify it
 # under the terms of the GNU Affero General Public License as published
@@ -13,7 +13,7 @@ DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
-GEOSERVER_VERSION="2.19.x"
+GEOSERVER_VERSION="2.19.6"
 
 rem_sig_hand() {
     trap "" ERR
@@ -71,8 +71,6 @@ inst_docker
 
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-# sudo cp -pr $HOME/geonode-project ./oq-platform3
-# sed -i -e '/initial_data/s/name\}\}/name\}\}\/src/' ./oq-platform3/geonode-project/src/tasks.py
 
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
@@ -85,8 +83,6 @@ cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
 mkdir $HOME/geonode-project/openquakeplatform
 mkdir $HOME/geonode-project/openquakeplatform/templates
 cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/openquakeplatform/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
-# cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
 cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
 
 #static
@@ -95,11 +91,8 @@ mkdir $HOME/geonode-project/openquakeplatform/static/css
 cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
-# Geoserver
-# wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-# unzip -q geoserver.war -d geoserver
+
 # mkdir geoserver_data
-# cp -pr $HOME/geoserver/* geoserver_data
 
 # virtual env
 python3.8 -m venv $HOME/platform3
@@ -111,29 +104,19 @@ pip install Django==3.2.12
 # start django project
 django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
 
-# sleep 500000  
-
 cd $NAME_PROJECT
 
-# git clone -b 3.3.x https://github.com/GeoNode/geonode.git
-# 
-# rm geonode/geonode/templates/base.html
-# rm geonode/geonode/templates/index.html
-# rm geonode/geonode/urls.py
-# cp $HOME/oq-platform3/openquakeplatform/templates/index.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/base.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/calculate.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/explore.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/share.html geonode/geonode/templates/
-# cp $HOME/oq-platform3/openquakeplatform/templates/terms.html geonode/geonode/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/templates/includes geonode/geonode/templates/
-# cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img/* geonode/geonode/static/geonode/img/
-# cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css geonode/geonode/static/geonode/css/
-# cp $HOME/oq-platform3/openquakeplatform/urls.py geonode/geonode/
-# 
-# mkdir openquakeplatform
-# cp -pr geonode/geonode/* $HOME/openquakeplatform/openquakeplatform/
-# 
+# Geoserver
+wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+unzip -q geoserver.war -d geoserver
+mkdir geoserver_data
+# cd geoserver_data
+# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+# tar zxf data.tar.gz
+# rm data.tar.gz
+cp -pr geoserver/data geoserver_data
+
+# cd ..
 # pwd
 
 docker-compose build --no-cache
@@ -148,16 +131,37 @@ sleep 200
 
 # Run commands on django container
 docker-compose exec -T django bash -c "chmod +x *.sh"
-docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh fixsitename"
+docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-# docker-compose exec -T db bash -c "/usr/src/openquakeplatform/data_commands/gs_data/sql/dump.bash"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-# docker-compose exec -T django bash -c "./manage.sh add_documents"
+docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
+
+# mkdir geoserver_data
+# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+# tar zxf data.tar.gz
+# 
+# cp -r data geoserver_data
+
+docker cp data_commands/gs_data/sql db4openquakeplatform:sql
+docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
+
+# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+# tar zxf data.tar.gz
+
+# docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
+# docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
+# docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
+# docker-compose exec -T geoserver bash -c "cp -r /usr/local/tomcat/tmp/data /usr/local/tomcat/webapps/geoserver"
+
+# docker-compose stop
+# docker-compose start
+# 
+# sleep 15
 
 echo "Installation complete."
 
