@@ -118,6 +118,7 @@ mkdir geoserver_data
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/data/workspaces/oqplatform geoserver_data/data/workspaces
 cp $NAME_PROJECT/data/workspaces/default.xml geoserver_data/data/workspaces
+cp $NAME_PROJECT/data/styles/*  geoserver_data/data/styles
 
 # cd ..
 # pwd
