@@ -116,8 +116,8 @@ mkdir geoserver_data
 # tar zxf data.tar.gz
 # rm data.tar.gz
 cp -pr geoserver/data geoserver_data
-cp -pr data/workspaces/oqplatform geoserver_data/data/workspaces
-cp data/workspaces/default.xml geoserver_data/data/workspaces
+cp -pr $NAME_PROJECT/data/workspaces/oqplatform geoserver_data/data/workspaces
+cp $NAME_PROJECT/data/workspaces/default.xml geoserver_data/data/workspaces
 
 # cd ..
 # pwd
