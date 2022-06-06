@@ -92,6 +92,7 @@ cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 
+cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 # mkdir geoserver_data
 
 # virtual env
@@ -115,6 +116,8 @@ mkdir geoserver_data
 # tar zxf data.tar.gz
 # rm data.tar.gz
 cp -pr geoserver/data geoserver_data
+cp -pr data/workspaces/oqplatform geoserver_data/data/workspaces
+cp data/workspaces/default.xml geoserver_data/data/workspaces
 
 # cd ..
 # pwd
@@ -141,22 +144,8 @@ docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# mkdir geoserver_data
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-# 
-# cp -r data geoserver_data
-
-docker cp data_commands/gs_data/sql db4openquakeplatform:sql
-docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
-
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-
-# docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
-# docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
-# docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
-# docker-compose exec -T geoserver bash -c "cp -r /usr/local/tomcat/tmp/data /usr/local/tomcat/webapps/geoserver"
+# docker cp data_commands/gs_data/sql db4openquakeplatform:sql
+# docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
 
 # docker-compose stop
 # docker-compose start
