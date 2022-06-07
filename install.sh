@@ -145,8 +145,8 @@ docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# docker cp data_commands/gs_data/sql db4openquakeplatform:sql
-# docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
+docker cp data_commands/gs_data/sql db4openquakeplatform:sql
+docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
 
 # docker-compose stop
 # docker-compose start
