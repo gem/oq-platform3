@@ -92,7 +92,10 @@ cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 
-cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
+# cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/bin $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/common $HOME/geonode-project/openquakeplatform/
 # mkdir geoserver_data
 
 # virtual env
@@ -141,6 +144,7 @@ docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+docker-compose exec -T geoserver bash -c "./bin/oq-gs-builder.sh populate -a gs_data/output openquakeplatform openquakeplatform openquakeplatform/bin oqplatform oqplatform openquakeplatform_data openquakeplatform_data geonode geoserver_data/data isc_viewer ghec_viewer"
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
