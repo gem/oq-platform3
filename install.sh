@@ -93,7 +93,7 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 
 
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/gs_data $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project/openquakeplatform/
 cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project/openquakeplatform/
 # mkdir geoserver_data
