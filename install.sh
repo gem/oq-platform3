@@ -34,6 +34,7 @@ cd $HOME
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
 sudo rm -rf oq-platform3/openquakeplatform/geonode || true
 # sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
