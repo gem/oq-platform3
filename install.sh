@@ -93,9 +93,9 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 
 
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
+cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
 # mkdir geoserver_data
 
 # virtual env
@@ -119,9 +119,9 @@ mkdir geoserver_data
 # tar zxf data.tar.gz
 # rm data.tar.gz
 cp -pr geoserver/data geoserver_data
-cp -pr $NAME_PROJECT/data/workspaces/oqplatform geoserver_data/data/workspaces
-cp $NAME_PROJECT/data/workspaces/default.xml geoserver_data/data/workspaces
-cp $NAME_PROJECT/data/styles/*  geoserver_data/data/styles
+cp -pr $NAME_PROJECT/gs_data/data/workspaces/oqplatform geoserver_data/data/workspaces
+cp $NAME_PROJECT/gs_data/data/workspaces/default.xml geoserver_data/data/workspaces
+cp $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
 
 # cd ..
 # pwd
@@ -144,13 +144,14 @@ docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T geoserver bash -c "./bin/oq-gs-builder.sh populate -a gs_data/output openquakeplatform openquakeplatform openquakeplatform/bin oqplatform oqplatform openquakeplatform_data openquakeplatform_data geonode geoserver_data/data isc_viewer ghec_viewer"
+# docker-compose exec -T django bash -c "/usr/src/openquakeplatform/bin/oq-gs-builder.sh populate -a gs_data/output openquakeplatform /usr/src/openquakeplatform /usr/src/openquakeplatform/bin oqplatform oqplatform openquakeplatform_data openquakeplatform_data geonode geoserver_data/data isc_viewer ghec_viewer"
 # docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# docker cp data_commands/gs_data/sql db4openquakeplatform:sql
+docker cp data_commands/gs_data/sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
+docker-compose exec -T db bash -c "cat /sql/sql/*.sql | psql -U postgres openquakeplatform_data"
 
 # docker-compose stop
 # docker-compose start
