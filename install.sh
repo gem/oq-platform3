@@ -93,7 +93,12 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 
 
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
+wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+tar zxf data.tar.gz
+cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/style/
 cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+rm data.tar.gz
+rm -rf data
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
 cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
 # mkdir geoserver_data
@@ -115,9 +120,6 @@ wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geon
 unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
 # cd geoserver_data
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-# rm data.tar.gz
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/workspaces/oqplatform geoserver_data/data/workspaces
 cp $NAME_PROJECT/gs_data/data/workspaces/default.xml geoserver_data/data/workspaces
