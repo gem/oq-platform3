@@ -96,7 +96,7 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/style/
+cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/
 cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
 rm data.tar.gz
 rm -rf data
