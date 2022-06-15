@@ -96,7 +96,7 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/
+cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/styles
 cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
 rm data.tar.gz
 rm -rf data
@@ -152,10 +152,14 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-docker cp data_commands/gs_data/sql db4openquakeplatform:sql
+# import layers sql in db container and import in db postgres
+wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
+tar zxf sql.tar.gz
+docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
-docker-compose exec -T db bash -c "cat /sql/sql/*.sql | psql -U postgres openquakeplatform_data"
-
+docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform_data"
+rm -rf sql
+rm sql.tar.gz
 # docker-compose stop
 # docker-compose start
 # 
