@@ -31,7 +31,8 @@ fi
 
 cd $HOME
 
-sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+# sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
 sudo rm -rf oq-platform3/openquakeplatform/geonode || true
 # sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm -rf data || true
@@ -120,17 +121,19 @@ cd $NAME_PROJECT
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
-# cd geoserver_data
+# sudo cp -pr $HOME/geoserver_data/data geoserver_data
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/workspaces/oqplatform geoserver_data/data/workspaces
 cp $NAME_PROJECT/gs_data/data/workspaces/default.xml geoserver_data/data/workspaces
 cp $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
+# sudo cp -r $HOME/geoserver_data/data/gwc-layers geoserver_data/data/
 
 # cd ..
 # pwd
 
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
+sudo cp -r $HOME/geoserver_data/data/workspaces/oqplatform/oqplatform geoserver_data/data/workspaces/oqplatform
 docker-compose up -d db
 
 sleep 15
