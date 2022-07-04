@@ -130,7 +130,7 @@ sleep 15
 
 COMPOSE_HTTP_TIMEOUT=200 docker-compose up -d
 
-sleep 200
+sleep 210
 
 # Run commands on django container
 docker-compose exec -T django bash -c "chmod +x *.sh"
