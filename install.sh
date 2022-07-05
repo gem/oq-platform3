@@ -72,9 +72,6 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
-# override Dockerfile because docker tomcat canged from focal to jammy
-cp $HOME/oq-platform3/Dockerfile-geoserver $HOME/geonode-project/docker/geoserver/Dockerfile
-
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
