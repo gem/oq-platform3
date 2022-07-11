@@ -39,35 +39,35 @@ class GeoserverTest(unittest.TestCase):
         pla.xpath_find(
             "//h1[@id='header-title' and normalize-space(text())='Welcome']")    
 
-        # check content layers
-        layer_link = pla.xpath_findfirst(
-            "//a[@href='%s']" %
-            ("./wicket/bookmarkable/org.geoserver.web.data.layer.LayerPage"))
-        layer_link.click()
+        # # check content layers
+        # layer_link = pla.xpath_findfirst(
+        #     "//a[@href='%s']" %
+        #     ("./wicket/bookmarkable/org.geoserver.web.data.layer.LayerPage"))
+        # layer_link.click()
 
-        # check title table layers
-        pla.xpath_find(
-            "//span[normalize-space(text())='gem_active_faults']")    
+        # # check title table layers
+        # pla.xpath_find(
+        #     "//span[normalize-space(text())='gem_active_faults']")    
 
-        # check name table layers
-        pla.xpath_find(
-            "//span[normalize-space(text())='oqplatform:gem_active_faults']")
+        # # check name table layers
+        # pla.xpath_find(
+        #     "//span[normalize-space(text())='oqplatform:gem_active_faults']")
 
-        # click on Geoserver logo
-        logo_click = pla.xpath_findfirst(
-            "//a[@class='%s']" % ("pngfix"))
-        logo_click.click()
+        # # click on Geoserver logo
+        # logo_click = pla.xpath_findfirst(
+        #     "//a[@class='%s']" % ("pngfix"))
+        # logo_click.click()
 
-        # click workspaces
-        workspace_link = pla.xpath_findfirst(
-            "//a[@href='%s']" %
-            ("./wicket/bookmarkable/org.geoserver.web.data.workspace.WorkspacePage"))
-        workspace_link.click()
+        # # click workspaces
+        # workspace_link = pla.xpath_findfirst(
+        #     "//a[@href='%s']" %
+        #     ("./wicket/bookmarkable/org.geoserver.web.data.workspace.WorkspacePage"))
+        # workspace_link.click()
 
-        # check correct workspace
-        pla.xpath_find(
-            "//a[@href="
-            "'./org.geoserver.web.data.workspace.WorkspaceEditPage?name=oqplatform']")
+        # # check correct workspace
+        # pla.xpath_find(
+        #     "//a[@href="
+        #     "'./org.geoserver.web.data.workspace.WorkspaceEditPage?name=oqplatform']")
 
-        # back to the platform homepage
-        pla.get("")
+        # # back to the platform homepage
+        # pla.get("")
