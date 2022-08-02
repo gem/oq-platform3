@@ -69,5 +69,5 @@ class GeoserverTest(unittest.TestCase):
         #     "//a[@href="
         #     "'./org.geoserver.web.data.workspace.WorkspaceEditPage?name=oqplatform']")
 
-        # # back to the platform homepage
-        # pla.get("")
+        # back to the platform homepage
+        pla.get("")
