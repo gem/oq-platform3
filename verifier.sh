@@ -316,12 +316,13 @@ copy_common () {
 }
 
 copy_dev () {
-    scp "${lxc_ip}:/var/log/openquake/webui.log" "out/dev_webui.log" || true
-    scp "${lxc_ip}:geonode/geoserver/jetty.log" "out/jetty.log" || true
-    scp "${lxc_ip}:dev_*.png" "out/" || true
-    scp "${lxc_ip}:xunit-platform-dev.xml" "out/" || true
-    scp "${lxc_ip}:gem_geonode_requirements.txt" "out/" || true
-    scp "${lxc_ip}:latest_geonode_commit.txt" "out/" || true
+    # scp "${lxc_ip}:/var/log/openquake/webui.log" "out/dev_webui.log" || true
+    # scp "${lxc_ip}:geonode/geoserver/jetty.log" "out/jetty.log" || true
+    # scp "${lxc_ip}:dev_*.png" "out/" || true
+    # scp "${lxc_ip}:xunit-platform-dev.xml" "out/" || true
+    # scp "${lxc_ip}:gem_geonode_requirements.txt" "out/" || true
+    # scp "${lxc_ip}:latest_geonode_commit.txt" "out/" || true
+    scp "${lxc_ip}:docker.log" "out/" || true
 }
 
 
@@ -339,7 +340,7 @@ sig_hand () {
         ssh -t  $lxc_ip ". env/bin/activate ; export PYTHONPATH=:$HOME/oq-platform3; export DJANGO_SETTINGS_MODULE='openquakeplatform.settings ; sleep 3 ;"
 
         # copy_common "$ACTION"
-        # copy_dev
+        copy_dev
         # copy_prod
 
         echo "Destroying [$lxc_name] lxc"
