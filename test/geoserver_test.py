@@ -70,4 +70,4 @@ class GeoserverTest(unittest.TestCase):
         #     "'./org.geoserver.web.data.workspace.WorkspaceEditPage?name=oqplatform']")
 
         # back to the platform homepage
-        # pla.get("")
+        pla.get("")
