@@ -161,7 +161,7 @@ _wait_ssh () {
 }
 
 
-LXC_TERM="lxc-stop -t 20"
+LXC_TERM="lxc-stop -t 30"
 
 LXC_KILL="lxc-stop -k"
 
@@ -303,7 +303,7 @@ devtest_run () {
     fi
 
     if [ "$LXC_DESTROY" = "true" ]; then
-        sudo $LXC_TERM -n $lxc_name --force
+        sudo $LXC_TERM -n $lxc_name
     fi
 
     set -e
