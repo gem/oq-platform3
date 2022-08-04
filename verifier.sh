@@ -316,7 +316,7 @@ copy_common () {
 }
 
 copy_dev () {
-    scp "${lxc_ip}:prod_*.png" "out/" || true
+    scp "${lxc_ip}:dev_*.png" "out/" || true
     scp "${lxc_ip}:xunit-platform-dev.xml" "out/" || true
     scp "${lxc_ip}:docker.log" "out/" || true
 }
