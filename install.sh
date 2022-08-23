@@ -72,6 +72,11 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
+# uwsgi check if fixed in branch 3.3.3 of geonode-project
+cp $HOME/oq-platform3/uwsgi_files/create_envfile.py $HOME/geonode-project/
+cp $HOME/oq-platform3/uwsgi_files/docker/nginx/geonode.conf.envsubst $HOME/geonode-project/docker/nginx/
+cp $HOME/oq-platform3/uwsgi_files/src/uwsgi.ini $HOME/geonode-project/src/
+
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
