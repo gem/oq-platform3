@@ -97,8 +97,9 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/styles
+# cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/styles
 cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+# sudo cp -pr $HOME/oq-platform3/gs_data_new/data/workspaces/* $HOME/geonode-project/openquakeplatform/gs_data/workspaces
 rm data.tar.gz
 rm -rf data
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
@@ -125,8 +126,9 @@ mkdir geoserver_data
 cp -pr geoserver/data geoserver_data
 # cp -pr $NAME_PROJECT/gs_data/data/workspaces/oqplatform geoserver_data/data/workspaces
 # cp $NAME_PROJECT/gs_data/data/workspaces/default.xml geoserver_data/data/workspaces
-cp $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
-# sudo cp -r $HOME/geoserver_data/data/gwc-layers geoserver_data/data/
+cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
+# cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
+sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
 
 # cd ..
 # pwd
