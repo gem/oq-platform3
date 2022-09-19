@@ -74,6 +74,11 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
+# uwsgi check if fixed in branch 3.3.3 of geonode-project
+cp $HOME/oq-platform3/uwsgi_files/create_envfile.py $HOME/geonode-project/
+cp $HOME/oq-platform3/uwsgi_files/geonode.conf.envsubst $HOME/geonode-project/docker/nginx/
+cp $HOME/oq-platform3/uwsgi_files/uwsgi.ini $HOME/geonode-project/src/
+
 cp $HOME/oq-platform3/.env $HOME/geonode-project/
 cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
 cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
@@ -132,7 +137,11 @@ docker-compose up -d db
 
 sleep 15
 
-COMPOSE_HTTP_TIMEOUT=200 docker-compose up -d
+export DOCKER_CLIENT_TIMEOUT=360
+export COMPOSE_HTTP_TIMEOUT=360
+
+# COMPOSE_HTTP_TIMEOUT=220 docker-compose up -d
+docker-compose up -d
 
 sleep 200
 
@@ -188,14 +197,14 @@ exec_test () {
 
 run_test () {
     export DISPLAY=:1
-    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/test # || true
+    python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/test # || true
     # sleep 40000 || true
 }
 
 #set thumbnails
 exec_set_map_thumbs () {
     export DISPLAY=:1
-    python -m openquake.moon.nose_runner --failurecatcher prod -s -v --with-xunit --xunit-file=xunit-platform-prod.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
+    python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
 }
 
 # logs
