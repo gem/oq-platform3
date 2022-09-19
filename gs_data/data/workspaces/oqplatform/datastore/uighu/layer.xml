@@ -1,0 +1,17 @@
+<layer>
+  <name>uighu</name>
+  <id>LayerInfoImpl-37ac9ea9:16fcc3d5a9f:-7482</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd5</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-37ac9ea9:16fcc3d5a9f:-7484</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

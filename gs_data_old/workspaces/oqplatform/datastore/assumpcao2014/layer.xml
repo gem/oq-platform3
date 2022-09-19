@@ -1,0 +1,16 @@
+<layer>
+  <name>assumpcao2014</name>
+  <id>LayerInfoImpl--61524048:183407676b0:-7fff</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd4</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--61524048:183407676b0:-8000</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2022-09-15 09:24:09.112 UTC</dateCreated>
+</layer>

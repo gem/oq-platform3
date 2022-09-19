@@ -1,0 +1,19 @@
+<dataStore>
+  <id>DataStoreInfoImpl--56cfc338:16a2aa3373a:-7f8e</id>
+  <name>datastore</name>
+  <type>PostGIS</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--56cfc338:16a2aa3373a:-7f92</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="database">geonode</entry>
+    <entry key="port">5432</entry>
+    <entry key="passwd">crypt1:EHAde4b8fGi/UdbeqpO7pUuqooxapsae</entry>
+    <entry key="dbtype">postgis</entry>
+    <entry key="host">127.0.0.1</entry>
+    <entry key="namespace">http://oqplatform</entry>
+    <entry key="user">geonode</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

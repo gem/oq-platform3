@@ -31,9 +31,11 @@ fi
 
 cd $HOME
 
-sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+# sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
+sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
 sudo rm -rf oq-platform3/openquakeplatform/geonode || true
 # sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
@@ -97,7 +99,14 @@ cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-
 cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
 
 
-# mkdir geoserver_data
+# cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
+wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+tar zxf data.tar.gz
+cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+rm data.tar.gz
+rm -rf data
+cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
+cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
 
 # virtual env
 python3.8 -m venv $HOME/platform3
@@ -115,17 +124,15 @@ cd $NAME_PROJECT
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
-# cd geoserver_data
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-# rm data.tar.gz
 cp -pr geoserver/data geoserver_data
+cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
+sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
+sudo cp -pr $NAME_PROJECT/gs_data/data/gwc-layers  geoserver_data/data/gwc-layers
 
-# cd ..
-# pwd
-
+# Docker build & start
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
+# sudo cp -r $HOME/geoserver_data/data/workspaces/oqplatform/oqplatform geoserver_data/data/workspaces/oqplatform
 docker-compose up -d db
 
 sleep 15
@@ -142,31 +149,23 @@ sleep 200
 docker-compose exec -T django bash -c "chmod +x *.sh"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
-docker-compose exec -T django bash -c "./manage.sh fixsitename"
+# docker-compose exec -T django bash -c "./manage.sh fixsitename"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-docker-compose exec -T django bash -c "./manage.sh add_documents"
+# docker-compose exec -T django bash -c "/usr/src/openquakeplatform/bin/oq-gs-builder.sh populate -a gs_data/output openquakeplatform /usr/src/openquakeplatform /usr/src/openquakeplatform/bin oqplatform oqplatform openquakeplatform_data openquakeplatform_data geonode geoserver_data/data isc_viewer ghec_viewer"
+# docker-compose exec -T django bash -c "./manage.sh add_documents"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 # docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# mkdir geoserver_data
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-# 
-# cp -r data geoserver_data
-
-docker cp data_commands/gs_data/sql db4openquakeplatform:sql
-docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
-
-# wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-# tar zxf data.tar.gz
-
-# docker-compose exec -T geoserver bash -c "mv /usr/local/tomcat/webapps/geoserver/data /usr/local/tomcat/webapps/geoserver/data.orig"
-# docker-compose exec -T geoserver bash -c "wget https://ftp.openquake.org/oq-platform3/data.tar.gz"
-# docker-compose exec -T geoserver bash -c "tar zxf data.tar.gz"
-# docker-compose exec -T geoserver bash -c "cp -r /usr/local/tomcat/tmp/data /usr/local/tomcat/webapps/geoserver"
-
+# import layers sql in db container and import in db postgres
+wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
+tar zxf sql.tar.gz
+docker cp sql db4openquakeplatform:sql
+# docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
+docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform_data"
+rm -rf sql
+rm sql.tar.gz
 # docker-compose stop
 # docker-compose start
 # 
