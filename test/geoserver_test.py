@@ -47,11 +47,11 @@ class GeoserverTest(unittest.TestCase):
 
         # check title table layers
         pla.xpath_find(
-            "//span[normalize-space(text())='gem_active_faults']")    
+            "//span[normalize-space(text())='fallas']")    
 
         # check name table layers
         pla.xpath_find(
-            "//span[normalize-space(text())='oqplatform:gem_active_faults']")
+            "//span[normalize-space(text())='oqplatform:fallas']")
 
         # click on Geoserver logo
         logo_click = pla.xpath_findfirst(
