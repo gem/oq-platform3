@@ -97,14 +97,11 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-# cp -pr data/styles/* $HOME/oq-platform3/gs_data/data/styles
 cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
-# sudo cp -pr $HOME/oq-platform3/gs_data_new/data/workspaces/* $HOME/geonode-project/openquakeplatform/gs_data/workspaces
 rm data.tar.gz
 rm -rf data
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
 cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
-# mkdir geoserver_data
 
 # virtual env
 python3.8 -m venv $HOME/platform3
@@ -122,17 +119,12 @@ cd $NAME_PROJECT
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
-# sudo cp -pr $HOME/geoserver_data/data geoserver_data
 cp -pr geoserver/data geoserver_data
-# cp -pr $NAME_PROJECT/gs_data/data/workspaces/oqplatform geoserver_data/data/workspaces
-# cp $NAME_PROJECT/gs_data/data/workspaces/default.xml geoserver_data/data/workspaces
 cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
-# cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
 sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
+sudo cp -pr $NAME_PROJECT/gs_data/data/gwc-layers  geoserver_data/data/gwc-layers
 
-# cd ..
-# pwd
-
+# Docker build & start
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
 # sudo cp -r $HOME/geoserver_data/data/workspaces/oqplatform/oqplatform geoserver_data/data/workspaces/oqplatform

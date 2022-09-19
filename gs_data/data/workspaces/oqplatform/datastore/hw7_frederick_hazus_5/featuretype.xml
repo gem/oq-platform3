@@ -3,7 +3,7 @@
   <name>hw7_frederick_hazus_5</name>
   <nativeName>hw7_frederick_hazus_5</nativeName>
   <namespace>
-    <id>NamespaceInfoImpl--56cfc338:16a2aa3373a:-7f90</id>
+    <id>NamespaceInfoImpl--183637e2:18105260965:-7ffd</id>
   </namespace>
   <title>hw7_frederick_hazus_5</title>
   <abstract>No abstract provided</abstract>
@@ -46,7 +46,7 @@
   <enabled>true</enabled>
   <advertised>true</advertised>
   <store class="dataStore">
-    <id>DataStoreInfoImpl--56cfc338:16a2aa3373a:-7f8e</id>
+    <id>DataStoreInfoImpl--677c71e6:183401f05e2:-7ffc</id>
   </store>
   <maxFeatures>0</maxFeatures>
   <numDecimals>0</numDecimals>

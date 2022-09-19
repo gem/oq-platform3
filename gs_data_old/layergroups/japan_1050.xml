@@ -1,0 +1,22 @@
+<layerGroup>
+  <id>LayerGroupInfoImpl--56cfc338:16a2aa3373a:-7d93</id>
+  <name>japan_1050</name>
+  <mode>SINGLE</mode>
+  <publishables>
+    <published type="layer">
+      <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e42</id>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fe0</id>
+    </style>
+  </styles>
+  <bounds>
+    <minx>-180.0</minx>
+    <maxx>180.0</maxx>
+    <miny>-90.0</miny>
+    <maxy>90.0</maxy>
+    <crs>EPSG:4326</crs>
+  </bounds>
+</layerGroup>

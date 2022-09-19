@@ -3,7 +3,7 @@
   <name>canparr_z4</name>
   <nativeName>canparr_z4</nativeName>
   <namespace>
-    <id>NamespaceInfoImpl--56cfc338:16a2aa3373a:-7f90</id>
+    <id>NamespaceInfoImpl--183637e2:18105260965:-7ffd</id>
   </namespace>
   <title>canparr_z4</title>
   <keywords>
@@ -54,7 +54,7 @@
   <projectionPolicy>FORCE_DECLARED</projectionPolicy>
   <enabled>true</enabled>
   <store class="dataStore">
-    <id>DataStoreInfoImpl--56cfc338:16a2aa3373a:-7f8e</id>
+    <id>DataStoreInfoImpl--677c71e6:183401f05e2:-7ffc</id>
   </store>
   <maxFeatures>0</maxFeatures>
   <numDecimals>0</numDecimals>
