@@ -153,10 +153,6 @@ docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
-# docker-compose exec -T django bash -c "/usr/src/openquakeplatform/bin/oq-gs-builder.sh populate -a gs_data/output openquakeplatform /usr/src/openquakeplatform /usr/src/openquakeplatform/bin oqplatform oqplatform openquakeplatform_data openquakeplatform_data geonode geoserver_data/data isc_viewer ghec_viewer"
-# docker-compose exec -T django bash -c "./manage.sh add_documents"
-# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
-# docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
 # import layers sql in db container and import in db postgres
 wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
@@ -166,6 +162,11 @@ docker cp sql db4openquakeplatform:sql
 docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform_data"
 rm -rf sql
 rm sql.tar.gz
+
+docker-compose exec -T django bash -c "./manage.sh add_documents"
+# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+docker-compose exec -T django bash -c "./manage.sh updatelayers"
+
 # docker-compose stop
 # docker-compose start
 # 
