@@ -57,7 +57,7 @@ VIEWER_CONFIG = """
   },
   "sources": {
     "capra": {
-      "url":"http://localhost:8080/geoserver/wms"
+      "url":"http://localhost/geoserver/wms"
     }
   },
   "map": {
@@ -114,7 +114,7 @@ community."
       },
       "sources": {
         "capra": {
-          "url":"http://localhost:8080/geoserver/wms"
+          "url":"http://localhost/geoserver/wms"
         }
       },
       "map": {

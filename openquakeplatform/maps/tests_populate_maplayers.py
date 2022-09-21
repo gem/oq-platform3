@@ -26,7 +26,7 @@ maplayers = [{"fixed": False,
               "layer_params": "",
               "map": 'GeoNode Default Map',
               "name": "geonode:CA",
-              "ows_url": "http://localhost:8080/geoserver/wms",
+              "ows_url": "http://localhost/geoserver/wms",
               "source_params": "",
               "transparent": False,
               "stack_order": 0,
@@ -47,7 +47,7 @@ maplayers = [{"fixed": False,
               "visibility": True},
              {"fixed": True,
               "group": "background",
-              "layer_params": "{\"args\": [\"geonode:CA\", \"http://localhost:8080/geoserver/wms\", {\"layers\": \
+              "layer_params": "{\"args\": [\"geonode:CA\", \"http://localhost/geoserver/wms\", {\"layers\": \
               [\"geonode:CA\"], \"tiled\": true, \"tilesOrigin\": [-20037508.34, -20037508.34], \"format\":\
                \"image/png\"}, {\"buffer\": 0}], \"type\": \"OpenLayers.Layer.WMS\"}",
               "map": 'GeoNode Default Map',
