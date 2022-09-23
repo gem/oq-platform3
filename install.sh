@@ -153,7 +153,7 @@ docker-compose exec -T django bash -c "./manage.sh migrate"
 # docker-compose exec -T django bash -c "./manage.sh fixsitename"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
-docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/auth_user.json"
+docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
 # import layers sql in db container and import in db postgres
 wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
