@@ -420,6 +420,10 @@ class Command(BaseCommand):
         for layer_full in layer_load:
 
             layer = layer_full['fields']
+
+            if (layer['name'].startswith('qgis_')):
+                continue
+
             base = new_resources[layer_full['pk']]
 
             # Instance default SpatialRepresentationType
@@ -491,7 +495,7 @@ class Command(BaseCommand):
                 new_layer.styles.add(old_style_refs[sty])
 
             print(
-                'Imported layerand attribute: %s with pk: %s' % (
+                'Imported layer and attribute: %s with pk: %s' % (
                     layer['name'], layer_full['pk']))
 
         # Import layer attribute
@@ -499,6 +503,9 @@ class Command(BaseCommand):
 
             field = attr['fields']
             layer_id = layer_old_refs[field['layer']]
+
+            ll = Layer.objects.get(name=layer_id)
+            print ('result %s' %(ll))
 
             new_attr = Attribute.objects.model(
                 count=field['count'],

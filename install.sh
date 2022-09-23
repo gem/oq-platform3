@@ -164,7 +164,7 @@ docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakepl
 rm -rf sql
 rm sql.tar.gz
 
-docker-compose exec -T django bash -c "./manage.sh add_documents"
+docker-compose exec -T django bash -c "./manage.sh add_data"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
