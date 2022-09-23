@@ -421,8 +421,8 @@ class Command(BaseCommand):
 
             layer = layer_full['fields']
 
-            if (layer['name'].startswith('qgis_')):
-                continue
+            # if (layer['name'].startswith('qgis_')):
+            #     continue
 
             base = new_resources[layer_full['pk']]
 
@@ -503,9 +503,6 @@ class Command(BaseCommand):
 
             field = attr['fields']
             layer_id = layer_old_refs[field['layer']]
-
-            ll = Layer.objects.get(name=layer_id)
-            print ('result %s' %(ll))
 
             new_attr = Attribute.objects.model(
                 count=field['count'],
