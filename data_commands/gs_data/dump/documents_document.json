@@ -1482,6 +1482,26 @@
 },
 {
     "fields": {
+        "doc_type": "other",
+        "doc_url": "",
+        "extension": "csv",
+        "title_en": "qgis_irmt_c6e4cd75_ffdb_40cb_9c85_8dc68bb49a7e (1).csv",
+        "object_id": null,
+        "data_quality_statement_en": null,
+        "regions": [],
+        "content_type": null,
+        "doc_file": "documents/qgis_irmt_c6e4cd75_ffdb_40cb_9c85_8dc68bb49a7e_1.csv",
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "abstract_en": "No abstract provided",
+        "tkeywords": [],
+        "purpose_en": null,
+        "constraints_other_en": null
+    },
+    "model": "documents.document",
+    "pk": 280
+},
+{
+    "fields": {
         "doc_type": "archive",
         "doc_url": "",
         "extension": "zip",
