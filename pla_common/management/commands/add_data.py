@@ -421,8 +421,8 @@ class Command(BaseCommand):
 
             layer = layer_full['fields']
 
-            # if (layer['name'].startswith('qgis_')):
-            #     continue
+            if (layer['name'].startswith('qgis_')):
+                continue
 
             base = new_resources[layer_full['pk']]
 
@@ -502,27 +502,34 @@ class Command(BaseCommand):
         for attr in layer_attr_load:
 
             field = attr['fields']
-            layer_id = layer_old_refs[field['layer']]
 
-            new_attr = Attribute.objects.model(
-                count=field['count'],
-                layer=layer_id,
-                description=field['description'],
-                min=field['min'],
-                attribute_label=field['attribute_label'],
-                attribute=field['attribute'],
-                display_order=field['display_order'],
-                unique_values=field['unique_values'],
-                median=field['median'],
-                sum=field['sum'],
-                visible=field['visible'],
-                last_stats_updated=field['last_stats_updated'],
-                stddev=field['stddev'],
-                attribute_type=field['attribute_type'],
-                average=field['average'],
-                max=field['max']
-                )
-            new_attr.save()
+            try:
+                layer_id = layer_old_refs[field['layer']]
+
+                new_attr = Attribute.objects.model(
+                    count=field['count'],
+                    layer=layer_id,
+                    description=field['description'],
+                    min=field['min'],
+                    attribute_label=field['attribute_label'],
+                    attribute=field['attribute'],
+                    display_order=field['display_order'],
+                    unique_values=field['unique_values'],
+                    median=field['median'],
+                    sum=field['sum'],
+                    visible=field['visible'],
+                    last_stats_updated=field['last_stats_updated'],
+                    stddev=field['stddev'],
+                    attribute_type=field['attribute_type'],
+                    average=field['average'],
+                    max=field['max']
+                    )
+                new_attr.save()
+            print(
+                'Imported attribute for: %s' % (layer_id))
+
+            except KeyError:
+                continue
 
         # Import layer rating
         # for rating in layer_rating_load:
