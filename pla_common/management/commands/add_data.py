@@ -525,8 +525,9 @@ class Command(BaseCommand):
                     max=field['max']
                     )
                 new_attr.save()
-            print(
-                'Imported attribute for: %s' % (layer_id))
+                print(
+                    'Imported attribute for: %s' % (
+                        layer_id))
 
             except KeyError:
                 continue
