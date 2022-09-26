@@ -126,3 +126,20 @@ if CENTRALIZED_DASHBOARD_ENABLED and USER_ANALYTICS_ENABLED and 'geonode_logstas
 LDAP_ENABLED = ast.literal_eval(os.getenv('LDAP_ENABLED', 'False'))
 if LDAP_ENABLED and 'geonode_ldap' not in INSTALLED_APPS:
     INSTALLED_APPS += ('geonode_ldap',)
+
+# authentication.
+AUTH_EXEMPT_URLS = ('/$',
+                    '/account/signup/',
+                    '/calculate/',
+                    '/share/',
+                    '/explore/',
+                    '/about/',
+                    '/geoserver/',
+                    '/gs/.*',
+                    '/maps/',
+                    '/api/layers/.*',
+                    '/api/maps/.*',
+                    '/api/users/.*',
+                    '/api/roles/.*',
+                    '/proxy/',
+                    '/uploaded/thumbs/')
