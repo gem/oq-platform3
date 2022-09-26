@@ -86,9 +86,11 @@ COPY common /usr/src/{{project_name}}/common
 COPY openquakeplatform/gs_data /usr/src/{{project_name}}/gs_data
 ADD local_settings.py.tmpl /usr/src/{{project_name}}/local_settings.py
 ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
+
+# templates and static 
 COPY openquakeplatform/templates /usr/src/{{project_name}}/{{project_name}}/templates
-COPY openquakeplatform/layers/templates/* /usr/src/geonode/geonode/layers/templates
-COPY openquakeplatform/maps/templates/* /usr/src/geonode/geonode/maps/templates
+# COPY openquakeplatform/layers/templates/* /usr/src/geonode/geonode/layers/templates
+# COPY openquakeplatform/maps/templates/* /usr/src/geonode/geonode/maps/templates
 COPY openquakeplatform/static /usr/src/{{project_name}}/{{project_name}}/static
 
 # Export ports

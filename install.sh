@@ -91,8 +91,8 @@ mkdir $HOME/geonode-project/openquakeplatform
 mkdir $HOME/geonode-project/openquakeplatform/templates
 cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/openquakeplatform/templates/
 cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/layers $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/maps $HOME/geonode-project/openquakeplatform/
+# cp -pr $HOME/oq-platform3/openquakeplatform/layers $HOME/geonode-project/openquakeplatform/
+# cp -pr $HOME/oq-platform3/openquakeplatform/maps $HOME/geonode-project/openquakeplatform/
 
 #static
 mkdir $HOME/geonode-project/openquakeplatform/static
