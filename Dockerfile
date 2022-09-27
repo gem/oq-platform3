@@ -89,8 +89,8 @@ ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
 
 # templates and static 
 COPY openquakeplatform/templates /usr/src/{{project_name}}/{{project_name}}/templates
-# COPY openquakeplatform/layers/templates/* /usr/src/geonode/geonode/layers/templates
-# COPY openquakeplatform/maps/templates/* /usr/src/geonode/geonode/maps/templates
+ADD openquakeplatform/templates/layers/templates/* /usr/src/geonode/geonode/layers/templates/layers/
+ADD openquakeplatform/templates/maps/templates/* /usr/src/geonode/geonode/maps/templates/maps/
 COPY openquakeplatform/static /usr/src/{{project_name}}/{{project_name}}/static
 
 # Export ports
