@@ -104,10 +104,13 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+wget https://ftp.openquake.org/oq-platform3/gs_data.tar.gz
+tar zxf gs_data.tar.gz
+sudo cp -pr gs_data $HOME/geonode-project/openquakeplatform/
+#sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
 
-rm data.tar.gz
-rm -rf data
+rm data.tar.gz gs_data.tar.gz
+rm -rf data 
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
 cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
 
@@ -131,6 +134,7 @@ cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
 sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspaces
 sudo cp -pr $NAME_PROJECT/gs_data/data/gwc-layers  geoserver_data/data/gwc-layers
+sudo chown -R root:root geoserver_data/data/gwc-layers
 
 # Docker build & start
 docker-compose build --no-cache
