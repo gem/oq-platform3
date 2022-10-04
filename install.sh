@@ -104,13 +104,13 @@ cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-pro
 # cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
 wget https://ftp.openquake.org/oq-platform3/data.tar.gz
 tar zxf data.tar.gz
-wget https://ftp.openquake.org/oq-platform3/gs_data.tar.gz
-tar zxf gs_data.tar.gz
-sudo cp -pr gs_data $HOME/geonode-project/openquakeplatform/
-#sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+# wget https://ftp.openquake.org/oq-platform3/gs_data.tar.gz
+# tar zxf gs_data.tar.gz
+# sudo cp -pr gs_data $HOME/geonode-project/openquakeplatform/
+sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
 
-rm data.tar.gz gs_data.tar.gz
-rm -rf data 
+rm data.tar.gz gs_data.tar.gz | true
+rm -rf data | true
 cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
 cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
 
@@ -158,6 +158,11 @@ docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 # docker-compose exec -T django bash -c "./manage.sh fixsitename"
 docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
+
+## load data for gec and isc viewer
+docker-compose exec -T django bash -c "./manage.sh import_isccsv usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
+docker-compose exec -T django bash -c "./manage.py import_gheccsv usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
+
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
@@ -170,9 +175,10 @@ docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakepl
 rm -rf sql
 rm sql.tar.gz
 
+
 docker-compose exec -T django bash -c "./manage.sh add_data"
-# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
+# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
 # docker-compose stop
 # docker-compose start
