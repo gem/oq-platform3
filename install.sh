@@ -93,6 +93,8 @@ cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/op
 cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
 # cp -pr $HOME/oq-platform3/openquakeplatform/layers $HOME/geonode-project/openquakeplatform/
 # cp -pr $HOME/oq-platform3/openquakeplatform/maps $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/openquakeplatform/
+cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/openquakeplatform/
 
 #static
 mkdir $HOME/geonode-project/openquakeplatform/static
