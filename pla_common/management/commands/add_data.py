@@ -226,7 +226,7 @@ class Command(BaseCommand):
             # Istance user
             User = get_user_model()
             owner = User.objects.get(username=mapp['owner'][0])
-            
+            resource_type = "map"
             # Save maps
             newmap = Map.objects.model(
                 uuid=mapp['uuid'],
@@ -250,6 +250,7 @@ class Command(BaseCommand):
                 supplemental_information_en=mapp['supplemental_information'],
                 # popular_count=maps['popular_count'],
                 # share_count=maps['share_count']
+                resource_type=resource_type,
                 )
             newmap.save()
             map_old_refs[map_full['pk']] = newmap
