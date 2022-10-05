@@ -74,7 +74,7 @@ class Command(BaseCommand):
 
         data_id=0
         for data in data_arr:
-            print 'Loading %s ...\n' % data_desc[data_id]
+            print ('Loading %s ...\n') % data_desc[data_id]
             for row in data:
                 items = zip(fields, row)
                 item = {}
@@ -98,6 +98,6 @@ class Command(BaseCommand):
                             mpp=item['mpp'], mpr=item['mpr'], mrr=item['mrr'],
                             mrt=item['mrt'], mtp=item['mtp'], mtt=item['mtt'], eventid=item['eventid'])
 
-                print m
+                print (m)
                 m.save()
             data_id = data_id + 1

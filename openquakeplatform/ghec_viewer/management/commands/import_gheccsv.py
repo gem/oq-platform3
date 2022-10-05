@@ -44,7 +44,7 @@ class Command(BaseCommand):
                 # check the first row with 
                 for i, field in enumerate(field_list):
                     if field != row[i]:
-                        print "Field [%s] expected, [%s] is provided" % (field, row[i])
+                        print ("Field [%s] expected, [%s] is provided") % (field, row[i])
                         return False
                 is_first = False
                 continue
@@ -59,6 +59,6 @@ class Command(BaseCommand):
             d = dict(zip(intfld_list, row))
             m = Measure(the_geom="POINT(%(lon)s %(lat)s)" % d, **d)
 
-            print m
+            print (m)
             m.save()
             
