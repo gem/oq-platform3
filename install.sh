@@ -85,6 +85,8 @@ cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/
 
 # template
 mkdir $HOME/geonode-project/openquakeplatform
@@ -93,8 +95,6 @@ cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/op
 cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
 # cp -pr $HOME/oq-platform3/openquakeplatform/layers $HOME/geonode-project/openquakeplatform/
 # cp -pr $HOME/oq-platform3/openquakeplatform/maps $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/openquakeplatform/
-cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/openquakeplatform/
 
 #static
 mkdir $HOME/geonode-project/openquakeplatform/static
@@ -159,11 +159,11 @@ docker-compose exec -T django bash -c "chmod +x *.sh"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 # docker-compose exec -T django bash -c "./manage.sh fixsitename"
-docker-compose exec -T django bash -c "cp local_settings.py $NAME_PROJECT/local_settings.py"
+docker-compose exec -T django bash -c "mv local_settings.py $NAME_PROJECT/local_settings.py"
 
 ## load data for gec and isc viewer
-docker-compose exec -T django bash -c "./manage.sh import_isccsv usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
-docker-compose exec -T django bash -c "./manage.py import_gheccsv usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
+# docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
+# docker-compose exec -T django bash -c "./manage.py import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
@@ -171,16 +171,22 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 # import layers sql in db container and import in db postgres
 wget https://ftp.openquake.org/oq-platform3/sql.tar.gz
 tar zxf sql.tar.gz
+sed -i for i in $(find . -name '/sql/*.sql'); do sed -i 's/openquakeplatform_data/openquakeplatform/g' "$i" ; done
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
-docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform_data"
+docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform"
 rm -rf sql
 rm sql.tar.gz
 
 
 docker-compose exec -T django bash -c "./manage.sh add_data"
+docker-compose exec -T django bash -c "./manage.sh updatelayers -u GEM"
+
+# Create programmatically ISC and GHEC from json
+docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
+docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
-# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
+docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
 # docker-compose stop
 # docker-compose start

@@ -1,0 +1,1959 @@
+[
+{
+    "model": "layers.layer",
+    "pk": 291,
+    "fields": {
+        "title_en": "event",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "event",
+        "typename": "oqplatform:event",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 292,
+    "fields": {
+        "title_en": "gaf_viewer_faultsource",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "gaf_viewer_faultsource",
+        "typename": "oqplatform:gaf_viewer_faultsource",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 293,
+    "fields": {
+        "title_en": "gaf_viewer_faulttrace",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "gaf_viewer_faulttrace",
+        "typename": "oqplatform:gaf_viewer_faulttrace",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 3,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            80,
+            81,
+            3,
+            62
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 294,
+    "fields": {
+        "title_en": "geobase_gadm_indonesia_2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "geobase_gadm_indonesia_2",
+        "typename": "oqplatform:geobase_gadm_indonesia_2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 295,
+    "fields": {
+        "title_en": "geobase_laquila",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "geobase_laquila",
+        "typename": "oqplatform:geobase_laquila",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 296,
+    "fields": {
+        "title_en": "ghec_viewer_measure",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No info.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "ghec_viewer_measure",
+        "typename": "oqplatform:ghec_viewer_measure",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 4,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            50,
+            4
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 297,
+    "fields": {
+        "title_en": "isc_viewer_measure",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "http://www.globalquakemodel.org/what/seismic-hazard/instrumental-catalogue/",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "isc_viewer_measure",
+        "typename": "oqplatform:isc_viewer_measure",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 5,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            5
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 298,
+    "fields": {
+        "title_en": "catfocus_sichuan_2008",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "catfocus_sichuan_2008",
+        "typename": "oqplatform:catfocus_sichuan_2008",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 6,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            6
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 299,
+    "fields": {
+        "title_en": "himalayanfrontalthrust_20_06_14",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "http://www.nexus.globalquakemodel.org/gem-faulted-earth/posts/himalaya-frontal-thrust-gis-file",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "himalayanfrontalthrust_20_06_14",
+        "typename": "oqplatform:himalayanfrontalthrust_20_06_14",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 7,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1,
+            114
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            7,
+            102
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 300,
+    "fields": {
+        "title_en": "finite_rupture_nepal_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "finite_rupture_nepal_1",
+        "typename": "oqplatform:finite_rupture_nepal_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 8,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            8,
+            96
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 301,
+    "fields": {
+        "title_en": "aftershocks_iris_20150429_geojson",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "aftershocks_iris_20150429_geojson",
+        "typename": "oqplatform:aftershocks_iris_20150429_geojson",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 9,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            9
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 302,
+    "fields": {
+        "title_en": "isc_viewer_measure2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "http://www.globalquakemodel.org/what/seismic-hazard/instrumental-catalogue/",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "oqplatform",
+        "storeType": "dataStore",
+        "name": "isc_viewer_measure2",
+        "typename": "oqplatform:isc_viewer_measure2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 5,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            5
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 303,
+    "fields": {
+        "title_en": "assumpcao2014",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "assumpcao2014",
+        "typename": "oqplatform:assumpcao2014",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 11,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            11
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 323,
+    "fields": {
+        "title_en": "sharev3_3",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "sharev3_3",
+        "typename": "oqplatform:sharev3_3",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 31,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            31
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 349,
+    "fields": {
+        "title_en": "major_faults",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "major_faults",
+        "typename": "oqplatform:major_faults",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 58,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            58
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 363,
+    "fields": {
+        "title_en": "gem_active_faults",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "gem_active_faults",
+        "typename": "oqplatform:gem_active_faults",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 73,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            73,
+            100
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 365,
+    "fields": {
+        "title_en": "fallas",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "fallas",
+        "typename": "oqplatform:fallas",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 75,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            75,
+            76
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 375,
+    "fields": {
+        "title_en": "pr",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "pr",
+        "typename": "oqplatform:pr",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 376,
+    "fields": {
+        "title_en": "pr_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "pr_1",
+        "typename": "oqplatform:pr_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 377,
+    "fields": {
+        "title_en": "pr_2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "pr_2",
+        "typename": "oqplatform:pr_2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 378,
+    "fields": {
+        "title_en": "pr_3",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "pr_3",
+        "typename": "oqplatform:pr_3",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 379,
+    "fields": {
+        "title_en": "uighu",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "uighu",
+        "typename": "oqplatform:uighu",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 380,
+    "fields": {
+        "title_en": "join_def2020",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "Nessuna informazione fornita",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "join_def2020",
+        "typename": "oqplatform:join_def2020",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 381,
+    "fields": {
+        "title_en": "pak_water_areas_dcw",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "pak_water_areas_dcw",
+        "typename": "oqplatform:pak_water_areas_dcw",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 382,
+    "fields": {
+        "title_en": "countyline",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline",
+        "typename": "oqplatform:countyline",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 383,
+    "fields": {
+        "title_en": "frederickrivers",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers",
+        "typename": "oqplatform:frederickrivers",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 384,
+    "fields": {
+        "title_en": "hw7_frederick_hazus",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus",
+        "typename": "oqplatform:hw7_frederick_hazus",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 385,
+    "fields": {
+        "title_en": "countyline_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_1",
+        "typename": "oqplatform:countyline_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 386,
+    "fields": {
+        "title_en": "frederickrivers_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_1",
+        "typename": "oqplatform:frederickrivers_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 387,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_1",
+        "typename": "oqplatform:hw7_frederick_hazus_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 388,
+    "fields": {
+        "title_en": "countyline_2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_2",
+        "typename": "oqplatform:countyline_2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 389,
+    "fields": {
+        "title_en": "frederickrivers_2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_2",
+        "typename": "oqplatform:frederickrivers_2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 390,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_2",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_2",
+        "typename": "oqplatform:hw7_frederick_hazus_2",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 391,
+    "fields": {
+        "title_en": "countyline_3",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_3",
+        "typename": "oqplatform:countyline_3",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 392,
+    "fields": {
+        "title_en": "frederickrivers_3",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_3",
+        "typename": "oqplatform:frederickrivers_3",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 393,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_3",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_3",
+        "typename": "oqplatform:hw7_frederick_hazus_3",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 394,
+    "fields": {
+        "title_en": "countyline_4",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_4",
+        "typename": "oqplatform:countyline_4",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 395,
+    "fields": {
+        "title_en": "frederickrivers_4",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_4",
+        "typename": "oqplatform:frederickrivers_4",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 396,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_4",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_4",
+        "typename": "oqplatform:hw7_frederick_hazus_4",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 397,
+    "fields": {
+        "title_en": "hmap_10k",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hmap_10k",
+        "typename": "oqplatform:hmap_10k",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1,
+            241
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1,
+            101
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 398,
+    "fields": {
+        "title_en": "zones",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "zones",
+        "typename": "oqplatform:zones",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 399,
+    "fields": {
+        "title_en": "npl_eq_meteor",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "npl_eq_meteor",
+        "typename": "oqplatform:npl_eq_meteor",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 103,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1,
+            163
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            103,
+            104,
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 400,
+    "fields": {
+        "title_en": "tza_eq",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "tza_eq",
+        "typename": "oqplatform:tza_eq",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 106,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1,
+            241
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            104,
+            105,
+            106,
+            103,
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 401,
+    "fields": {
+        "title_en": "eq_s",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "eq_s",
+        "typename": "oqplatform:eq_s",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 402,
+    "fields": {
+        "title_en": "eq_s_1",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "eq_s_1",
+        "typename": "oqplatform:eq_s_1",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 1,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            1
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 403,
+    "fields": {
+        "title_en": "countyline_5",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_5",
+        "typename": "oqplatform:countyline_5",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 404,
+    "fields": {
+        "title_en": "frederickrivers_5",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_5",
+        "typename": "oqplatform:frederickrivers_5",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 405,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_5",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_5",
+        "typename": "oqplatform:hw7_frederick_hazus_5",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 406,
+    "fields": {
+        "title_en": "countyline_6",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "This data is utitlized by Frederick County for mapping purposes.The boundary depicted is not based on a legal survey of the county boundary and may be inaccurate in areas. The original source of the data is unknown, although it is believed that the data was acquired from the State of Maryland.This layer includes information from the U.S Census bureau pertainining to the toatal area of land and water per sq miles within the county as well as the year the county was founded.",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "countyline_6",
+        "typename": "oqplatform:countyline_6",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 407,
+    "fields": {
+        "title_en": "frederickrivers_6",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "frederickrivers_6",
+        "typename": "oqplatform:frederickrivers_6",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+},
+{
+    "model": "layers.layer",
+    "pk": 408,
+    "fields": {
+        "title_en": "hw7_frederick_hazus_6",
+        "abstract_en": "No abstract provided",
+        "purpose_en": null,
+        "constraints_other_en": null,
+        "supplemental_information_en": "No information provided",
+        "data_quality_statement_en": null,
+        "workspace": "oqplatform",
+        "store": "datastore",
+        "storeType": "dataStore",
+        "name": "hw7_frederick_hazus_6",
+        "typename": "oqplatform:hw7_frederick_hazus_6",
+        "is_mosaic": false,
+        "has_time": false,
+        "has_elevation": false,
+        "time_regex": null,
+        "elevation_regex": null,
+        "default_style": 2,
+        "remote_service": null,
+        "charset": "UTF-8",
+        "upload_session": null,
+        "use_featureinfo_custom_template": false,
+        "featureinfo_custom_template": null,
+        "tkeywords": [],
+        "regions": [
+            1
+        ],
+        "users_geolimits": [],
+        "groups_geolimits": [],
+        "metadata": [],
+        "styles": [
+            2
+        ]
+    }
+}
+]

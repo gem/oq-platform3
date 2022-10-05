@@ -15,12 +15,16 @@
 
 import csv
 from django.core.management.base import BaseCommand, CommandError
-from openquakeplatform.isc_viewer.models import Measure
+# from openquakeplatform.isc_viewer.models import Measure
+from isc_viewer.models import Measure
 
 
 class Command(BaseCommand):
     args = '<csv catalogue filename> <csv appendix filename>'
     help = 'Import csv of GEM Global Instrumental Catalogue (catalogue and appendix)'
+
+    def add_arguments(self, parser):
+    parser.add_argument('args', nargs='*')
 
     def handle(self, filename_cat, filename_app, *args, **options):
         # 'unc' and 'unc' are renamed to 'depth_unc' and 'mw_unc'
@@ -35,7 +39,7 @@ class Command(BaseCommand):
 
         for data in data_arr:
             while True:
-                fields_ns = data.next()
+                fields_ns = next(data)
                 if len(fields_ns) < 1:
                     continue
                 s = fields_ns[0].strip()

@@ -32,6 +32,9 @@ class Command(BaseCommand):
     help = ('Import csv of GEM Global Instrumental Catalogue '
             '(catalogue and appendix)')
 
+    def add_arguments(self, parser):
+        parser.add_argument('args', nargs='*')
+
     def handle(self, isc_map_comps_fname, *args, **options):
         map_json = open(isc_map_comps_fname).read()
         map_json = map_json.replace('#GEOSERVER_LOCATION#',
@@ -103,7 +106,7 @@ class Command(BaseCommand):
         thumb_filepath = os.path.join(
             os.path.dirname(__file__), '..', '..', 'dev_data',
             'isc_map_comps_files', thumb_filename)
-        map_new.save_thumbnail(thumb_filename, open(thumb_filepath).read())
+        map_new.save_thumbnail(thumb_filename, open(thumb_filepath, 'rb').read())
 
         for maplayer in maplayers:
             fields = maplayer['fields']
@@ -138,7 +141,7 @@ class Command(BaseCommand):
                 thumb_filepath = os.path.join(
                     os.path.dirname(__file__), '..', '..', 'dev_data',
                     'isc_map_comps_files', thumb_filename)
-                thumb_file = open(thumb_filepath)
+                thumb_file = open(thumb_filepath, 'rb')
 
                 upload_path = os.path.join('thumbs/', thumb_filename)
 
