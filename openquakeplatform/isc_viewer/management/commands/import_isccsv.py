@@ -24,7 +24,7 @@ class Command(BaseCommand):
     help = 'Import csv of GEM Global Instrumental Catalogue (catalogue and appendix)'
 
     def add_arguments(self, parser):
-    parser.add_argument('args', nargs='*')
+        parser.add_argument('args', nargs='*')
 
     def handle(self, filename_cat, filename_app, *args, **options):
         # 'unc' and 'unc' are renamed to 'depth_unc' and 'mw_unc'
@@ -78,7 +78,7 @@ class Command(BaseCommand):
 
         data_id=0
         for data in data_arr:
-            print ('Loading %s ...\n') % data_desc[data_id]
+            # print ('Loading %s ...\n') % data_desc[data_id]
             for row in data:
                 items = zip(fields, row)
                 item = {}
