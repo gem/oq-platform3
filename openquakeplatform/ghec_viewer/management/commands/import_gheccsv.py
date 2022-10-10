@@ -15,12 +15,16 @@
 
 import csv
 from django.core.management.base import BaseCommand, CommandError
-from openquakeplatform.ghec_viewer.models import Measure
+# from openquakeplatform.ghec_viewer.models import Measure
+from ghec_viewer.models import Measure
 
 
 class Command(BaseCommand):
     args = '<csv catalogue filename> <csv appendix filename>'
     help = 'Import csv of GEM Global Historical Catalogue'
+
+    def add_arguments(self, parser):
+        parser.add_argument('args', nargs='*')
 
     def handle(self, filename, *args, **options):
         # 'unc' and 'unc' are renamed to 'depth_unc' and 'mw_unc'
@@ -33,7 +37,7 @@ class Command(BaseCommand):
 #suppall_in = [line for line in file(supp_name) if not line.startswith("#")]
 #    suppall_cs = csv.reader(suppall_in, delimiter = '|', escapechar = '\\' )
 
-        rows_in = [line for line in file(filename) if not line.startswith("#")]
+        rows_in = [line for line in open(filename) if not line.startswith("#")]
         rows = csv.reader(rows_in, delimiter = '	')
 
         Measure.objects.all().delete()
