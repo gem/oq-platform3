@@ -184,13 +184,13 @@ docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openqu
 docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh add_data"
+docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 docker-compose exec -T django bash -c "./manage.sh updatelayers -u GEM"
 
 # Create programmatically ISC and GHEC from json
-# docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
-# docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
+docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
+docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
-docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/base_topiccategory.json"
 
 # docker-compose stop
 # docker-compose start
