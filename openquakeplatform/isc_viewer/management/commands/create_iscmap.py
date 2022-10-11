@@ -17,7 +17,8 @@ import json
 import re
 import os
 from django.core.management.base import BaseCommand
-from geonode.maps.models import Map, MapLayer, MapSnapshot
+from geonode.maps.models import Map, MapLayer
+# from geonode.maps.models import Map, MapLayer, MapSnapshot
 from geonode.people.models import Profile
 from geonode.base.models import Link
 from django.core.files.storage import default_storage as storage
@@ -156,23 +157,23 @@ class Command(BaseCommand):
             link_new.save()
 
         # MapSnapshot
-        pprint(mapsnapshot)
+        # pprint(mapsnapshot)
 
-        kw = {}
-        fields = mapsnapshot['fields']
-        for field in fields:
-            if field == 'created_dttm':
-                continue
-            elif field == 'map':
-                    kw[field] = map_new
-            elif field == 'user':
-                kw[field] = Profile.objects.get(
-                    username=fields[field][0])
-            else:
-                kw[field] = fields[field]
+        # kw = {}
+        # fields = mapsnapshot['fields']
+        # for field in fields:
+        #     if field == 'created_dttm':
+        #         continue
+        #     elif field == 'map':
+        #             kw[field] = map_new
+        #     elif field == 'user':
+        #         kw[field] = Profile.objects.get(
+        #             username=fields[field][0])
+        #     else:
+        #         kw[field] = fields[field]
 
-        pprint(json.loads(kw['config']))
-        snapshot_new = MapSnapshot(**kw)
-        snapshot_new.save()
+        # pprint(json.loads(kw['config']))
+        # snapshot_new = MapSnapshot(**kw)
+        # snapshot_new.save()
 
-        return False
+        # return False

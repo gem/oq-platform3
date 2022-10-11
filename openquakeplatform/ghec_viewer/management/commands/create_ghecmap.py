@@ -17,7 +17,8 @@ import json
 import re
 import os
 from django.core.management.base import BaseCommand
-from geonode.maps.models import Map, MapLayer, MapSnapshot
+# from geonode.maps.models import Map, MapLayer, MapSnapshot
+from geonode.maps.models import Map, MapLayer
 from geonode.people.models import Profile
 from geonode.base.models import Link
 from django.core.files.storage import default_storage as storage
@@ -31,6 +32,9 @@ class Command(BaseCommand):
     args = '<ghec_map_comps.json>'
     help = ('Import csv of GEM Global Historical Catalogue '
             '(catalogue and appendix)')
+
+    def add_arguments(self, parser):
+        parser.add_argument('args', nargs='*')
 
     def handle(self, ghec_map_comps_fname, *args, **options):
         map_json = open(ghec_map_comps_fname).read()
@@ -103,7 +107,7 @@ class Command(BaseCommand):
         thumb_filepath = os.path.join(
             os.path.dirname(__file__), '..', '..', 'dev_data',
             'ghec_map_comps_files', thumb_filename)
-        map_new.save_thumbnail(thumb_filename, open(thumb_filepath).read())
+        map_new.save_thumbnail(thumb_filename, open(thumb_filepath, 'rb').read())
 
         for maplayer in maplayers:
             fields = maplayer['fields']
@@ -138,7 +142,7 @@ class Command(BaseCommand):
                 thumb_filepath = os.path.join(
                     os.path.dirname(__file__), '..', '..', 'dev_data',
                     'ghec_map_comps_files', thumb_filename)
-                thumb_file = open(thumb_filepath)
+                thumb_file = open(thumb_filepath, 'rb')
 
                 upload_path = os.path.join('thumbs/', thumb_filename)
 
@@ -153,23 +157,23 @@ class Command(BaseCommand):
             link_new.save()
 
         # MapSnapshot
-        pprint(mapsnapshot)
+        # pprint(mapsnapshot)
 
-        kw = {}
-        fields = mapsnapshot['fields']
-        for field in fields:
-            if field == 'created_dttm':
-                continue
-            elif field == 'map':
-                    kw[field] = map_new
-            elif field == 'user':
-                kw[field] = Profile.objects.get(
-                    username=fields[field][0])
-            else:
-                kw[field] = fields[field]
+        # kw = {}
+        # fields = mapsnapshot['fields']
+        # for field in fields:
+        #     if field == 'created_dttm':
+        #         continue
+        #     elif field == 'map':
+        #             kw[field] = map_new
+        #     elif field == 'user':
+        #         kw[field] = Profile.objects.get(
+        #             username=fields[field][0])
+        #     else:
+        #         kw[field] = fields[field]
 
-        pprint(json.loads(kw['config']))
-        snapshot_new = MapSnapshot(**kw)
-        snapshot_new.save()
+        # pprint(json.loads(kw['config']))
+        # snapshot_new = MapSnapshot(**kw)
+        # snapshot_new.save()
 
-        return False
+        # return False
