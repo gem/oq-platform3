@@ -337,7 +337,7 @@ span.user-contrib {
 .col-xs-12.profile-avatar:focus {
     background: #f5f5f5!important;
 }
-.col-xs-8.item-details {
+.item-details {
     background: none!important;
 }
 .item-thumb img {
