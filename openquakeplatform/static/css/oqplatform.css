@@ -335,10 +335,10 @@ span.user-contrib {
 }
 .col-xs-12.profile-avatar:hover,
 .col-xs-12.profile-avatar:focus {
-    background: #f5f5f5;
+    background: #f5f5f5!important;
 }
 .col-xs-8.item-details {
-    background: none;
+    background: none!important;
 }
 .item-thumb img {
     border: 1px solid #eeeeee;
