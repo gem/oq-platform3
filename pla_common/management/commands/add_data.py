@@ -296,12 +296,14 @@ class Command(BaseCommand):
                 visibility=mapslayer['visibility'],
                 source_params=mapslayer['source_params'],
                 layer_params=mapslayer['layer_params'],
-                #ows_url=mapslayer['ows_url'],
-                ows_url='http://localhost/geoserver/wms',
+                ows_url=mapslayer['ows_url'],
+                #ows_url='http://localhost/geoserver/ows',
                 stack_order=mapslayer['stack_order'],
                 styles=mapslayer['styles'],
                 fixed=mapslayer['fixed'],
                 local=mapslayer['local'],
+                # store="datastore",
+                # store=mapslayer['datastore'],
                 transparent=mapslayer['transparent']
                 )
             newmaplayer.save()
