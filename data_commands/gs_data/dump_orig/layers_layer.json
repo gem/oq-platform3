@@ -1,0 +1,35 @@
+[
+
+{
+    "fields": {
+        "has_time": false,
+        "abstract_en": "No abstract provided",
+        "supplemental_information_en": "No information provided",
+        "typename": "oqplatform:gem_active_faults",
+        "charset": "UTF-8",
+        "regions": [],
+        "default_style": 73,
+        "storeType": "dataStore",
+        "store": "oqplatform",
+        "styles": [
+            73
+        ],
+        "title_en": "gem_active_faults",
+        "upload_session": null,
+        "is_mosaic": false,
+        "time_regex": null,
+        "name": "gem_active_faults",
+        "data_quality_statement_en": "",
+        "has_elevation": false,
+        "elevation_regex": null,
+        "workspace": "oqplatform",
+        "tkeywords": [],
+        "purpose_en": "testing",
+        "constraints_other_en": ""
+    },
+    "model": "layers.layer",
+    "pk": 73
+}
+
+]
+

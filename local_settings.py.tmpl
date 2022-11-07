@@ -23,7 +23,7 @@ from openquakeplatform.settings import *
 # General Django development settings
 #
 PROJECT_NAME = 'openquakeplatform'
-OQ_COMMANDS = 'pla_common'
+OQ_COMMANDS = ('pla_common', 'isc_viewer', 'ghec_viewer')
 
 # add trailing slash to site url. geoserver url will be relative to this
 if not SITEURL.endswith('/'):
@@ -44,8 +44,9 @@ LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', "en")
 if PROJECT_NAME not in INSTALLED_APPS:
     INSTALLED_APPS += (PROJECT_NAME,)
 
-if OQ_COMMANDS not in INSTALLED_APPS:
-    INSTALLED_APPS += (OQ_COMMANDS,)
+for oq_command in OQ_COMMANDS:
+    if oq_command not in INSTALLED_APPS:
+        INSTALLED_APPS += (oq_command,)
 
 # Location of url mappings
 ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
@@ -126,3 +127,20 @@ if CENTRALIZED_DASHBOARD_ENABLED and USER_ANALYTICS_ENABLED and 'geonode_logstas
 LDAP_ENABLED = ast.literal_eval(os.getenv('LDAP_ENABLED', 'False'))
 if LDAP_ENABLED and 'geonode_ldap' not in INSTALLED_APPS:
     INSTALLED_APPS += ('geonode_ldap',)
+
+# authentication.
+AUTH_EXEMPT_URLS = ('/$',
+                    '/account/signup/',
+                    '/calculate/',
+                    '/share/',
+                    '/explore/',
+                    '/about/',
+                    '/geoserver/',
+                    '/gs/.*',
+                    '/maps/',
+                    '/api/layers/.*',
+                    '/api/maps/.*',
+                    '/api/users/.*',
+                    '/api/roles/.*',
+                    '/proxy/',
+                    '/uploaded/thumbs/')
