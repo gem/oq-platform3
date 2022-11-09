@@ -495,6 +495,10 @@ class Command(BaseCommand):
                 new_layer.regions.add(Reg)
 
             # Instance and add styles
+            if (layer['styles'].startswith('npl_eq_')):
+                continue
+            if (layer['styles'].startswith('tza_eq_')):
+                continue
             for sty in layer['styles']:
                 new_layer.styles.add(old_style_refs[sty])
 
