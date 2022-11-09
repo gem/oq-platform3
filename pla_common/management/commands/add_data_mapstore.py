@@ -12,6 +12,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 # from agon_ratings.models import OverallRating
 from decimal import Decimal
+from mapstore2_adapter.api.models import MapStoreAttribute, MapStoreData, MapStoreResource
+from base64 import b64encode
 
 
 def base_attrs(base):
@@ -274,6 +276,46 @@ class Command(BaseCommand):
                 'Imported map: %s with pk %s' % (
                     mapp['title'], map_full['pk']))
 
+            # Import MapStore Resource 
+            mapstore_resource = MapStoreResource.objects.model(
+                id=map_full['pk'],
+                name=mapp['title'],
+                creation_date="2022-10-19 13:12:29.116539+00",
+                last_update="2022-10-19 13:12:30.683802+00",
+                data_id="",
+                user_id=context['id']
+            )        
+            mapstore_resource.save()
+            
+            print(
+                'Imported Mapstore resource for: %s' % (mapp['title']))
+
+            # Import MapStore Data 
+            mapstore_data = MapStoreData.objects.model(
+                blob=b64encode(mapp['title'].encode('utf8')),
+                #blob="",
+                resource_id=map_full['pk']
+            )        
+            mapstore_data.save()
+            mapstore_resource.attributes.add(mapstore_data)
+            
+            print(
+                'Imported Mapstore data for: %s' % (mapp['title']))
+
+            # Import MapStore Attribute 
+            mapstore_attribute = MapStoreAttribute.objects.model(
+                name=mapp['title'],
+                label="",
+                type="",
+                value="",
+                resource_id=map_full['pk']
+            )        
+            mapstore_attribute.save()
+            # mapstore_resource.attributes.add(mapstore_attribute)
+            
+            print(
+                'Imported Mapstore attribute for: %s' % (mapp['title']))
+
         # Import maplayers
         for maplayer_full in maplayer_load:
 
@@ -495,21 +537,8 @@ class Command(BaseCommand):
                 new_layer.regions.add(Reg)
 
             # Instance and add styles
-<<<<<<< HEAD
-            if (layer['styles'].startswith('npl_eq_')):
-                continue
-            if (layer['styles'].startswith('tza_eq_')):
-                continue
             for sty in layer['styles']:
                 new_layer.styles.add(old_style_refs[sty])
-=======
-            # if (layer['styles'].startswith('npl_eq_')):
-            #     continue
-            # if (layer['styles'].startswith('tza_eq_')):
-            #     continue
-            # for sty in layer['styles']:
-            #     new_layer.styles.add(old_style_refs[sty])
->>>>>>> 187b270453990a1ab8b38fcba53cb7e665d5861c
 
             print(
                 'Imported layer and attribute: %s with pk: %s' % (
