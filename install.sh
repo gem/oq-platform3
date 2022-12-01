@@ -144,10 +144,10 @@ set COMPOSE_CONVERT_WINDOWS_PATHS=1
 # sudo cp -r $HOME/geoserver_data/data/workspaces/oqplatform/oqplatform geoserver_data/data/workspaces/oqplatform
 docker-compose up -d db
 
-sleep 15
+sleep 20
 
-export DOCKER_CLIENT_TIMEOUT=360
-export COMPOSE_HTTP_TIMEOUT=360
+export DOCKER_CLIENT_TIMEOUT=400
+export COMPOSE_HTTP_TIMEOUT=400
 
 # COMPOSE_HTTP_TIMEOUT=220 docker-compose up -d
 docker-compose up -d
