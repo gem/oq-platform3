@@ -85,8 +85,8 @@ cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
 cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-# cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/
-# cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/
+cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/
 
 # template
 mkdir $HOME/geonode-project/openquakeplatform
