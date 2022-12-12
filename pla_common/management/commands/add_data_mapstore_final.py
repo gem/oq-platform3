@@ -293,7 +293,7 @@ class Command(BaseCommand):
         for mapstore_res_full in mapstore_load:
              
             mapstore_res_field = mapstore_res_full['fields']
-            map_id = map_old_refs[map_full['pk']]
+            map_id = map_old_refs[mapstore_res_full['pk']].pk
 
             if mapstore_res_full['model'] == "mapstore2_adapter.mapstoreresource":
 
@@ -314,7 +314,7 @@ class Command(BaseCommand):
         for mapstore_data_full in mapstore_load:
              
             mapstore_data_field = mapstore_data_full['fields']
-            map_id = map_old_refs[map_full['pk']]
+            map_id = map_old_refs[mapstore_data_full['pk']].pk
 
             if mapstore_data_full['model'] == "mapstore2_adapter.mapstoredata":
 
@@ -333,7 +333,7 @@ class Command(BaseCommand):
         for mapstore_attr_full in mapstore_load:
              
             mapstore_attr_field = mapstore_attr_full['fields']
-            map_id = map_old_refs[map_full['pk']]
+            map_id = map_old_refs[mapstore_attr_full['pk']].pk
 
             if mapstore_attr_full['model'] == "mapstore2_adapter.mapstoreattribute":
                 mapstore_attribute = MapStoreAttribute.objects.model(
