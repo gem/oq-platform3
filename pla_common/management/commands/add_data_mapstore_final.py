@@ -293,7 +293,6 @@ class Command(BaseCommand):
         MapStoreResource.objects.all().delete()
         MapStoreData.objects.all().delete()
         MapStoreAttribute.objects.all().delete()
-        MapStoreResourceAttributes.objects.all().delete()
 
         # Import MapStore Resource 
         for mapstore_res_full in mapstore_load:
