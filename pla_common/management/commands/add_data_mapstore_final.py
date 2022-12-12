@@ -289,6 +289,12 @@ class Command(BaseCommand):
                 'Imported map: %s with pk %s' % (
                     mapp['title'], map_full['pk']))
               
+        # To empty mapstore2_adapter tables        
+        MapStoreResource.objects.all().delete()
+        MapStoreData.objects.all().delete()
+        MapStoreAttribute.objects.all().delete()
+        MapStoreResourceAttributes.objects.all().delete()
+
         # Import MapStore Resource 
         for mapstore_res_full in mapstore_load:
              
