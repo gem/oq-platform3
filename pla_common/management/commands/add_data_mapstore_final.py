@@ -294,6 +294,7 @@ class Command(BaseCommand):
              
             try:
                 mapstore_res_field = mapstore_res_full['fields']
+                map_name = map_old_refs[mapstore_res_full['pk']]
                 map_id = map_old_refs[mapstore_res_full['pk']].pk
 
                 if mapstore_res_full['model'] == "mapstore2_adapter.mapstoreresource":
@@ -309,7 +310,7 @@ class Command(BaseCommand):
                     mapstore_resource.save()
                 
                     print(
-                        'Imported Mapstore resource for: %s' % (mapp['title']))
+                        'Imported Mapstore resource for: %s' % (map_name))
             except KeyError:
                 continue
 
@@ -318,6 +319,7 @@ class Command(BaseCommand):
              
             try:
                 mapstore_data_field = mapstore_data_full['fields']
+                map_name = map_old_refs[mapstore_data_full['pk']]
                 map_id = map_old_refs[mapstore_data_full['pk']].pk
 
                 if mapstore_data_full['model'] == "mapstore2_adapter.mapstoredata":
@@ -328,10 +330,10 @@ class Command(BaseCommand):
                         resource_id=map_id
                     )        
                     mapstore_data.save()
-                    mapstore_resource.attributes.add(mapstore_data)
+                    # mapstore_resource.attributes.add(mapstore_data)
                     
                     print(
-                        'Imported Mapstore data for: %s' % (mapp['title']))
+                        'Imported Mapstore data for: %s' % (map_name))
             except KeyError:
                 continue
 
@@ -340,6 +342,7 @@ class Command(BaseCommand):
              
             try:
                 mapstore_attr_field = mapstore_attr_full['fields']
+                map_name = map_old_refs[mapstore_attr_full['pk']]
                 map_id = map_old_refs[mapstore_attr_full['pk']].pk
 
                 if mapstore_attr_full['model'] == "mapstore2_adapter.mapstoreattribute":
@@ -351,6 +354,10 @@ class Command(BaseCommand):
                         resource_id=map_id
                     )        
                     mapstore_attribute.save()
+                    mapstore_resource.attributes.add(mapstore_attribute)
+                    
+                    print(
+                        'Imported Mapstore attribute for: %s' % (map_name))
             except KeyError:
                 continue
 
