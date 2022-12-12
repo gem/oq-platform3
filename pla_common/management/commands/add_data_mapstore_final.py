@@ -295,7 +295,7 @@ class Command(BaseCommand):
             mapstore_res_field = mapstore_res_full['fields']
             map_id = map_old_refs[map_full['pk']]
 
-            if mapstore_res_full['model'] is "mapstore2_adapter.mapstoreresource":
+            if mapstore_res_full['model'] == "mapstore2_adapter.mapstoreresource":
 
                 mapstore_resource = MapStoreResource.objects.model(
                     id=map_id,
@@ -316,7 +316,7 @@ class Command(BaseCommand):
             mapstore_data_field = mapstore_data_full['fields']
             map_id = map_old_refs[map_full['pk']]
 
-            if mapstore_data_full['model'] is "mapstore2_adapter.mapstoredata":
+            if mapstore_data_full['model'] == "mapstore2_adapter.mapstoredata":
 
                 mapstore_data = MapStoreData.objects.model(
                     #blob=b64encode(mapp['title'].encode('utf8')),
@@ -335,7 +335,7 @@ class Command(BaseCommand):
             mapstore_attr_field = mapstore_attr_full['fields']
             map_id = map_old_refs[map_full['pk']]
 
-            if mapstore_attr_full['model'] is "mapstore2_adapter.mapstoreattribute":
+            if mapstore_attr_full['model'] == "mapstore2_adapter.mapstoreattribute":
                 mapstore_attribute = MapStoreAttribute.objects.model(
                     name=mapstore_attr_field['name'],
                     label=mapstore_attr_field['label'],
