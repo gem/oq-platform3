@@ -186,7 +186,7 @@ docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openq
 # docker-compose exec -T django bash -c "./manage.sh add_data"
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
-docker-compose exec -T django bash -c "./manage.sh updatelayers -u GEM"
+# docker-compose exec -T django bash -c "./manage.sh updatelayers -u GEM"
 
 # Create programmatically ISC and GHEC from json
 docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"

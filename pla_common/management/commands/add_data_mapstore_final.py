@@ -226,6 +226,11 @@ class Command(BaseCommand):
             new_style.save()
             old_style_refs[pk] = new_style
 
+        # To empty mapstore2_adapter tables        
+        MapStoreResource.objects.all().delete()
+        MapStoreData.objects.all().delete()
+        MapStoreAttribute.objects.all().delete()
+
         # Import maps
         map_old_refs = {}
         for map_full in maps_load:
@@ -270,6 +275,50 @@ class Command(BaseCommand):
             newmap.save()
             map_old_refs[map_full['pk']] = newmap
 
+            map_id = map_old_refs[map_full['pk']].pk
+
+            # Import Mapstore Resource
+            mapstore_resource = MapStoreResource.objects.model(
+                id=map_id,
+                name=mapp['title'],
+                creation_date=mapp['csw_insert_date'],
+                last_update=maps['last_modified'],
+                data_id="",
+                user_id=context['id']
+            )        
+            mapstore_resource.save()
+
+            # Import Mapstore Data
+            mapstore_data = MapStoreData.objects.model(
+                blob="",
+                resource_id=map_id
+            )        
+            mapstore_data.save()
+            e = MapStoreResource.objects.get(id=map_id)
+            e.data_id = mapstore_data.id
+            e.save()
+
+            # Import Mapstore Attribute
+            mapstore_attribute = MapStoreAttribute.objects.model(
+                name="title",
+                label="Title",
+                type="string",
+                value=b64encode(mapp['title'].encode('utf8')),
+                resource_id=map_id
+            )        
+            mapstore_attribute.save()
+            mapstore_resource.attributes.add(mapstore_attribute)
+            
+            mapstore_attribute = MapStoreAttribute.objects.model(
+                name="abstract",
+                label="Abstract",
+                type="string",
+                value="",
+                resource_id=map_id
+            )        
+            mapstore_attribute.save()
+            mapstore_resource.attributes.add(mapstore_attribute)
+
             # Istance and add regions
             regions = [region for region in mapp['regions']]
 
@@ -289,97 +338,87 @@ class Command(BaseCommand):
                 'Imported map: %s with pk %s' % (
                     mapp['title'], map_full['pk']))
               
-        # To empty mapstore2_adapter tables        
-        MapStoreResource.objects.all().delete()
-        MapStoreData.objects.all().delete()
-        MapStoreAttribute.objects.all().delete()
+        # # Import MapStore Resource 
+        # for mapstore_res_full in mapstore_load:
+        #      
+        #     try:
+        #         mapstore_res_field = mapstore_res_full['fields']
+        #         map_name = map_old_refs[mapstore_res_full['pk']]
+        #         map_id = map_old_refs[mapstore_res_full['pk']].pk
 
-        # Import MapStore Resource 
-        for mapstore_res_full in mapstore_load:
-             
-            try:
-                mapstore_res_field = mapstore_res_full['fields']
-                map_name = map_old_refs[mapstore_res_full['pk']]
-                map_id = map_old_refs[mapstore_res_full['pk']].pk
+        #         if mapstore_res_full['model'] == "mapstore2_adapter.mapstoreresource":
 
-                if mapstore_res_full['model'] == "mapstore2_adapter.mapstoreresource":
+        #             mapstore_resource = MapStoreResource.objects.model(
+        #                 id=map_id,
+        #                 name=mapstore_res_field['name'],
+        #                 creation_date=mapstore_res_field['creation_date'],
+        #                 last_update=mapstore_res_field['last_update'],
+        #                 data_id="",
+        #                 user_id=mapstore_res_field['user']
+        #             )        
+        #             mapstore_resource.save()
+        #         
+        #             print(
+        #                 'Imported Mapstore resource for: %s' % (map_name))
+        #     except KeyError:
+        #         continue
 
-                    mapstore_resource = MapStoreResource.objects.model(
-                        id=map_id,
-                        name=mapstore_res_field['name'],
-                        creation_date=mapstore_res_field['creation_date'],
-                        last_update=mapstore_res_field['last_update'],
-                        data_id="",
-                        user_id=mapstore_res_field['user']
-                    )        
-                    mapstore_resource.save()
-                
-                    print(
-                        'Imported Mapstore resource for: %s' % (map_name))
-            except KeyError:
-                continue
+        # # Import MapStore Data 
+        # for mapstore_data_full in mapstore_load:
+        #      
+        #     try:
+        #         mapstore_data_field = mapstore_data_full['fields']
+        #         map_name = map_old_refs[mapstore_data_full['pk']]
+        #         map_id = map_old_refs[mapstore_data_full['pk']].pk
 
-        # Import MapStore Data 
-        for mapstore_data_full in mapstore_load:
-             
-            try:
-                mapstore_data_field = mapstore_data_full['fields']
-                map_name = map_old_refs[mapstore_data_full['pk']]
-                map_id = map_old_refs[mapstore_data_full['pk']].pk
+        #         if mapstore_data_full['model'] == "mapstore2_adapter.mapstoredata":
 
-                if mapstore_data_full['model'] == "mapstore2_adapter.mapstoredata":
+        #             mapstore_data = MapStoreData.objects.model(
+        #                 #blob=b64encode(mapp['title'].encode('utf8')),
+        #                 blob="",
+        #                 resource_id=map_id
+        #             )        
+        #             mapstore_data.save()
+        #             # mapstore_resource.data_id.add(mapstore_data)
+        #             
+        #             print(
+        #                 'Imported Mapstore data for: %s' % (map_name))
+        #     except KeyError:
+        #         continue
 
-                    mapstore_data = MapStoreData.objects.model(
-                        #blob=b64encode(mapp['title'].encode('utf8')),
-                        blob=mapstore_data_field['blob'],
-                        resource_id=map_id
-                    )        
-                    mapstore_data.save()
-                    # mapstore_resource.attributes.add(mapstore_data)
-                    
-                    print(
-                        'Imported Mapstore data for: %s' % (map_name))
-            except KeyError:
-                continue
+        # # Import MapStore Attribute 
+        # for mapstore_attr_full in mapstore_load:
+        #      
+        #     try:
+        #         mapstore_attr_field = mapstore_attr_full['fields']
+        #         map_name = map_old_refs[mapstore_attr_full['pk']]
+        #         map_id = map_old_refs[mapstore_attr_full['pk']].pk
 
-        # Import MapStore Attribute 
-        for mapstore_attr_full in mapstore_load:
-             
-            try:
-                mapstore_attr_field = mapstore_attr_full['fields']
-                map_name = map_old_refs[mapstore_attr_full['pk']]
-                map_id = map_old_refs[mapstore_attr_full['pk']].pk
-
-                if mapstore_attr_full['model'] == "mapstore2_adapter.mapstoreattribute":
-                    mapstore_attribute = MapStoreAttribute.objects.model(
-                        name=mapstore_attr_field['name'],
-                        label=mapstore_attr_field['label'],
-                        type=mapstore_attr_field['type'],
-                        value=mapstore_attr_field['value'],
-                        resource_id=map_id
-                    )        
-                    mapstore_attribute.save()
-                    mapstore_resource.attributes.add(mapstore_attribute)
-                    
-                    print(
-                        'Imported Mapstore attribute for: %s' % (map_name))
-            except KeyError:
-                continue
-
-            # # mapstore_resource.attributes.add(mapstore_attribute)
-            # 
-            # print(
-            #     'Imported Mapstore attribute for: %s' % (mapp['title']))
-
-            # Import MapStore Resource Attributes 
-            # mapstore_res_attrib = MapStoreResourceAttributes.objects.model(
-            #     mapstoreresource_id=map_full['pk'],
-            #     mapstoreattribute_id=map_full['pk']
-            # )        
-            # mapstore_res_attr.save()
-            
-            # print(
-            #     'Imported Mapstore Resource attributes for: %s' % (mapp['title']))
+        #         if mapstore_attr_full['model'] == "mapstore2_adapter.mapstoreattribute":
+        #             mapstore_attribute = MapStoreAttribute.objects.model(
+        #                 name="title",
+        #                 label="Title",
+        #                 type="string",
+        #                 #value=b64encode(mapstore_attr_field['name'].encode('utf8')),
+        #                 value=mapstore_attr_field['name'],
+        #                 resource_id=map_id
+        #             )        
+        #             mapstore_attribute.save()
+        #             mapstore_resource.attributes.add(mapstore_attribute)
+        #             
+        #             mapstore_attribute = MapStoreAttribute.objects.model(
+        #                 name="abstract",
+        #                 label="Abstract",
+        #                 type="string",
+        #                 value="",
+        #                 resource_id=map_id
+        #             )        
+        #             mapstore_attribute.save()
+        #             mapstore_resource.attributes.add(mapstore_attribute)
+        #             print(
+        #                 'Imported Mapstore attribute for: %s' % (map_name))
+        #     except KeyError:
+        #         continue
 
         # Import maplayers
         for maplayer_full in maplayer_load:
