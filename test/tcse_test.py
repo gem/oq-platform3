@@ -65,7 +65,7 @@ class TcseTest(unittest.TestCase):
             100, 1)
         ter.click()
 
-        pla.wait_new_page(ter, '/account/terms', timeout=10)
+        pla.wait_new_page(ter, '/terms', timeout=10)
 
         # search title page
         pla.xpath_finduniq(
