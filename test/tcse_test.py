@@ -19,7 +19,7 @@ class TcseTest(unittest.TestCase):
 
         # search title page
         pla.xpath_finduniq(
-            "//h1[normalize-space(text())='OpenQuake Calculate']")
+            "//h2[normalize-space(text())='OpenQuake Calculate']")
 
     def explore_test(self):
 
@@ -35,13 +35,13 @@ class TcseTest(unittest.TestCase):
 
         # search title page
         pla.xpath_finduniq(
-            "//h1[normalize-space(text())='OpenQuake Explore']")
+            "//h2[normalize-space(text())='OpenQuake Explore']")
 
     def share_test(self):
 
         pla = platform_get()
 
-        # calculate
+        # share
         sha = pla.xpath_finduniq(
             "//a[normalize-space(text())='Share']",
             100, 1)
@@ -51,7 +51,7 @@ class TcseTest(unittest.TestCase):
 
         # search title page
         pla.xpath_finduniq(
-            "//h1[normalize-space(text())='OpenQuake Share']")
+            "//h2[normalize-space(text())='OpenQuake Share']")
 
     def terms_test(self):
 
@@ -69,4 +69,4 @@ class TcseTest(unittest.TestCase):
 
         # search title page
         pla.xpath_finduniq(
-            "//h1[normalize-space(text())='Terms of use']")
+            "//h2[normalize-space(text())='Terms of use']")
