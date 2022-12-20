@@ -152,9 +152,9 @@ sleep 200
 
 # Run commands on django container
 docker-compose exec -T django bash -c "chmod +x *.sh"
+docker-compose exec -T django bash -c "mv local_settings.py $NAME_PROJECT/local_settings.py"
 docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
-docker-compose exec -T django bash -c "mv local_settings.py $NAME_PROJECT/local_settings.py"
 
 
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
