@@ -135,10 +135,16 @@ if [ -d geoserver_data ]; then
 fi
 
 
-# Geoserver
-wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-unzip -q geoserver.war -d geoserver
-
+if [ -d geoserver ]; then
+    read -p 'geoserver directory already exists, continue? [y-n]' ans
+    if [ "$ans" != "y" -a "$ans" != "Y" ]; then
+        echo "installation interrupted"
+        exit 1
+    fi
+    # Geoserver
+    wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+    unzip -q geoserver.war -d geoserver
+fi
 mkdir geoserver_data
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
