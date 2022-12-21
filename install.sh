@@ -131,7 +131,7 @@ if [ -d geoserver_data ]; then
         echo "installation interrupted"
         exit 1
     fi
-    rm -rf geoserver_data
+    sudo rm -rf geoserver_data
 fi
 
 
