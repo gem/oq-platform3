@@ -1,0 +1,15 @@
+<layer>
+  <name>canparr_z4</name>
+  <id>LayerInfoImpl--7b974059:16ad5418fb8:ed3</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd4</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--7b974059:16ad5418fb8:ed1</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
