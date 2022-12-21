@@ -86,14 +86,15 @@ COPY isc_viewer /usr/src/openquakeplatform/isc_viewer
 COPY bin /usr/src/openquakeplatform/bin
 COPY common /usr/src/openquakeplatform/common
 COPY openquakeplatform/gs_data /usr/src/openquakeplatform/gs_data
-ADD local_settings.py.tmpl /usr/src/openquakeplatform/local_settings.py
 ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
 
 # templates and static 
-COPY openquakeplatform/templates /usr/src/openquakeplatform/openquakeplatform/templates
-ADD openquakeplatform/templates/layers/templates/* /usr/src/geonode/geonode/layers/templates/layers/
-ADD openquakeplatform/templates/maps/templates/* /usr/src/geonode/geonode/maps/templates/maps/
-COPY openquakeplatform/static /usr/src/openquakeplatform/openquakeplatform/static
+# COPY openquakeplatform/templates /usr/src/openquakeplatform/openquakeplatform/templates
+# ADD openquakeplatform/templates/layers/templates/* /usr/src/geonode/geonode/layers/templates/layers/
+# ADD openquakeplatform/templates/maps/templates/* /usr/src/geonode/geonode/maps/templates/maps/
+# COPY openquakeplatform/static /usr/src/openquakeplatform/openquakeplatform/static
+
+RUN chmod a+x *.sh
 
 # Export ports
 EXPOSE 8000
