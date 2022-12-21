@@ -141,10 +141,12 @@ if [ -d geoserver ]; then
         echo "installation interrupted"
         exit 1
     fi
-    # Geoserver
-    wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
-    unzip -q geoserver.war -d geoserver
+    sudo rm -rf geoserver
 fi
+
+# Geoserver
+wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
+unzip -q geoserver.war -d geoserver
 mkdir geoserver_data
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
