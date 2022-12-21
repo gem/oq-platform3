@@ -49,7 +49,7 @@ sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 # set -x
 
 #install git and ca-certificates
-udo apt-get -y install git ca-certificates wget
+sudo apt-get -y install git ca-certificates wget
 
 inst_docker () {
     # install requirements for docker
@@ -116,9 +116,10 @@ if [ "$IS_STARTPROJECT" ]; then
     exit 0
 fi    
 
-cd $NAME_PROJECT
+cd $GEM_GIT_PACKAGE/$NAME_PROJECT
 if [ ! -f .env ]; then
     secret_key="$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")"
+    echo "secret_key: $secret_key"
     sed "s/{{secret_key}}/$secret_key/g" <.env.tmpl >.env
 fi    
 exit 123
