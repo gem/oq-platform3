@@ -127,7 +127,7 @@ fi
 
 if [ -d geoserver_data ]; then
     read -p 'geoserver_data directory already exists, continue? [y-n]' ans
-    if [ "$ans" != "y" -o "$ans" != "Y" ]; then
+    if [ "$ans" != "y" -a "$ans" != "Y" ]; then
         echo "installation interrupted"
         exit 1
     fi
