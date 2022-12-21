@@ -13,7 +13,7 @@ x-common-django:
     - statics:/mnt/volumes/statics
     # - geoserver-data-dir:/geoserver_data/data
     - ./geoserver_data/data:/geoserver_data/data
-    # - ./openquakeplatform:/usr/src/geonode/geonode   
+    - ./openquakeplatform/openquakeplatform:/usr/src/openquakeplatform/openquakeplatform   
     - backup-restore:/backup_restore
     - data:/data
     - tmp:/tmp

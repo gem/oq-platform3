@@ -82,7 +82,6 @@ if [ "$IS_STARTPROJECT" ]; then
     cp $HOME/oq-platform3/.env $HOME/geonode-project/
     cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
     cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
-    cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
@@ -115,18 +114,31 @@ if [ "$IS_STARTPROJECT" ]; then
     django-admin startproject -v 3 --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
     exit 0
 fi    
+ 
+cd $GEM_GIT_PACKAGE
+cp local_settings.py.tmpl $NAME_PROJECT/$NAME_PROJECT/local_settings.py 
 
-cd $GEM_GIT_PACKAGE/$NAME_PROJECT
+cd $NAME_PROJECT
 if [ ! -f .env ]; then
     secret_key="$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")"
     echo "secret_key: $secret_key"
     sed "s/{{secret_key}}/$secret_key/g" <.env.tmpl >.env
 fi    
-exit 123
+
+if [ -d geoserver_data ]; then
+    read -p 'geoserver_data directory already exists, continue? [y-n]' ans
+    if [ "$ans" != "y" -o "$ans" != "Y" ]; then
+        echo "installation interrupted"
+        exit 1
+    fi
+    rm -rf geoserver_data
+fi
+
 
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
+
 mkdir geoserver_data
 cp -pr geoserver/data geoserver_data
 cp -pr $NAME_PROJECT/gs_data/data/styles/*  geoserver_data/data/styles
@@ -150,12 +162,7 @@ docker-compose up -d
 sleep 200
 
 # Run commands on django container
-docker-compose exec -T django bash -c "chmod +x *.sh"
-docker-compose exec -T django bash -c "mv local_settings.py $NAME_PROJECT/local_settings.py"
-docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
-
-
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
@@ -163,9 +170,9 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
 
-# mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
+mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
+mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
+mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
 
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
@@ -187,12 +194,11 @@ docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openq
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# docker-compose stop
-# docker-compose start
-# 
-# sleep 15
-
 echo "Installation complete."
+
+if [ "$NO_EXEC_TEST" = "notest" ] ; then
+    exit 0
+fi
 
 #function complete procedure for tests
 exec_test () {    
@@ -235,14 +241,12 @@ do_logs () {
 }
 
 # tests
-if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    # install environment for testing
-    exec_test
-    # script to generate map thumbnails
-    # exec_set_map_thumbs
-    # run tests
-    run_test
-    # docker logs
-    do_logs
-fi
+# install environment for testing
+exec_test
+# script to generate map thumbnails
+# exec_set_map_thumbs
+# run tests
+run_test
+# docker logs
+do_logs
 
