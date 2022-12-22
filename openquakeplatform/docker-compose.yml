@@ -11,7 +11,7 @@ x-common-django:
   volumes:
     - statics:/mnt/volumes/statics
     - ./geoserver_data/data:/geoserver_data/data
-    - ./openquakeplatform/openquakeplatform:/usr/src/openquakeplatform/openquakeplatform
+    - ./openquakeplatform:/usr/src/openquakeplatform/openquakeplatform
     - backup-restore:/backup_restore
     - data:/data
     - tmp:/tmp
