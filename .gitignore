@@ -65,5 +65,6 @@ local_settings.py
 /venv/
 /openquakeplatform/geoserver/
 /openquakeplatform/geoserver_data/
+/openquakeplatform/geoserver.war
 /openquakeplatform/.env
 

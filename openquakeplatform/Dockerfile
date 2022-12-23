@@ -86,7 +86,7 @@ COPY isc_viewer /usr/src/openquakeplatform/isc_viewer
 COPY bin /usr/src/openquakeplatform/bin
 COPY common /usr/src/openquakeplatform/common
 COPY openquakeplatform/gs_data /usr/src/openquakeplatform/gs_data
-ADD openquakeplatform/urls.py /usr/src/geonode/geonode/urls.py
+ADD urls.py /usr/src/geonode/geonode/urls.py
 
 # templates and static 
 # COPY openquakeplatform/templates /usr/src/openquakeplatform/openquakeplatform/templates

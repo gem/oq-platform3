@@ -170,6 +170,7 @@ docker-compose up -d
 sleep 200
 
 # Run commands on django container
+docker-compose exec -T django bash -c "./manage.sh makemigrations"
 docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
