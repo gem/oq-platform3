@@ -167,11 +167,11 @@ export COMPOSE_HTTP_TIMEOUT=400
 # COMPOSE_HTTP_TIMEOUT=220 docker-compose up -d
 docker-compose up -d
 
-sleep 200
+sleep 350
 
 # Run commands on django container
-docker-compose exec -T django bash -c "./manage.sh makemigrations"
-docker-compose exec -T django bash -c "./manage.sh migrate"
+docker-compose exec -T django bash -c "./manage.sh makemigrations -v 3"
+docker-compose exec -T django bash -c "./manage.sh migrate -v 3"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
@@ -179,9 +179,9 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
 
-mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
+# mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
+# mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
+# mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
 
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
