@@ -48,6 +48,9 @@ sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 # display each command before executing it
 # set -x
 
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
 #install git and ca-certificates
 sudo apt-get -y install git ca-certificates wget
 
