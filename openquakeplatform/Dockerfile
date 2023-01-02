@@ -1,4 +1,4 @@
-FROM python:3.8.9-buster
+FROM python:3.8.16-buster
 LABEL GeoNode development team
 
 RUN mkdir -p /usr/src/openquakeplatform
