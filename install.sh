@@ -248,7 +248,7 @@ exec_set_map_thumbs () {
 
 # logs
 do_logs () {
-    cd $HOME/$NAME_PROJECT
+    cd $HOME/$GEM_GIT_PACKAGE/$NAME_PROJECT
     docker-compose logs > $HOME/docker.log
 }
 
