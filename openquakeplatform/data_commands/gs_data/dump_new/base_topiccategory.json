@@ -1,0 +1,54 @@
+[
+{
+    "model": "base.topiccategory",
+    "pk": 21,
+    "fields": {
+        "identifier": "none",
+        "description": "none",
+        "description_en": "none",
+        "gn_description": "None",
+        "gn_description_en": "None",
+        "is_choice": true,
+        "fa_class": "fa-times"
+    }
+},
+{
+    "model": "base.topiccategory",
+    "pk": 22,
+    "fields": {
+        "identifier": "hazard",
+        "description": "Seismic Hazard",
+        "description_en": "Seismic Hazard",
+        "gn_description": "Hazard",
+        "gn_description_en": "Hazard",
+        "is_choice": true,
+        "fa_class": "fa-times"
+    }
+},
+{
+    "model": "base.topiccategory",
+    "pk": 23,
+    "fields": {
+        "identifier": "risk",
+        "description": "Seismic Risk",
+        "description_en": "Seismic Risk",
+        "gn_description": "Risk",
+        "gn_description_en": "Risk",
+        "is_choice": true,
+        "fa_class": "fa-times"
+    }
+},
+{
+    "model": "base.topiccategory",
+    "pk": 24,
+    "fields": {
+        "identifier": "svir",
+        "description": "Social Vulnerability and Integrated Risk",
+        "description_en": "Social Vulnerability and Integrated Risk",
+        "gn_description": "SVIR",
+        "gn_description_en": "SVIR",
+        "is_choice": true,
+        "fa_class": "fa-times"
+    }
+}
+]

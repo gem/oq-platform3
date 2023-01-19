@@ -61,3 +61,10 @@ local_settings.py
 
 .idea/
 .vscode/
+
+/venv/
+/openquakeplatform/geoserver/
+/openquakeplatform/geoserver_data/
+/openquakeplatform/geoserver.war
+/openquakeplatform/.env
+

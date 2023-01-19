@@ -1,0 +1,29 @@
+<layer>
+  <name>npl_eq_meteor</name>
+  <id>LayerInfoImpl-678999bf:17f2c83a353:7044</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-678999bf:17f2c83a353:704c</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl-678999bf:17f2c83a353:704c</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl-678999bf:17f2c83a353:7345</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd5</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-678999bf:17f2c83a353:7042</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <title>pslh</title>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
