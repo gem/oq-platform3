@@ -1,0 +1,15 @@
+[
+{
+    "model": "documents.documentresourcelink",
+    "pk": 1,
+    "fields": {
+        "document": 393,
+        "content_type": [
+            "maps",
+            "map"
+        ],
+        "object_id": 185
+    }
+}
+]
+

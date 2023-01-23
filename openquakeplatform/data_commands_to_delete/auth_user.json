@@ -1,0 +1,330 @@
+[
+{
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2015-02-10T17:35:15.549",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo1@demo.demo",
+            "date_joined": "2014-12-01T00:00:00"
+        }
+    },
+{
+        "pk": 100000,
+        "model": "auth.user",
+        "fields": {
+            "username": "AnonymousUser",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo2@demo.demo",
+            "date_joined": "2014-12-01T00:00:00"
+        }
+    },
+ {
+        "pk": 1820,
+        "model": "auth.user",
+        "fields": {
+            "username": "hascar",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2018-06-06T08:38:32",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo3@demo.demo",
+            "date_joined": "2016-11-22T16:29:59"
+        }
+    },
+{
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "GEM",
+            "first_name": "GEM ",
+            "last_name": "Foundation",
+            "is_superuser": false,
+            "is_staff": true,
+            "last_login": "2014-12-01T00:00:00",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo4@demo.demo",
+            "date_joined": "2014-12-01T00:00:00"
+        }
+    },
+{
+        "pk": 7,
+        "model": "auth.user",
+        "fields": {
+            "username": "pslh",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": true,
+            "last_login": "2017-09-01T08:24:36.529",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo5@demo.demo",
+            "date_joined": "2014-12-23T17:57:37.048"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "auth.user",
+        "fields": {
+            "username": "michele",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": true,
+            "last_login": "2017-04-10T10:08:35.630",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo6@demo.demo",
+            "date_joined": "2014-12-24T12:59:48.268"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "cyepes", 
+            "first_name": "Catalina", 
+            "last_name": "Yepes", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": true, 
+            "last_login": "2017-12-04T09:57:49.403", 
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ], 
+            "user_permissions": [], 
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=", 
+            "email": "demo7@demo.demo", 
+            "date_joined": "2014-08-06T08:09:16"
+        }
+    },
+    {
+        "pk": 113,
+        "model": "auth.user",
+        "fields": {
+            "username": "peruzza",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": true,
+            "last_login": "2017-05-30T17:48:17.998",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo8@demo.demo",
+            "date_joined": "2015-01-30T17:30:11.399"
+        }
+    },
+    {
+        "pk": 1076,
+        "model": "auth.user",
+        "fields": {
+            "username": "Klaus",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": true,
+            "last_login": "2016-01-14T18:13:42.974",
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=",
+            "email": "demo9@demo.demo",
+            "date_joined": "2016-01-14T18:13:42.809"
+        }
+    },
+    {
+        "pk": 105, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "preinh", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true,
+            "is_superuser": false, 
+            "is_staff": true, 
+            "last_login": "2015-07-14T15:22:55.878", 
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ], 
+            "user_permissions": [], 
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=", 
+            "email": "demo11@demo.demo", 
+            "date_joined": "2015-01-30T16:17:21.896"
+        }
+    },
+    {
+        "pk": 787, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "muriel", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": true, 
+            "last_login": "2018-07-24T05:27:33.070", 
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ], 
+            "user_permissions": [], 
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=", 
+            "email": "demo12@demo.demo", 
+            "date_joined": "2015-09-08T04:45:24"
+        }
+    },
+    {
+        "pk": 952, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "MTOQUICA", 
+            "first_name": "", 
+            "last_name": "", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": true, 
+            "last_login": "2017-09-12T12:46:42.445", 
+            "groups": [
+                [
+                    "registered-members"
+                ]
+            ], 
+            "user_permissions": [], 
+            "password": "pbkdf2_sha256$20000$wQGS5iVbJZON$lgweshMd9LbmXqMOY1eEomE0rkroLdtQ//ls49DeHbU=", 
+            "email": "demo0@demo.demo", 
+            "date_joined": "2015-11-11T13:45:51"
+        }
+    },
+    {
+    "fields": {
+        "profile": null,
+        "last_name": "",
+        "is_staff": true,
+        "user_permissions": [],
+        "date_joined": "2019-04-17T09:30:29.092",
+        "city": null,
+        "first_name": "",
+        "area": null,
+        "zipcode": null,
+        "is_superuser": false,
+        "last_login": "2019-05-20T09:01:05.879",
+        "email": "farnazbayaat@gmail.com",
+        "username": "bayaat2014",
+        "fax": null,
+        "is_active": true,
+        "delivery": null,
+        "groups": [
+            [
+                "registered-members"
+            ]
+        ],
+        "organization": null,
+        "password": "pbkdf2_sha256$20000$tqXhPNWa5EsB$0uew9mi6f1WzQDdUBwttwgQhAN4Zs4pMavIHjo+Df8Y=",
+        "country": null,
+        "position": null,
+        "voice": null
+    },
+    "model": "people.profile",
+    "pk": 3737
+},
+    {
+    "fields": {
+        "profile": "",
+        "last_name": "Tumalski",
+        "is_staff": true,
+        "user_permissions": [],
+        "date_joined": "2021-06-30T08:44:21.257",
+        "city": " Plock",
+        "first_name": "Tadeusz",
+        "area": "",
+        "zipcode": "09-401",
+        "is_superuser": false,
+        "last_login": "2021-07-02T08:34:53.944",
+        "email": "tadeusz.tumalski@wp.pl",
+        "username": "T.Tumalski",
+        "fax": "",
+        "is_active": true,
+        "delivery": "",
+        "groups": [
+            [
+                "registered-members"
+            ]
+        ],
+        "organization": "Private researcher",
+        "password": "pbkdf2_sha256$20000$o3s5lhaMgpkg$h1eflPsFx87uHsHRdGhclCGfZDNFkO7IhK8vQFJSyhQ=",
+        "country": "POL",
+        "position": "Private researcher",
+        "voice": "604336385"
+    },
+    "model": "people.profile",
+    "pk": 6418
+}
+]
+

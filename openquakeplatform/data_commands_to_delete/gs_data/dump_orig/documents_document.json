@@ -1,0 +1,28 @@
+[
+{
+    "fields": {
+        "doc_type": "presentation",
+        "doc_url": "",
+        "extension": "pdf",
+        "title_en": "EGU 2007; Earthquake prediction; principles",
+        "object_id": 185,
+        "data_quality_statement_en": "",
+        "regions": [
+            1
+        ],
+        "content_type": [
+            "maps",
+            "map"
+        ],
+        "doc_file": "documents/Earthquake_prediction_Principles.pdf",
+        "supplemental_information_en": "Geophysical Research Abstracts, Vol. 9, 05526, 2007\r\nSRef-ID: 1607-7962/gra/EGU2007-A-05526\r\n\u00a9 European Geosciences Union 2007",
+        "abstract_en": "",
+        "tkeywords": [],
+        "purpose_en": "Earthquake prediction\r\n\r\nEGU General Assembly, Vienna, Austria, 15 \u2013 20 April 2007",
+        "constraints_other_en": "None"
+    },
+    "model": "documents.document",
+    "pk": 393
+}
+]
+
