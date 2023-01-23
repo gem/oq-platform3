@@ -128,6 +128,8 @@ def blob_get(map_):
             layer_json.pop('bbox')
         if 'catalogURL' in layer_params:
             layer_json['catalogURL'] = layer_params['catalogURL']
+        else:
+            layer_json['catalogURL'] = "http://localhost/catalogue/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=%s" % map_.uuid
         if 'getFeatureInfo' in layer_params:
             layer_json['getFeatureInfo'] = layer_params['getFeatureInfo']
         if 'capability' in layer_params:
@@ -158,10 +160,7 @@ class Command(BaseCommand):
     def handle(doc_fname, *args, **options):
 
         map_ = Map.objects.get(title_en='Himalaya + Nepal')
-        #map_ = Map.objects.get(title_en='philippines')
-        #map_ = Map.objects.get(title_en='Jakarta')
-        #map_ = Map.objects.get(title_en='METEOR Earthquake Hazard maps')
-        #map_ = Map.objects.get(title_en='meteor_arm')
+        #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
         #map__ = Map.objects.all()
 
         #for map_ in map__:
@@ -183,5 +182,5 @@ class Command(BaseCommand):
         #        continue
 
         blob = blob_get(map_)
-        print(json.dumps(blob, indent=4))
-        #print(json.dumps(blob))
+        #print(json.dumps(blob, indent=4))
+        print(json.dumps(blob))
