@@ -95,6 +95,7 @@ def blob_get(map_):
         layer_json = {
             "id": '%s__%s' % (layer.name, layer.stack_order), 
             "format": layer.format, 
+            "search": None,
             "group": layer.group,
             "source": "", 
             "name": layer.name,
@@ -122,6 +123,8 @@ def blob_get(map_):
             layer_json.pop('url')
         if layer_json['format'] == None:
             layer_json.pop('format')
+        if 'search' in layer_params:
+            layer_json['search'] = layer_params['search']
         if 'bbox' in layer_params:
             layer_json['bbox'] = layer_params['bbox']
         else:
@@ -159,8 +162,8 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        map_ = Map.objects.get(title_en='Himalaya + Nepal')
-        #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
+        #map_ = Map.objects.get(title_en='Himalaya + Nepal')
+        map_ = Map.objects.get(title_en='himalaya + nepal new')
         #map__ = Map.objects.all()
 
         #for map_ in map__:
@@ -182,5 +185,5 @@ class Command(BaseCommand):
         #        continue
 
         blob = blob_get(map_)
-        #print(json.dumps(blob, indent=4))
-        print(json.dumps(blob))
+        print(json.dumps(blob, indent=4))
+        #print(json.dumps(blob))
