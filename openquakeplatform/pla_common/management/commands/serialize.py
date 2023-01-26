@@ -164,7 +164,7 @@ class Command(BaseCommand):
 
         #map_ = Map.objects.get(title_en='Himalaya + Nepal')
         #map_ = Map.objects.get(title_en='himalaya + nepal new')
-        #map__ = Map.objects.all()
+        map__ = Map.objects.all()
 
         for map_ in map__:
             #print(map_.pk)
