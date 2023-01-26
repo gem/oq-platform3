@@ -163,27 +163,27 @@ class Command(BaseCommand):
     def handle(doc_fname, *args, **options):
 
         #map_ = Map.objects.get(title_en='Himalaya + Nepal')
-        map_ = Map.objects.get(title_en='himalaya + nepal new')
+        #map_ = Map.objects.get(title_en='himalaya + nepal new')
         #map__ = Map.objects.all()
 
-        #for map_ in map__:
-        #    #print(map_.pk)
+        for map_ in map__:
+            #print(map_.pk)
 
-        #    blob = blob_get(map_)
+            blob = blob_get(map_)
 
-        #    try:
-        #        # Import Mapstore Data
-        #        e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
+            try:
+                # Import Mapstore Data
+                e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
 
-        #        if e.resource_id == map_.pk:
-        #            print(e.resource_id)
-        #            blb = MapStoreData.objects.model(
-        #                blob = json.dumps(blob),
-        #                resource_id = e.resource_id)
-        #            blb.save()                 
-        #    except:
-        #        continue
+                if e.resource_id == map_.pk:
+                    print(e.resource_id)
+                    blb = MapStoreData.objects.model(
+                        blob = json.dumps(blob),
+                        resource_id = e.resource_id)
+                    blb.save()                 
+            except:
+                continue
 
-        blob = blob_get(map_)
-        print(json.dumps(blob, indent=4))
+        #blob = blob_get(map_)
+        #print(json.dumps(blob, indent=4))
         #print(json.dumps(blob))

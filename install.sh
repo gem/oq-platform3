@@ -196,8 +196,8 @@ rm sql_new.tar.gz
 docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
 docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
-# docker-compose exec -T django bash -c "./manage.sh add_data"
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
+docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
 # Create programmatically ISC and GHEC from json
