@@ -524,7 +524,7 @@ class Command(BaseCommand):
             # Save layer
             new_layer = Layer.objects.model(
                 owner=owner,
-                name=layer['name'],
+                name=base['title'],
                 alternate=layer['name'],
                 category=(old_category_refs[base['category']]
                           if base['category'] is not None
