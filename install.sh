@@ -29,6 +29,13 @@ if [ $GEM_SET_DEBUG ]; then
     set -x
 fi
 
+# virtual env
+python3.8 -m venv venv
+source ./venv/bin/activate
+
+# install django 3.2.12 
+pip install --default-timeout=100 Django==3.2.12
+
 cd $HOME
 
 # sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
