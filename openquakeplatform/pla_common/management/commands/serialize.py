@@ -132,7 +132,16 @@ def blob_get(map_):
         if 'catalogURL' in layer_params:
             layer_json['catalogURL'] = layer_params['catalogURL']
         else:
-            layer_json['catalogURL'] = "http://localhost/catalogue/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=%s" % map_.uuid
+            print("layer name %s: " % layer.name)
+            if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
+                import pdb;pdb.set_trace()
+            try:
+                ll = Layer.objects.get(alternate="%s" % layer.name)
+                print("  Found")
+                layer_json['catalogURL'] = "http://localhost/catalogue/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=%s" % ll.uuid
+            except Exception:
+                print("  Not found")
+                pass
         if 'getFeatureInfo' in layer_params:
             layer_json['getFeatureInfo'] = layer_params['getFeatureInfo']
         if 'capability' in layer_params:
@@ -162,25 +171,27 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        #map_ = Map.objects.get(title_en='Himalaya + Nepal')
-        #map_ = Map.objects.get(title_en='himalaya + nepal new')
-        map__ = Map.objects.all()
-
-        for map_ in map__:
-            #print(map_.pk)
+        if False:
+            map_ = Map.objects.get(title_en='Himalaya + Nepal')
+            #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
 
             blob = blob_get(map_)
+            print(json.dumps(blob, indent=4))
+            #print(json.dumps(blob))
+        else:
+            map__ = Map.objects.all()
 
-            try:
-                # Import Mapstore Data
-                e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
+            for map_ in map__:
+                #print(map_.pk)
 
-                print(e.resource_id)
-                e.blob = json.dumps(blob)
-                e.save()
-            except:
-                continue
+                blob = blob_get(map_)
 
-        #blob = blob_get(map_)
-        #print(json.dumps(blob, indent=4))
-        #print(json.dumps(blob))
+                try:
+                    # Import Mapstore Data
+                    e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
+
+                    print(e.resource_id)
+                    e.blob = json.dumps(blob)
+                    e.save()                 
+                except:
+                    continue
