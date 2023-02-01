@@ -175,12 +175,9 @@ class Command(BaseCommand):
                 # Import Mapstore Data
                 e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
 
-                if e.resource_id == map_.pk:
-                    print(e.resource_id)
-                    blb = MapStoreData.objects.model(
-                        blob = json.dumps(blob),
-                        resource_id = e.resource_id)
-                    blb.save()                 
+                print(e.resource_id)
+                e.blob = json.dumps(blob)
+                e.save()
             except:
                 continue
 
