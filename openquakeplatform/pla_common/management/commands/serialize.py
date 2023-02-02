@@ -38,7 +38,7 @@ def blob_get(map_):
     blob = {'version': 2}
     blob['map'] = { 
             'center': None,
-            'maxExtent': None,
+            'maxExtent': max_extent,
             'projection': None,
             'units': None,
             'zoom': None,
@@ -78,7 +78,7 @@ def blob_get(map_):
         "y": map_.center_y,
         "crs": map_.csw_crs,
         } 
-    map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
+    #map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
     wkt = crs.ellipsoid.to_wkt()
@@ -95,8 +95,8 @@ def blob_get(map_):
         layer_json = {
             "id": '%s__%s' % (layer.name, layer.stack_order), 
             "format": layer.format, 
-            "search": None,
-            "group": layer.group,
+            # "search": None,
+            # "group": layer.group,
             "source": "", 
             "name": layer.name,
             "title": layer_params['title'],
@@ -104,21 +104,26 @@ def blob_get(map_):
             "url": layer.ows_url,
             "bbox": None,
             "visibility": layer.visibility,
-            "singleTile": None,
-            "allowedSRS": {},
+            "singleTile": False,
+            # "allowedSRS": {},
             "dimensions": [],
-            "hideLoading": None,
-            "handleClickOnLayer": None,
-            "catalogURL": None,
-            "useForElevation": None,
-            "hidden": None,
-            "tileSize": None,
+            "hideLoading": False,
+            "handleClickOnLayer": False,
+            # "catalogURL": None,
+            "useForElevation": False,
+            "hidden": False,
+            # "tileSize": None,
             "params": {},
             "store": layer.store,
             "getFeatureInfo": None,
             "capability": None,
             "extraParams": None
         } 
+        if layer.ows_url == "http://localhost/geoserver/ows":
+            layer_json['description'] = "No abstract provided"
+            layer_json['type'] = "wms"
+        if layer.group != None:
+            layer_json['group'] = layer.group
         if layer_json['url'] == None:
             layer_json.pop('url')
         if layer_json['format'] == None:
@@ -133,8 +138,8 @@ def blob_get(map_):
             layer_json['catalogURL'] = layer_params['catalogURL']
         else:
             print("layer name %s: " % layer.name)
-            if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
-                import pdb;pdb.set_trace()
+            #if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
+            #    import pdb;pdb.set_trace()
             try:
                 ll = Layer.objects.get(alternate="%s" % layer.name)
                 print("  Found")
@@ -172,7 +177,7 @@ class Command(BaseCommand):
     def handle(doc_fname, *args, **options):
 
         if False:
-            map_ = Map.objects.get(title_en='Himalaya + Nepal')
+            map_ = Map.objects.get(title_en='Himalaya')
             #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
 
             blob = blob_get(map_)
