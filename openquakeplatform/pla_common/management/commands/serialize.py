@@ -78,7 +78,6 @@ def blob_get(map_):
         "y": map_.center_y,
         "crs": map_.csw_crs,
         } 
-    #map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
     wkt = crs.ellipsoid.to_wkt()
@@ -95,8 +94,6 @@ def blob_get(map_):
         layer_json = {
             "id": '%s__%s' % (layer.name, layer.stack_order), 
             "format": layer.format, 
-            # "search": None,
-            # "group": layer.group,
             "source": "", 
             "name": layer.name,
             "title": layer_params['title'],
@@ -105,14 +102,11 @@ def blob_get(map_):
             "bbox": None,
             "visibility": layer.visibility,
             "singleTile": False,
-            # "allowedSRS": {},
             "dimensions": [],
             "hideLoading": False,
             "handleClickOnLayer": False,
-            # "catalogURL": None,
             "useForElevation": False,
             "hidden": False,
-            # "tileSize": None,
             "params": {},
             "store": layer.store,
             "getFeatureInfo": None,
@@ -138,8 +132,6 @@ def blob_get(map_):
             layer_json['catalogURL'] = layer_params['catalogURL']
         else:
             print("layer name %s: " % layer.name)
-            #if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
-            #    import pdb;pdb.set_trace()
             try:
                 ll = Layer.objects.get(alternate="%s" % layer.name)
                 print("  Found")
@@ -176,13 +168,15 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        if False:
+        if False: 
+            # True to only print the blob json
+            # False to import all json files in mapstoredata db
             map_ = Map.objects.get(title_en='Himalaya')
             #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
 
             blob = blob_get(map_)
             print(json.dumps(blob, indent=4))
-            #print(json.dumps(blob))
+            # print(json.dumps(blob))
         else:
             map__ = Map.objects.all()
 
@@ -195,7 +189,7 @@ class Command(BaseCommand):
                     # Import Mapstore Data
                     e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
 
-                    print(e.resource_id)
+                    # print(e.resource_id)
                     e.blob = json.dumps(blob)
                     e.save()                 
                 except:
