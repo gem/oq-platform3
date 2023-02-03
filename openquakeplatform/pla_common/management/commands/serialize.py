@@ -42,7 +42,35 @@ def blob_get(map_):
             'projection': None,
             'units': None,
             'zoom': None,
-            'mapOptions': None,
+            "mapOptions": {
+                "view": {
+                  #"scales": [175000, 125000, 100000, 75000, 50000, 25000, 10000, 5000, 2500],
+                  "resolutions": [
+                    84666.66666666688,
+                    42333.33333333344,
+                    21166.66666666672,
+                    10583.33333333336,
+                    5291.66666666668,
+                    2645.83333333334,
+                    1322.91666666667,
+                    661.458333333335000,
+                    529.166666666668000,
+                    396.875000000001000,
+                    264.583333333334000,
+                    132.291666666667000,
+                    66.145833333333500,
+                    39.687500000000100,
+                    26.458333333333400,
+                    13.229166666666700,
+                    6.614583333333350,
+                    3.968750000000010,
+                    2.645833333333340,
+                    1.322916666666670,
+                    0.661458333333335
+                  ]
+                }
+            },
+            #'mapOptions': None,
             'layers': None,
             "catalogServices": {
         "services": {
@@ -78,6 +106,7 @@ def blob_get(map_):
         "y": map_.center_y,
         "crs": map_.csw_crs,
         } 
+    #map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
     wkt = crs.ellipsoid.to_wkt()
@@ -87,13 +116,15 @@ def blob_get(map_):
 
     map_json['units'] = _units_mapping[units]
     map_json['zoom'] = map_.zoom
-    map_json['mapOptions'] = {}
+    #map_json['mapOptions'] = {}
     map_json['layers'] = []
     for layer in map_.layers:
         layer_params = json.loads(layer.layer_params)
         layer_json = {
             "id": '%s__%s' % (layer.name, layer.stack_order), 
             "format": layer.format, 
+            # "search": None,
+            # "group": layer.group,
             "source": "", 
             "name": layer.name,
             "title": layer_params['title'],
@@ -102,11 +133,14 @@ def blob_get(map_):
             "bbox": None,
             "visibility": layer.visibility,
             "singleTile": False,
+            # "allowedSRS": {},
             "dimensions": [],
             "hideLoading": False,
             "handleClickOnLayer": False,
+            # "catalogURL": None,
             "useForElevation": False,
             "hidden": False,
+            # "tileSize": None,
             "params": {},
             "store": layer.store,
             "getFeatureInfo": None,
@@ -132,6 +166,8 @@ def blob_get(map_):
             layer_json['catalogURL'] = layer_params['catalogURL']
         else:
             print("layer name %s: " % layer.name)
+            #if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
+            #    import pdb;pdb.set_trace()
             try:
                 ll = Layer.objects.get(alternate="%s" % layer.name)
                 print("  Found")
@@ -168,15 +204,13 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        if False: 
-            # True to only print the blob json
-            # False to import all json files in mapstoredata db
-            map_ = Map.objects.get(title_en='Himalaya')
-            #map_ = Map.objects.get(title_en='Himalaya + Nepal new')
+        if False:
+            map_ = Map.objects.get(title_en='Himalaya + Nepal')
+            #map_ = Map.objects.get(title_en='Maroc')
 
             blob = blob_get(map_)
             print(json.dumps(blob, indent=4))
-            # print(json.dumps(blob))
+            #print(json.dumps(blob))
         else:
             map__ = Map.objects.all()
 
@@ -189,7 +223,7 @@ class Command(BaseCommand):
                     # Import Mapstore Data
                     e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
 
-                    # print(e.resource_id)
+                    print(e.resource_id)
                     e.blob = json.dumps(blob)
                     e.save()                 
                 except:
