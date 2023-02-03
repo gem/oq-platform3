@@ -7,7 +7,7 @@ from geonode.utils import max_extent, FULL_ROTATION_DEG, HALF_ROTATION_DEG
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from mapstore2_adapter.api.models import MapStoreAttribute, MapStoreData, MapStoreResource
-from pyproj import CRS
+from pyproj import CRS, Transformer
 
 _units_mapping = {'metre': 'm'}
 _viewer_projection_lookup = {
@@ -42,35 +42,35 @@ def blob_get(map_):
             'projection': None,
             'units': None,
             'zoom': None,
-            "mapOptions": {
-                "view": {
-                  #"scales": [175000, 125000, 100000, 75000, 50000, 25000, 10000, 5000, 2500],
-                  "resolutions": [
-                    84666.66666666688,
-                    42333.33333333344,
-                    21166.66666666672,
-                    10583.33333333336,
-                    5291.66666666668,
-                    2645.83333333334,
-                    1322.91666666667,
-                    661.458333333335000,
-                    529.166666666668000,
-                    396.875000000001000,
-                    264.583333333334000,
-                    132.291666666667000,
-                    66.145833333333500,
-                    39.687500000000100,
-                    26.458333333333400,
-                    13.229166666666700,
-                    6.614583333333350,
-                    3.968750000000010,
-                    2.645833333333340,
-                    1.322916666666670,
-                    0.661458333333335
-                  ]
-                }
-            },
-            #'mapOptions': None,
+            # "mapOptions": {
+            #     "view": {
+            #       #"scales": [175000, 125000, 100000, 75000, 50000, 25000, 10000, 5000, 2500],
+            #       "resolutions": [
+            #         84666.66666666688,
+            #         42333.33333333344,
+            #         21166.66666666672,
+            #         10583.33333333336,
+            #         5291.66666666668,
+            #         2645.83333333334,
+            #         1322.91666666667,
+            #         661.458333333335000,
+            #         529.166666666668000,
+            #         396.875000000001000,
+            #         264.583333333334000,
+            #         132.291666666667000,
+            #         66.145833333333500,
+            #         39.687500000000100,
+            #         26.458333333333400,
+            #         13.229166666666700,
+            #         6.614583333333350,
+            #         3.968750000000010,
+            #         2.645833333333340,
+            #         1.322916666666670,
+            #         0.661458333333335
+            #       ]
+            #     }
+            # },
+            'mapOptions': None,
             'layers': None,
             "catalogServices": {
         "services": {
@@ -101,10 +101,13 @@ def blob_get(map_):
             }
 
     map_json = blob['map']
+    tran = Transformer.from_crs(map_.csw_crs,"EPSG:4326")
+    x,y = tran.transform(map_.center_x, map_.center_y)
+    print("blob xy %s, %s" % (x,y))
     map_json['center'] = {
-        "x": map_.center_x,
-        "y": map_.center_y,
-        "crs": map_.csw_crs,
+        "x": x,
+        "y": y,
+        "crs": "EPSG:4326",
         } 
     #map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
     map_json['projection'] = map_.projection
@@ -116,7 +119,7 @@ def blob_get(map_):
 
     map_json['units'] = _units_mapping[units]
     map_json['zoom'] = map_.zoom
-    #map_json['mapOptions'] = {}
+    map_json['mapOptions'] = {}
     map_json['layers'] = []
     for layer in map_.layers:
         layer_params = json.loads(layer.layer_params)
@@ -204,9 +207,9 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        if False:
-            map_ = Map.objects.get(title_en='Himalaya + Nepal')
-            #map_ = Map.objects.get(title_en='Maroc')
+        if True:
+            #map_ = Map.objects.get(title_en='Himalaya + Nepal')
+            map_ = Map.objects.get(title_en='Maroc')
 
             blob = blob_get(map_)
             print(json.dumps(blob, indent=4))
