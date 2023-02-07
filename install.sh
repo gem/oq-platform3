@@ -86,6 +86,7 @@ if [ "$IS_STARTPROJECT" ]; then
     cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
     cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
+
     cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
     cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
@@ -147,6 +148,13 @@ if [ -d geoserver ]; then
     sudo rm -rf geoserver
 fi
 
+# dump folder from ftp
+wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
+tar zxf dump.tar.gz
+sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
+rm -rf dump.tar.gz | true
+rm -rf dump | true
+    
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
@@ -197,7 +205,7 @@ docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openqu
 docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
-#docker-compose exec -T django bash -c "./manage.sh serialize"
+docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
 # Create programmatically ISC and GHEC from json
