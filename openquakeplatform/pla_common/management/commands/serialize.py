@@ -7,7 +7,7 @@ from geonode.utils import max_extent, FULL_ROTATION_DEG, HALF_ROTATION_DEG
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from mapstore2_adapter.api.models import MapStoreAttribute, MapStoreData, MapStoreResource
-from pyproj import CRS, Transformer
+from pyproj import CRS, Proj, Transformer, transform 
 
 _units_mapping = {'metre': 'm'}
 _viewer_projection_lookup = {
@@ -42,34 +42,6 @@ def blob_get(map_):
             'projection': None,
             'units': None,
             'zoom': None,
-            # "mapOptions": {
-            #     "view": {
-            #       #"scales": [175000, 125000, 100000, 75000, 50000, 25000, 10000, 5000, 2500],
-            #       "resolutions": [
-            #         84666.66666666688,
-            #         42333.33333333344,
-            #         21166.66666666672,
-            #         10583.33333333336,
-            #         5291.66666666668,
-            #         2645.83333333334,
-            #         1322.91666666667,
-            #         661.458333333335000,
-            #         529.166666666668000,
-            #         396.875000000001000,
-            #         264.583333333334000,
-            #         132.291666666667000,
-            #         66.145833333333500,
-            #         39.687500000000100,
-            #         26.458333333333400,
-            #         13.229166666666700,
-            #         6.614583333333350,
-            #         3.968750000000010,
-            #         2.645833333333340,
-            #         1.322916666666670,
-            #         0.661458333333335
-            #       ]
-            #     }
-            # },
             'mapOptions': None,
             'layers': None,
             "catalogServices": {
@@ -101,15 +73,14 @@ def blob_get(map_):
             }
 
     map_json = blob['map']
-    tran = Transformer.from_crs(map_.csw_crs,"EPSG:4326")
-    x,y = tran.transform(map_.center_x, map_.center_y)
+    tran = transform(Proj(init='epsg:3857'), Proj(init='epsg:4326'), map_.center_x, map_.center_y)
+    x,y = tran
     print("blob xy %s, %s" % (x,y))
     map_json['center'] = {
         "x": x,
         "y": y,
-        "crs": "EPSG:4326",
+         "crs": "EPSG:4326",
         } 
-    #map_json['maxExtent'] = _get_viewer_projection_info(map_.projection)
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
     wkt = crs.ellipsoid.to_wkt()
@@ -126,8 +97,6 @@ def blob_get(map_):
         layer_json = {
             "id": '%s__%s' % (layer.name, layer.stack_order), 
             "format": layer.format, 
-            # "search": None,
-            # "group": layer.group,
             "source": "", 
             "name": layer.name,
             "title": layer_params['title'],
@@ -136,14 +105,11 @@ def blob_get(map_):
             "bbox": None,
             "visibility": layer.visibility,
             "singleTile": False,
-            # "allowedSRS": {},
             "dimensions": [],
             "hideLoading": False,
             "handleClickOnLayer": False,
-            # "catalogURL": None,
             "useForElevation": False,
             "hidden": False,
-            # "tileSize": None,
             "params": {},
             "store": layer.store,
             "getFeatureInfo": None,
@@ -169,14 +135,10 @@ def blob_get(map_):
             layer_json['catalogURL'] = layer_params['catalogURL']
         else:
             print("layer name %s: " % layer.name)
-            #if layer.name == "oqplatform:himalayanfrontalthrust_20_06_14":
-            #    import pdb;pdb.set_trace()
             try:
                 ll = Layer.objects.get(alternate="%s" % layer.name)
-                print("  Found")
                 layer_json['catalogURL'] = "http://localhost/catalogue/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=%s" % ll.uuid
             except Exception:
-                print("  Not found")
                 pass
         if 'getFeatureInfo' in layer_params:
             layer_json['getFeatureInfo'] = layer_params['getFeatureInfo']
@@ -207,26 +169,23 @@ class Command(BaseCommand):
 
     def handle(doc_fname, *args, **options):
 
-        if True:
-            #map_ = Map.objects.get(title_en='Himalaya + Nepal')
-            map_ = Map.objects.get(title_en='Maroc')
+        if False:
+            # map_ = Map.objects.get(title_en='Himalaya + Nepal')
+            map_ = Map.objects.get(title_en='philippines')
 
             blob = blob_get(map_)
             print(json.dumps(blob, indent=4))
-            #print(json.dumps(blob))
+            # print(json.dumps(blob))
         else:
             map__ = Map.objects.all()
 
             for map_ in map__:
-                #print(map_.pk)
-
                 blob = blob_get(map_)
-
                 try:
                     # Import Mapstore Data
                     e = MapStoreData.objects.get(resource_id='%s' % map_.pk)
 
-                    print(e.resource_id)
+                    # print(e.resource_id)
                     e.blob = json.dumps(blob)
                     e.save()                 
                 except:
