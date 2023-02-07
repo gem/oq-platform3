@@ -79,7 +79,7 @@ def blob_get(map_):
     map_json['center'] = {
         "x": x,
         "y": y,
-         "crs": "EPSG:4326",
+        "crs": "EPSG:4326",
         } 
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
