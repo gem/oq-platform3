@@ -73,14 +73,18 @@ def blob_get(map_):
             }
 
     map_json = blob['map']
-    tran = transform(Proj(init='epsg:3857'), Proj(init='epsg:4326'), map_.center_x, map_.center_y)
+
+    # Convert projections to EPSG:4326 with Pyproj
+    tran = transform(Proj(init=map_.projection), Proj(init='epsg:4326'), map_.center_x, map_.center_y)
     x,y = tran
-    print("blob xy %s, %s" % (x,y))
+    # print("blob xy %s, %s" % (x,y))
+
     map_json['center'] = {
         "x": x,
         "y": y,
         "crs": "EPSG:4326",
         } 
+    
     map_json['projection'] = map_.projection
     crs = CRS.from_string(map_.projection)
     wkt = crs.ellipsoid.to_wkt()
