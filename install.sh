@@ -35,7 +35,7 @@ python3.8 -m venv venv
 source ./venv/bin/activate
 
 # install django 3.2.12 
-pip install Django==3.2.12
+pip install --default-timeout=100 Django==3.2.12
 
 cd $HOME
 
