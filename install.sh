@@ -149,11 +149,11 @@ if [ -d geoserver ]; then
 fi
 
 # dump folder from ftp
-# wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
-# tar zxf dump.tar.gz
-# sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
-# rm -rf dump.tar.gz | true
-# rm -rf dump | true
+wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
+tar zxf dump.tar.gz
+sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
+rm -rf dump.tar.gz | true
+rm -rf dump | true
     
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
