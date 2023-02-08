@@ -66,8 +66,8 @@
           <div class="alert alert-danger" ng-if="item.dirty_state == false && item.is_approved == true && item.is_published == false">{% trans "UNPUBLISHED" %}</div>
 
           {% verbatim %}
-          <div class="abstract" ng-bind-html="item.abstract | limitTo: 300"></div>
-          <p class="abstract">{{ item.abstract.length  > 300 ? '...' : ''}}</p>
+          <div class="abstract" ng-bind-html="item.abstract | limitTo: 150"></div>
+          <p class="abstract">{{ item.abstract.length  > 150 ? '...' : ''}}</p>
           <div class="row">
             <div class="col-xs-12 item-items">
               <ul class="list-inline">

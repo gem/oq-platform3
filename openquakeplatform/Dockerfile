@@ -89,7 +89,9 @@ COPY openquakeplatform/gs_data /usr/src/openquakeplatform/gs_data
 ADD urls.py /usr/src/geonode/geonode/urls.py
 
 # templates and static 
-# COPY openquakeplatform/templates /usr/src/openquakeplatform/openquakeplatform/templates
+COPY openquakeplatform/templates/base/templates/* /usr/src/geonode/geonode/base/templates/base/
+COPY openquakeplatform/templates/layers/templates/* /usr/src/geonode/geonode/layers/templates/layers/
+COPY openquakeplatform/templates/maps/templates/* /usr/src/geonode/geonode/maps/templates/maps/
 # ADD openquakeplatform/templates/layers/templates/* /usr/src/geonode/geonode/layers/templates/layers/
 # ADD openquakeplatform/templates/maps/templates/* /usr/src/geonode/geonode/maps/templates/maps/
 # COPY openquakeplatform/static /usr/src/openquakeplatform/openquakeplatform/static
