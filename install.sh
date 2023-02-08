@@ -48,8 +48,8 @@ sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 # display each command before executing it
 # set -x
 
-sudo apt-get -y update
-sudo apt-get -y upgrade
+# sudo apt-get -y update
+# sudo apt-get -y upgrade
 
 #install git and ca-certificates
 sudo apt-get -y install git ca-certificates wget
@@ -149,11 +149,11 @@ if [ -d geoserver ]; then
 fi
 
 # dump folder from ftp
-wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
-tar zxf dump.tar.gz
-sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
-rm -rf dump.tar.gz | true
-rm -rf dump | true
+# wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
+# tar zxf dump.tar.gz
+# sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
+# rm -rf dump.tar.gz | true
+# rm -rf dump | true
     
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
@@ -165,7 +165,7 @@ sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspa
 sudo cp -pr $NAME_PROJECT/gs_data/data/gwc-layers  geoserver_data/data/gwc-layers
 sudo chown -R root:root geoserver_data/data/gwc-layers
 
-# Docker build & start
+# Docker build and start
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
