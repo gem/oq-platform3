@@ -18,9 +18,13 @@ fi
 if [ -d "$name_project" -a -f "${name_project}/.env" ]; then
     cd "$name_project"
     docker-compose down
-    docker system prune
-    docker volume prune
-    docker rmi $(docker images -a -q)
+    docker network prune -f
+    docker rmi -f $(docker images --filter dangling=true -qa)
+    docker volume rm $(docker volume ls --filter dangling=true -q)
+    docker rmi -f $(docker images -qa)
+    # docker system prune
+    # docker volume prune
+    # docker rmi $(docker images -a -q)
     
     cd -
 fi
