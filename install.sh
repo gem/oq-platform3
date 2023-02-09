@@ -41,15 +41,14 @@ cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
 sudo rm -rf oq-platform3/openquakeplatform_src/geonode || true
-# sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
 # set -x
 
-# sudo apt-get -y update
-# sudo apt-get -y upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 #install git and ca-certificates
 sudo apt-get -y install git ca-certificates wget
@@ -189,10 +188,6 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 # import layers sql in db container and import in db postgres
 wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
-
-# mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
 
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
