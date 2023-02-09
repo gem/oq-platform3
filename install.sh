@@ -126,7 +126,7 @@ cd $NAME_PROJECT
 if [ ! -f .env ]; then
     secret_key="$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")"
     echo "secret_key: $secret_key"
-    sed "s/{{secret_key}}/$secret_key/g" <.env.tmpl >.env
+    sed "s/{{secret_key}}/$secret_key/g" <dot_env.tmpl >.env
 fi    
 
 if [ -d geoserver_data ]; then
