@@ -1,0 +1,55 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--56cfc338:16a2aa3373a:-7f8c</id>
+  <name>aftershocks_iris_20150429_geojson</name>
+  <nativeName>aftershocks_iris_20150429_geojson</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--183637e2:18105260965:-7ffd</id>
+  </namespace>
+  <title>aftershocks_iris_20150429_geojson</title>
+  <abstract>No abstract provided</abstract>
+  <keywords>
+    <string>features</string>
+    <string>aftershocks_iris_20150429_geojson</string>
+  </keywords>
+  <nativeCRS>GEOGCS["WGS 84",
+  DATUM["World Geodetic System 1984",
+    SPHEROID["WGS 84", 6378137.0, 298.257223563, AUTHORITY["EPSG","7030"]],
+    AUTHORITY["EPSG","6326"]],
+  PRIMEM["Greenwich", 0.0, AUTHORITY["EPSG","8901"]],
+  UNIT["degree", 0.017453292519943295],
+  AXIS["Geodetic longitude", EAST],
+  AXIS["Geodetic latitude", NORTH],
+  AUTHORITY["EPSG","4326"]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>82.3889</minx>
+    <maxx>87.3382</maxx>
+    <miny>27.4597</miny>
+    <maxy>28.8456</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>82.3889</minx>
+    <maxx>87.3382</maxx>
+    <miny>27.4597</miny>
+    <maxy>28.8456</maxy>
+    <crs>GEOGCS["WGS84(DD)", 
+  DATUM["WGS84", 
+    SPHEROID["WGS84", 6378137.0, 298.257223563]], 
+  PRIMEM["Greenwich", 0.0], 
+  UNIT["degree", 0.017453292519943295], 
+  AXIS["Geodetic longitude", EAST], 
+  AXIS["Geodetic latitude", NORTH]]</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <advertised>true</advertised>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--677c71e6:183401f05e2:-7ffc</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

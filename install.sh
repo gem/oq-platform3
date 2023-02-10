@@ -15,6 +15,7 @@ NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
 GEOSERVER_VERSION="2.19.6"
 
+
 rem_sig_hand() {
     trap "" ERR
     echo 'signal trapped'
@@ -38,10 +39,8 @@ pip install --default-timeout=100 Django==3.2.12
 
 cd $HOME
 
-# sudo rm -rf oq-moon openquakeplatform geonode-project geoserver geoserver_data oq || true
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
-sudo rm -rf oq-platform3/openquakeplatform/geonode || true
-# sudo rm oq-platform3/geoserver_data.tar.gz || true
+sudo rm -rf oq-platform3/openquakeplatform_src/geonode || true
 sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
@@ -53,11 +52,6 @@ sudo apt-get -y upgrade
 
 #install git and ca-certificates
 sudo apt-get -y install git ca-certificates wget
-
-cd $GEM_GIT_PACKAGE
-cp .env.sample .env
-
-cd $HOME
 
 inst_docker () {
     # install requirements for docker
@@ -81,60 +75,85 @@ inst_docker
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
 
-# uwsgi check if fixed in branch 3.3.3 of geonode-project
-cp $HOME/oq-platform3/uwsgi_files/create_envfile.py $HOME/geonode-project/
-cp $HOME/oq-platform3/uwsgi_files/geonode.conf.envsubst $HOME/geonode-project/docker/nginx/
-cp $HOME/oq-platform3/uwsgi_files/uwsgi.ini $HOME/geonode-project/src/
+if [ "$IS_STARTPROJECT" ]; then
+    # uwsgi check if fixed in branch 3.3.3 of geonode-project
+    cp $HOME/oq-platform3/uwsgi_files/create_envfile.py $HOME/geonode-project/
+    cp $HOME/oq-platform3/uwsgi_files/geonode.conf.envsubst $HOME/geonode-project/docker/nginx/
+    cp $HOME/oq-platform3/uwsgi_files/uwsgi.ini $HOME/geonode-project/src/
+    
+    cp $HOME/oq-platform3/.env $HOME/geonode-project/
+    cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
+    cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
+    cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 
-cp $HOME/oq-platform3/.env $HOME/geonode-project/
-cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
-cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
-cp $HOME/oq-platform3/local_settings.py.tmpl $HOME/geonode-project/
-cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
-cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-cp -pr $HOME/oq-platform3/openquakeplatform/ghec_viewer $HOME/geonode-project/
-cp -pr $HOME/oq-platform3/openquakeplatform/isc_viewer $HOME/geonode-project/
-
-# template
-mkdir $HOME/geonode-project/openquakeplatform
-mkdir $HOME/geonode-project/openquakeplatform/templates
-cp -pr $HOME/oq-platform3/openquakeplatform/templates/* $HOME/geonode-project/openquakeplatform/templates/
-cp $HOME/oq-platform3/openquakeplatform/urls.py $HOME/geonode-project/openquakeplatform/
-# cp -pr $HOME/oq-platform3/openquakeplatform/layers $HOME/geonode-project/openquakeplatform/
-# cp -pr $HOME/oq-platform3/openquakeplatform/maps $HOME/geonode-project/openquakeplatform/
-
-#static
-mkdir $HOME/geonode-project/openquakeplatform/static
-mkdir $HOME/geonode-project/openquakeplatform/static/css
-cp $HOME/oq-platform3/openquakeplatform/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
-cp -pr $HOME/oq-platform3/openquakeplatform/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
-
-
-# cp -pr $HOME/oq-platform3/gs_data/data $HOME/geonode-project/openquakeplatform/
-wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-tar zxf data.tar.gz
-# wget https://ftp.openquake.org/oq-platform3/gs_data.tar.gz
-# tar zxf gs_data.tar.gz
-# sudo cp -pr gs_data $HOME/geonode-project/openquakeplatform/
-sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
-
-rm data.tar.gz gs_data.tar.gz | true
-rm -rf data | true
-cp -pr $HOME/oq-platform3/openquakeplatform/bin $HOME/geonode-project
-cp -pr $HOME/oq-platform3/openquakeplatform/common $HOME/geonode-project
-
-# virtual env
-python3.8 -m venv $HOME/platform3
-source $HOME/platform3/bin/activate
-
-# install django
-pip install Django==3.2.12
-
-# start django project
-django-admin startproject --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+    cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
+    
+    # template
+    mkdir -p $HOME/geonode-project/openquakeplatform/templates
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/templates/* $HOME/geonode-project/openquakeplatform/templates/
+    cp $HOME/oq-platform3/openquakeplatform_src/urls.py $HOME/geonode-project/openquakeplatform/
+    
+    #static
+    mkdir -p $HOME/geonode-project/openquakeplatform/static/css
+    cp $HOME/oq-platform3/openquakeplatform_src/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
+    
+    
+    wget https://ftp.openquake.org/oq-platform3/data.tar.gz
+    tar zxf data.tar.gz
+    sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
+    
+    rm data.tar.gz gs_data.tar.gz | true
+    rm -rf data | true
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/bin $HOME/geonode-project
+    cp -pr $HOME/oq-platform3/openquakeplatform_src/common $HOME/geonode-project
+    
+    cd $GEM_GIT_PACKAGE
+    cp .env.sample .env
+    
+    # start django project
+    django-admin startproject -v 3 --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
+    exit 0
+fi    
+ 
+cd $GEM_GIT_PACKAGE
+cp local_settings.py.tmpl $NAME_PROJECT/$NAME_PROJECT/local_settings.py 
 
 cd $NAME_PROJECT
+if [ ! -f .env ]; then
+    secret_key="$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")"
+    echo "secret_key: $secret_key"
+    sed "s/{{secret_key}}/$secret_key/g" <dot_env.tmpl >.env
+fi    
 
+if [ -d geoserver_data ]; then
+    read -p 'geoserver_data directory already exists, continue? [y-n]' ans
+    if [ "$ans" != "y" -a "$ans" != "Y" ]; then
+        echo "installation interrupted"
+        exit 1
+    fi
+    sudo rm -rf geoserver_data
+fi
+
+
+if [ -d geoserver ]; then
+    read -p 'geoserver directory already exists, continue? [y-n]' ans
+    if [ "$ans" != "y" -a "$ans" != "Y" ]; then
+        echo "installation interrupted"
+        exit 1
+    fi
+    sudo rm -rf geoserver
+fi
+
+# dump folder from ftp
+wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
+tar zxf dump.tar.gz
+sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
+rm -rf dump.tar.gz | true
+rm -rf dump | true
+    
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
 unzip -q geoserver.war -d geoserver
@@ -145,10 +164,9 @@ sudo cp -pr $NAME_PROJECT/gs_data/data/workspaces/*  geoserver_data/data/workspa
 sudo cp -pr $NAME_PROJECT/gs_data/data/gwc-layers  geoserver_data/data/gwc-layers
 sudo chown -R root:root geoserver_data/data/gwc-layers
 
-# Docker build & start
+# Docker build and start
 docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
-# sudo cp -r $HOME/geoserver_data/data/workspaces/oqplatform/oqplatform geoserver_data/data/workspaces/oqplatform
 docker-compose up -d db
 
 sleep 20
@@ -159,26 +177,17 @@ export COMPOSE_HTTP_TIMEOUT=400
 # COMPOSE_HTTP_TIMEOUT=220 docker-compose up -d
 docker-compose up -d
 
-sleep 200
+sleep 350
 
 # Run commands on django container
-docker-compose exec -T django bash -c "chmod +x *.sh"
-docker-compose exec -T django bash -c "./manage.sh makemigrations"
-docker-compose exec -T django bash -c "./manage.sh migrate"
-# docker-compose exec -T django bash -c "./manage.sh fixsitename"
-docker-compose exec -T django bash -c "mv local_settings.py $NAME_PROJECT/local_settings.py"
-
-
+docker-compose exec -T django bash -c "./manage.sh makemigrations -v 3"
+docker-compose exec -T django bash -c "./manage.sh migrate -v 3"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
 # import layers sql in db container and import in db postgres
 wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
-
-# for i in $(find . -name '/sql_new/*.sql'); do 
-#     sed -i 's/openquakeplatform_data/openquakeplatform/g' "$i"
-# done
 
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
@@ -190,21 +199,21 @@ rm sql_new.tar.gz
 docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
 docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
-docker-compose exec -T django bash -c "./manage.sh add_data"
+docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
+docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
-docker-compose exec -T django bash -c "./manage.sh updatelayers -u GEM"
 
 # Create programmatically ISC and GHEC from json
 docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
 docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
+
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# docker-compose stop
-# docker-compose start
-# 
-# sleep 15
-
 echo "Installation complete."
+
+if [ "$NO_EXEC_TEST" = "notest" ] ; then
+    exit 0
+fi
 
 #function complete procedure for tests
 exec_test () {    
@@ -242,19 +251,17 @@ exec_set_map_thumbs () {
 
 # logs
 do_logs () {
-    cd $HOME/$NAME_PROJECT
+    cd $HOME/$GEM_GIT_PACKAGE/$NAME_PROJECT
     docker-compose logs > $HOME/docker.log
 }
 
 # tests
-if [ "$NO_EXEC_TEST" != "notest" ] ; then
-    # install environment for testing
-    exec_test
-    # script to generate map thumbnails
-    # exec_set_map_thumbs
-    # run tests
-    run_test
-    # docker logs
-    do_logs
-fi
+# install environment for testing
+exec_test
+# script to generate map thumbnails
+# exec_set_map_thumbs
+# run tests
+run_test
+# docker logs
+do_logs
 

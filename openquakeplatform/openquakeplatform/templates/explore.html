@@ -1,0 +1,34 @@
+{% extends "geonode_base.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "OpenQuake Explore" %} — {{ block.super }} {% endblock %}
+
+{% block body_outer %}
+<div class="page-header">
+  <h2>{% trans "OpenQuake Explore" %}</h2>
+</div>
+<style>
+    .oq-button-home {padding: 0 22px}
+</style>
+<div style="float:left; width: 80%; padding: 0 0 50px;">
+    <!-- Main page content goes here -->
+            <b>Seismic Hazard Data Sets and Models:</b>
+            <ul>
+              <li><a href="/maps/{{ ISC_MAP_ID }}">Global Instrumental Earthquake Catalogue (1900 - 2009)</a></li>
+              <li><a href="/maps/{{ GHEC_MAP_ID }}">Global Historical Earthquake Catalogue and Archive (1000-1903)</a></li>
+              <li><a href="/maps/{{ ACTFAU_MAP_ID }}">Homogeneous Active Faults</a></li>
+              <li><a href="/maps/{{ STRRAT_MAP_ID }}">Geodetic Strain Rate Model</a></li>
+            </ul>
+
+            <b>Explore:</b>
+            <ul>
+              <li><a class="static-link" href="{% url 'maps_browse' %}">Maps</a></li>
+              <li><a class="static-link" href="{% url 'layer_browse' %}">Individual Datasets (Layers)</a></li>
+              <li><a class="static-link" href="/documents/">Documents</a></li>
+              <li><a class="static-link" href="{% url 'profile_browse' %}">People</a></li>
+            </ul>
+</div>            
+
+{% include 'includes/sidebar.html' %}
+{% endblock %}
+
