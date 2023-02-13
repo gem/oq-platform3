@@ -34,7 +34,7 @@ class SetThumbsTest(unittest.TestCase):
             # Click edit map
             edit_map_button_meta = pla.xpath_finduniq(
                 "//button[@data-target='#edit-map'"
-                " and normalize-space(text())='Edit Map']",
+                " and normalize-space(text())='Editing Tools']",
                 TIMEOUT, 1)
             edit_map_button_meta.click()
 
@@ -60,7 +60,7 @@ class SetThumbsTest(unittest.TestCase):
             # Click edit map
             edit_map_button = pla.xpath_finduniq(
                 "//button[@data-target='#edit-map'"
-                " and normalize-space(text())='Edit Map']",
+                " and normalize-space(text())='Editing Tools']",
                 TIMEOUT, 1)
             edit_map_button.click()
 
