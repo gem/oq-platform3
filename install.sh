@@ -177,7 +177,7 @@ export COMPOSE_HTTP_TIMEOUT=400
 # COMPOSE_HTTP_TIMEOUT=220 docker-compose up -d
 docker-compose up -d
 
-sleep 350
+sleep 450
 
 # Run commands on django container
 docker-compose exec -T django bash -c "./manage.sh makemigrations -v 3"
