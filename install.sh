@@ -260,7 +260,7 @@ do_logs () {
 exec_test
 # script to generate map thumbnails
 exec_set_map_thumbs
-sleep(50000)
+sleep 50000
 # run tests
 run_test
 # docker logs
