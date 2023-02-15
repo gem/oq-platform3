@@ -39,8 +39,8 @@ class SetThumbsTest(unittest.TestCase):
             edit_map_button_meta.click()
 
             edit_meta = pla.xpath_finduniq(
-                "//a[@href='/maps/%s/metadata'"
-                " and normalize-space(text())='Edit']" % link_meta,
+                "//a[@href='/maps/%s/metadata_advanced'"
+                " and normalize-space(text())='Advanced Edit']" % link_meta,
                 TIMEOUT, 1)
             edit_meta.click()
 
@@ -50,12 +50,14 @@ class SetThumbsTest(unittest.TestCase):
                 TIMEOUT, 1)
             update_button_meta.click()
 
+            time.sleep(5)
+
             print('Refreshed Metadata for map with id: %s' % link_meta)
 
         for link in links:
             pla.get('/maps/%s' % link)
 
-            time.sleep(3)
+            time.sleep(5)
 
             # Click edit map
             edit_map_button = pla.xpath_finduniq(
@@ -63,6 +65,8 @@ class SetThumbsTest(unittest.TestCase):
                 " and normalize-space(text())='Editing Tools']",
                 TIMEOUT, 1)
             edit_map_button.click()
+
+            time.sleep(2)
 
             # Click set thumbnail
             edit_thumb = pla.xpath_finduniq(
