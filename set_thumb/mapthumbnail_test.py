@@ -25,34 +25,34 @@ class SetThumbsTest(unittest.TestCase):
             link = map_item.get_attribute("href")
             links.append(os.path.basename(link))
 
-        for link_meta in links:
+        # for link_meta in links:
 
-            pla.get('/maps/%s' % link_meta)
+        #     pla.get('/maps/%s' % link_meta)
 
-            time.sleep(5)
+        #     time.sleep(5)
 
-            # Click edit map
-            edit_map_button_meta = pla.xpath_finduniq(
-                "//button[@data-target='#edit-map'"
-                " and normalize-space(text())='Editing Tools']",
-                TIMEOUT, 1)
-            edit_map_button_meta.click()
+        #     # Click edit map
+        #     edit_map_button_meta = pla.xpath_finduniq(
+        #         "//button[@data-target='#edit-map'"
+        #         " and normalize-space(text())='Editing Tools']",
+        #         TIMEOUT, 1)
+        #     edit_map_button_meta.click()
 
-            edit_meta = pla.xpath_finduniq(
-                "//a[@href='/maps/%s/metadata_advanced'"
-                " and normalize-space(text())='Advanced Edit']" % link_meta,
-                TIMEOUT, 1)
-            edit_meta.click()
+        #     edit_meta = pla.xpath_finduniq(
+        #         "//a[@href='/maps/%s/metadata_advanced'"
+        #         " and normalize-space(text())='Advanced Edit']" % link_meta,
+        #         TIMEOUT, 1)
+        #     edit_meta.click()
 
-            # Click update metadata
-            update_button_meta = pla.xpath_findfirst(
-                "//input[@type='submit' and @value='Update']",
-                TIMEOUT, 1)
-            update_button_meta.click()
+        #     # Click update metadata
+        #     update_button_meta = pla.xpath_findfirst(
+        #         "//input[@type='submit' and @value='Update']",
+        #         TIMEOUT, 1)
+        #     update_button_meta.click()
 
-            time.sleep(5)
+        #     time.sleep(5)
 
-            print('Refreshed Metadata for map with id: %s' % link_meta)
+        #     print('Refreshed Metadata for map with id: %s' % link_meta)
 
         for link in links:
             pla.get('/maps/%s' % link)
@@ -75,4 +75,8 @@ class SetThumbsTest(unittest.TestCase):
                 TIMEOUT, 1)
             edit_thumb.click()
 
+            time.sleep(2)
+
             print('Set thumbnail for map with id: %s' % link)
+
+    pla = platform_get()
