@@ -245,7 +245,7 @@ run_test () {
 
 #set thumbnails
 exec_set_map_thumbs () {
-    export DISPLAY=:50.0
+    export DISPLAY=:1
     python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/set_thumb/mapthumbnail_test.py
 }
 
