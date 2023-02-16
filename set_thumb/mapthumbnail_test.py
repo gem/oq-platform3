@@ -57,7 +57,7 @@ class SetThumbsTest(unittest.TestCase):
         for link in links:
             pla.get('/maps/%s' % link)
 
-            time.sleep(5)
+            time.sleep(3)
 
             # Click edit map
             edit_map_button = pla.xpath_finduniq(
@@ -79,4 +79,4 @@ class SetThumbsTest(unittest.TestCase):
 
             print('Set thumbnail for map with id: %s' % link)
 
-    pla = platform_get()
+        pla.get('/maps/')
