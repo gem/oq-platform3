@@ -87,8 +87,8 @@ if [ "$IS_STARTPROJECT" ]; then
     cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 
     cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
+    #cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
+    #cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
     
     # template
     mkdir -p $HOME/geonode-project/openquakeplatform/templates
@@ -169,7 +169,7 @@ docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
 
-sleep 20
+sleep 15
 
 export DOCKER_CLIENT_TIMEOUT=400
 export COMPOSE_HTTP_TIMEOUT=400
@@ -196,16 +196,16 @@ rm -rf sql
 rm sql_new.tar.gz
 
 ## load data for gec and isc viewer
-docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
-docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
+#docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
+#docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
 # Create programmatically ISC and GHEC from json
-docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
-docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
+#docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
+#docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
@@ -255,11 +255,12 @@ do_logs () {
     docker-compose logs > $HOME/docker.log
 }
 
-# tests
+# running tests
+
 # install environment for testing
 exec_test
 # script to generate map thumbnails
-# exec_set_map_thumbs
+exec_set_map_thumbs
 # run tests
 run_test
 # docker logs

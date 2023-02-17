@@ -18,23 +18,12 @@
         <div class="col-xs-8 item-details">
           <div class="row">
             <div class="col-xs-10">
-              <p class="item-meta">
-                  <span class="item-category">{{ item.category__gn_description }}</span><br>
-                  <span class="item-category" ng-if="item.group"><a href="{{ item.site_url }}groups/group/{{ item.group }}/activity/"><i class="fa fa-group" aria-hidden="true" style="margin-right: 8px;"></i>{{ item.group_name }}</a><br></span>
-                  <span class="item-category" ng-if="item.has_time">
-                    {% endverbatim %}
-                    <i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 8px;"></i>{% trans "Temporal Serie" %}<br>
-                    {% verbatim %}
-                  </span>
-              </p>
               <h4>
-                  <i ng-if="item.store_type == 'remoteStore'" title="Remote Service" class="fa fa-external-link fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'dataStore'" title="Vector Data" class="fa fa-pencil-square-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'coverageStore'" title="Raster Data" class="fa fa-picture-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'dataset'" title="File/Dataset" class="fa fa-newspaper-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'map'" title="Map" class="fa fa-map-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'geoapp'" title="App" class="fa fa-gears fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <a href="{{ item.detail_url }}">{{ item.title }}</a>
+                  <a ng-if="item.detail_url.indexOf('/layers/') > -1" href="{{ item.detail_url }}"><i class="fa fa-clone"></i> {{ item.title }}</a>
+                  <a class="oq-map" ng-if="item.detail_url.indexOf('/maps/') > -1" href="{{ item.detail_url }}"><i class="fa fa-map-marker"></i> {{ item.title }}</a>
+                  <a ng-if="item.detail_url.indexOf('/documents/') > -1" href="{{ item.detail_url }}"><i class="fa fa-file"></i> {{ item.title }}</a>
+              </h4>
+
               </h4>
             </div>
             {% endverbatim %}
