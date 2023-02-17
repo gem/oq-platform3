@@ -41,15 +41,14 @@ cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
 sudo rm -rf oq-platform3/openquakeplatform_src/geonode || true
-# sudo rm oq-platform3/geoserver_data.tar.gz || true
 sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 
 # display each command before executing it
 # set -x
 
-# sudo apt-get -y update
-# sudo apt-get -y upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 #install git and ca-certificates
 sudo apt-get -y install git ca-certificates wget
@@ -88,8 +87,8 @@ if [ "$IS_STARTPROJECT" ]; then
     cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
 
     cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
+    #cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
+    #cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
     
     # template
     mkdir -p $HOME/geonode-project/openquakeplatform/templates
@@ -126,7 +125,7 @@ cd $NAME_PROJECT
 if [ ! -f .env ]; then
     secret_key="$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")"
     echo "secret_key: $secret_key"
-    sed "s/{{secret_key}}/$secret_key/g" <.env.tmpl >.env
+    sed "s/{{secret_key}}/$secret_key/g" <dot_env.tmpl >.env
 fi    
 
 if [ -d geoserver_data ]; then
@@ -149,11 +148,11 @@ if [ -d geoserver ]; then
 fi
 
 # dump folder from ftp
-# wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
-# tar zxf dump.tar.gz
-# sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
-# rm -rf dump.tar.gz | true
-# rm -rf dump | true
+wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
+tar zxf dump.tar.gz
+sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
+rm -rf dump.tar.gz | true
+rm -rf dump | true
     
 # Geoserver
 wget --no-check-certificate --progress=bar:force:noscroll https://artifacts.geonode.org/geoserver/${GEOSERVER_VERSION}/geoserver.war -O geoserver.war
@@ -170,7 +169,7 @@ docker-compose build --no-cache
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
 docker-compose up -d db
 
-sleep 20
+sleep 15
 
 export DOCKER_CLIENT_TIMEOUT=400
 export COMPOSE_HTTP_TIMEOUT=400
@@ -190,10 +189,6 @@ docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakepl
 wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
 
-# mv sql/ghec_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure.sql sql/gheck_viewer_measure.sql.not
-# mv sql/isc_viewer_measure2.sql sql/gheck_viewer_measure.sql.not
-
 docker cp sql db4openquakeplatform:sql
 # docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
 docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform"
@@ -201,16 +196,16 @@ rm -rf sql
 rm sql_new.tar.gz
 
 ## load data for gec and isc viewer
-docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
-docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
+#docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
+#docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
 # Create programmatically ISC and GHEC from json
-docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
-docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
+#docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
+#docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
 
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
@@ -260,11 +255,12 @@ do_logs () {
     docker-compose logs > $HOME/docker.log
 }
 
-# tests
+# running tests
+
 # install environment for testing
 exec_test
 # script to generate map thumbnails
-# exec_set_map_thumbs
+exec_set_map_thumbs
 # run tests
 run_test
 # docker logs

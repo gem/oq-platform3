@@ -343,7 +343,10 @@ span.user-contrib {
 .item-thumb img {
     border: 1px solid #eeeeee;
 }
-
+.item-details .item-meta {
+  margin-top: 1em;
+  display: none;
+}
 
 /*Responsive */
 @media (min-width: 1024px) {

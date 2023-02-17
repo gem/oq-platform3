@@ -19,13 +19,11 @@
           <div class="row">
             <div class="col-xs-10">
               <h4>
-                  <i ng-if="item.store_type == 'remoteStore'" title="Remote Service" class="fa fa-external-link fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'dataStore'" title="Vector Data" class="fa fa-pencil-square-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'coverageStore'" title="Raster Data" class="fa fa-picture-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'dataset'" title="File/Dataset" class="fa fa-newspaper-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'map'" title="Map" class="fa fa-map-o fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <i ng-if="item.store_type == 'geoapp'" title="App" class="fa fa-gears fa-1" style="vertical-align:  middle;padding-right: 10px;"></i>
-                  <a href="{{ item.detail_url }}">{{ item.title }}</a>
+                  <a ng-if="item.detail_url.indexOf('/layers/') > -1" href="{{ item.detail_url }}"><i class="fa fa-clone"></i> {{ item.title }}</a>
+                  <a class="oq-map" ng-if="item.detail_url.indexOf('/maps/') > -1" href="{{ item.detail_url }}"><i class="fa fa-map-marker"></i> {{ item.title }}</a>
+                  <a ng-if="item.detail_url.indexOf('/documents/') > -1" href="{{ item.detail_url }}"><i class="fa fa-file"></i> {{ item.title }}</a>
+              </h4>
+
               </h4>
             </div>
             {% endverbatim %}
@@ -57,8 +55,8 @@
           <div class="alert alert-danger" ng-if="item.dirty_state == false && item.is_approved == true && item.is_published == false">{% trans "UNPUBLISHED" %}</div>
 
           {% verbatim %}
-          <div class="abstract" ng-bind-html="item.abstract | limitTo: 300"></div>
-          <p class="abstract">{{ item.abstract.length  > 300 ? '...' : ''}}</p>
+          <div class="abstract" ng-bind-html="item.abstract | limitTo: 150"></div>
+          <p class="abstract">{{ item.abstract.length  > 150 ? '...' : ''}}</p>
           <div class="row">
             <div class="col-xs-12 item-items">
               <ul class="list-inline">
