@@ -1,0 +1,25 @@
+<layer>
+  <name>ghec_viewer_measure</name>
+  <id>LayerInfoImpl-4a59edbd:1866e66edad:-7ef1</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-4a59edbd:1866e66edad:-7fde</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fdd</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fde</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-4a59edbd:1866e66edad:-7ef2</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-02-20 13:34:37.883 UTC</dateCreated>
+  <dateModified>2023-02-20 13:35:43.517 UTC</dateModified>
+</layer>
