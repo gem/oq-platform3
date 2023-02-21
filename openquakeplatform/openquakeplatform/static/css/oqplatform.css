@@ -347,6 +347,11 @@ span.user-contrib {
   margin-top: 1em;
   display: none;
 }
+.page-header {
+  padding-bottom: 0!important;
+  margin: 44px 0 30px!important;
+  border-bottom: 0!important;
+}
 
 /*Responsive */
 @media (min-width: 1024px) {
