@@ -155,9 +155,12 @@ rm sql_new.tar.gz
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 docker-compose exec -T django bash -c "./manage.sh serialize"
 docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
-docker-compose exec -T django bash -c "./manage.sh clear"
 
+# sync geoserver with geonode
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
+
+# clean obsolete layers
+docker-compose exec -T django bash -c "./manage.sh clear"
 
 echo "Installation complete."
 
