@@ -20,11 +20,15 @@ class Command(BaseCommand):
         # Istance user
         license = License.objects.get(name='CC BY-SA 3.0')
 
+        # Istance user
+        category = TopicCategory.objects.get(gn_description_en='Hazard')
+
         ghec_layer_ = Layer.objects.get(id='362')
         ghec_layer_.abstract_en = ("825 earthquakes of M >= 7"
             "87 studies supplying the most reliable input datasets from the archive")
         ghec_layer_.owner = owner
         ghec_layer_.license = license
+        ghec_layer_.category = category
         ghec_layer_.save()
 
         isc_layer_ = Layer.objects.get(id='363')
@@ -33,6 +37,7 @@ class Command(BaseCommand):
             "1918 and 1959 events with magnitude >= 5.5, occurred between 1960 and 2009")
         isc_layer_.owner = owner
         isc_layer_.license = license
+        isc_layer_.category = category
         isc_layer_.save()
 
         # delete obsolete layers

@@ -138,8 +138,8 @@ docker-compose up -d
 sleep 350
 
 # Run commands on django container
-docker-compose exec -T django bash -c "./manage.sh makemigrations -v 3"
-docker-compose exec -T django bash -c "./manage.sh migrate -v 3"
+docker-compose exec -T django bash -c "./manage.sh makemigrations"
+docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
@@ -154,13 +154,13 @@ rm sql_new.tar.gz
 
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 docker-compose exec -T django bash -c "./manage.sh serialize"
-docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
+# docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
 # sync geoserver with geonode
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
 
-# clean obsolete layers
-docker-compose exec -T django bash -c "./manage.sh clear"
+# import isc and ghec data, clean obsolete layers
+docker-compose exec -T django bash -c "./manage.sh isc_ghec"
 
 echo "Installation complete."
 
