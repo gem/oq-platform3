@@ -18,14 +18,14 @@ fi
 if [ -d "$name_project" -a -f "${name_project}/.env" ]; then
     cd "$name_project"
     docker-compose down
-    docker network prune -f
-    docker rmi -f $(docker images --filter dangling=true -qa)
-    docker volume rm $(docker volume ls --filter dangling=true -q)
+    docker network prune --force
+    # docker rmi -f $(docker images --filter dangling=true -qa)
+    docker volume rm $(docker volume ls -q)
     docker rmi -f $(docker images -qa)
-    # docker system prune
-    # docker volume prune
+    docker system prune --force
+    # docker volume prune --force
     # docker rmi $(docker images -a -q)
-    
+    docker builder prune -f --all    
     cd -
 fi
 export GEM_GIT_PACKAGE="oq-platform3"
