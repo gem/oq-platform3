@@ -192,7 +192,7 @@ footer ul {
 .oq-right-search,
 .oq-right-help,
 .oq-right-share {
-    margin: -13px 25px 0 -42px!important;
+    margin: -13px 25px 0 -45px!important;
 
 }    
 .oq-right-search a,
@@ -243,7 +243,7 @@ footer ul {
     min-height: 42px!important;
 }    
 .navbar-right {
-    margin-right: 40px!important;
+    margin-right: 70px!important;
     height: 42px;
 }    
 .oq-share {
