@@ -105,6 +105,11 @@ if [ -d geoserver ]; then
     sudo rm -rf geoserver
 fi
 
+# dump documents
+wget https://ftp.openquake.org/oq-platform3/documents.tar.gz
+tar zxf documents.tar.gz
+rm -rf documents.tar.gz | true
+
 # dump folder from ftp
 wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
 tar zxf dump.tar.gz
