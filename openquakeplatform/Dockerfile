@@ -87,7 +87,7 @@ COPY bin /usr/src/openquakeplatform/bin
 COPY common /usr/src/openquakeplatform/common
 COPY openquakeplatform/gs_data /usr/src/openquakeplatform/gs_data
 ADD urls.py /usr/src/geonode/geonode/urls.py
-COPY documents/* /mnt/volumes/statics/uploaded/documents/document
+COPY openquakeplatform/documents/* /mnt/volumes/statics/uploaded/documents/
 
 # templates and static 
 COPY openquakeplatform/templates/base/templates/* /usr/src/geonode/geonode/base/templates/base/
