@@ -122,6 +122,7 @@ body.home {
 .ac-results {
     background-color: #fff;
     padding: 5px;
+    position:absolute;
 }
 .footer-col-md-6 {
     width: 100%!important;
@@ -243,7 +244,7 @@ footer ul {
     min-height: 42px!important;
 }    
 .navbar-right {
-    margin-right: 70px!important;
+    margin-right: 50px!important;
     height: 42px;
 }    
 .oq-share {
