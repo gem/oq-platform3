@@ -12,8 +12,8 @@ export name_project="$1"
 export no_exec_test="$2"
 export type_install="$3"
 
-if [ "$name_project" = "" ]; then
-    echo "Need to add name project as argument"
+if [ "$name_project" = "" and "$type_install" = "" ]; then
+    echo "Need to add name project and install dev or prod as arguments"
     exit 1
 fi
 if [ -d "$name_project" -a -f "${name_project}/.env" ]; then
