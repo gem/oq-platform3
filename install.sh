@@ -13,6 +13,7 @@ DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
+TYPE_INSTALL="$6"
 GEOSERVER_VERSION="2.19.6"
 
 
@@ -105,12 +106,24 @@ if [ -d geoserver ]; then
     sudo rm -rf geoserver
 fi
 
-# dump documents
-wget https://ftp.openquake.org/oq-platform3/documents.tar.gz
-tar zxf documents.tar.gz
-rm -rf documents.tar.gz | true
+# documents from ftp
+if [ "$TYPE_INSTALL" = "prod" ] ; then
+    wget https://ftp.openquake.org/oq-platform3/documents.tar.gz
+    tar zxf documents.tar.gz
+    sudo cp -pr documents $HOME/oq-platform3/openquakeplatform/openquakeplatform
+fi
 
-# dump folder from ftp
+if [ "$TYPE_INSTALL" = "dev" ] ; then
+    wget https://ftp.openquake.org/oq-platform3/documents_dev.tar.gz
+    tar zxf documents_dev.tar.gz
+    mv documents_dev documents
+    sudo cp -pr documents $HOME/oq-platform3/openquakeplatform/openquakeplatform
+fi
+
+rm -rf documents.tar.gz | true
+rm -rf documents | true
+
+# dump from ftp
 wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
 tar zxf dump.tar.gz
 sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data

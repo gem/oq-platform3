@@ -10,6 +10,7 @@ fi
 
 export name_project="$1"
 export no_exec_test="$2"
+export type_install="$3"
 
 if [ "$name_project" = "" ]; then
     echo "Need to add name project as argument"
@@ -32,4 +33,4 @@ export GEM_GIT_PACKAGE="oq-platform3"
 export GEM_GIT_REPO="git@github.com:gem"
 export NO_EXEC_TEST=$no_exec_test
 echo "exec install.sh"
-./install.sh "" "" "" $NO_EXEC_TEST $name_project
+./install.sh "" "" "" $NO_EXEC_TEST $name_project $type_istall
