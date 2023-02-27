@@ -353,6 +353,10 @@ span.user-contrib {
   margin: 44px 0 30px!important;
   border-bottom: 0!important;
 }
+.oq-right-user-separated {
+  color: #fff;
+  margin: 12px 27px 0px -24px !important;
+}
 
 /*Responsive */
 @media (min-width: 1024px) {

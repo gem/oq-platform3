@@ -372,9 +372,6 @@
         </div>      
         </div>      
             </li>
-            {% if not user.is_authenticated and ACCOUNT_OPEN_SIGNUP and not READ_ONLY_MODE %}
-              <li class="oq-reg"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
-            {% endif %}
             {% if user.is_authenticated %}
             <li class="oq-user">
               <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -403,7 +400,11 @@
                 </ul>
               </li>
           {% else %}
-          <li class="oq-signin"><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
+            <li class="oq-signin"><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
+	    <li class="oq-right-user-separated">|</li>
+            {% if not user.is_authenticated and ACCOUNT_OPEN_SIGNUP and not READ_ONLY_MODE %}
+              <li class="oq-reg"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
+            {% endif %}
               {% endif %}
               {% if user.is_authenticated %}
                  <li class="oq-right-search">
