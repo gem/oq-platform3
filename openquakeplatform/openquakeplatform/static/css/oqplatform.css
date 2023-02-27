@@ -17,14 +17,14 @@ body.home {
     background: none!important;
 }    
 .home .jumbotron {
-    margin: 20px auto 0!important;
-    width: 75%;
-    background: rgba(0, 0, 0, 0.75)!important;
-    padding: 0!important;
-    height: 500px;
-}    
+  margin: 50px auto 0!important;
+  width: 75%;
+  background: rgba(0, 0, 0, 0.75)!important;
+  padding: 50px 0 !important;
+  height: 350px;
+}
 .home .jumbotron p {
-    font-size: 22px;
+    font-size: 21px;
 }
 .jumbotron .gn-container {
     float: left;
