@@ -41,7 +41,6 @@ pip install --default-timeout=100 Django==3.2.12
 cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
-sudo rm -rf oq-platform3/openquakeplatform_src/geonode || true
 sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
 sudo rm oq-platform3/openquakeplatform/.env || true
