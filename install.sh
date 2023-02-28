@@ -179,6 +179,9 @@ docker-compose exec -T django bash -c "./manage.sh updatelayers"
 # import isc and ghec data, clean obsolete layers
 docker-compose exec -T django bash -c "./manage.sh isc_ghec"
 
+# delete orphan layers and maps
+docker-compose exec -T django bash -c "./manage.sh clean"
+
 echo "Installation complete."
 
 if [ "$NO_EXEC_TEST" = "notest" ] ; then
