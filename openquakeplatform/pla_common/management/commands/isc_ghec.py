@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 
 class Command(BaseCommand):
     args = '<documents_document.json>'
-    help = ('Delete data not used')
+    help = ('Import isc and ghec metadata')
 
     def handle(doc_fname, *args, **options):
 
@@ -71,12 +71,3 @@ class Command(BaseCommand):
         isc2_layer_.temporal_extent_end = "2011-12-31T06:00:00"
         isc2_layer_.edition = "v2.00"
         isc2_layer_.save()
-
-        # delete obsolete layers
-        Layer.objects.get(id='296').delete()
-        Layer.objects.get(id='297').delete()
-        Layer.objects.get(id='302').delete()
-        Layer.objects.get(id='291').delete()
-        Layer.objects.get(id='292').delete()
-        Layer.objects.get(id='293').delete()
-        Layer.objects.get(id='294').delete()
