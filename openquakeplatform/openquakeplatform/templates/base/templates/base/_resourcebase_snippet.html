@@ -66,8 +66,6 @@
             {% if not request.user_agent.is_mobile %}
                 {% verbatim %}      
                 <li><a href="{{ item.detail_url }}"><i class="fa fa-eye"></i>{{ item.popular_count }}</a></li>
-                <li><a href="{{ item.detail_url }}#share"><i class="fa fa-share"></i>{{ item.share_count }}</a></li>
-                <li><a href="{{ item.detail_url }}#rate"><i class="fa fa-star"></i>{{ item.rating }}</a></li>
                 {% endverbatim %}
                   {% if user.is_authenticated and not READ_ONLY_MODE %}
                     {% verbatim %}

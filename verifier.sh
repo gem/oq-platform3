@@ -255,7 +255,7 @@ _devtest_innervm_run () {
    	cd ${GEM_GIT_PACKAGE}
 	pwd
 
-	./install.sh "" "" "" "" ${name_project}
+	./install.sh "" "" "" "" ${name_project} dev
 EOF
 
     echo "_devtest_innervm_run: exit"

@@ -18,7 +18,19 @@
       <p></p>
       <p>Welcome to the OpenQuake Platform, by the GEM Foundation. This web-based platform offers an interactive environment in which users can access, manipulate, share and add data, and explore models and tools for integrated assessment of earthquake risk.</p>
   </div>
-  {% include 'includes/sidebar.html' %}
+  {#{% include 'includes/sidebar.html' %}#}
+  <div class="oq-button-home">
+    <div class="bt">
+     <p><a class="oq-button-home-btn btn" href="/maps/" role="button"><i class="fa fa-map-marker"></i> Maps</a></p>
+    </div>
+    <div class="bt">
+     <p><a class="oq-button-home-btn btn" href="/layers/" role="button"><i class="fa fa-clone"></i> Layers</a></p>
+    </div>
+    <div class="bt">
+     <p><a class="oq-button-home-btn btn" href="{% url "account_login" %}?next=/documents/" role="button"><i class="fa fa-file"></i> Documents</a></p>
+    </div>
+  </div>
+
 </div>
 
   {% block mainbody %}

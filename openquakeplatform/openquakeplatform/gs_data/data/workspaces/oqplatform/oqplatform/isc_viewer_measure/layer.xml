@@ -1,0 +1,16 @@
+<layer>
+  <name>isc_viewer_measure</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e2e</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fd8</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-69c6c246:186738d712b:-7ee8</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-02-21 13:41:05.706 UTC</dateCreated>
+</layer>

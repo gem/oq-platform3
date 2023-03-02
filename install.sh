@@ -13,6 +13,7 @@ DB_PASSWORD="$2"
 HOST_SMTP="$3"
 NO_EXEC_TEST="$4"
 NAME_PROJECT="$5"
+TYPE_INSTALL="$6"
 GEOSERVER_VERSION="2.19.6"
 
 
@@ -40,9 +41,9 @@ pip install --default-timeout=100 Django==3.2.12
 cd $HOME
 
 sudo rm -rf oq-moon openquakeplatform geonode-project geoserver oq || true
-sudo rm -rf oq-platform3/openquakeplatform_src/geonode || true
 sudo rm -rf data || true
 sudo rm /usr/share/keyrings/docker-archive-keyring.gpg || true
+sudo rm oq-platform3/openquakeplatform/.env || true
 
 # display each command before executing it
 # set -x
@@ -74,49 +75,6 @@ inst_docker
 
 #clone of repo 3.3.x 
 git clone -b 3.3.x https://github.com/GeoNode/geonode-project.git $HOME/geonode-project
-
-if [ "$IS_STARTPROJECT" ]; then
-    # uwsgi check if fixed in branch 3.3.3 of geonode-project
-    cp $HOME/oq-platform3/uwsgi_files/create_envfile.py $HOME/geonode-project/
-    cp $HOME/oq-platform3/uwsgi_files/geonode.conf.envsubst $HOME/geonode-project/docker/nginx/
-    cp $HOME/oq-platform3/uwsgi_files/uwsgi.ini $HOME/geonode-project/src/
-    
-    cp $HOME/oq-platform3/.env $HOME/geonode-project/
-    cp $HOME/oq-platform3/Dockerfile $HOME/geonode-project/
-    cp $HOME/oq-platform3/docker-compose.yml $HOME/geonode-project/
-    cp -pr $HOME/oq-platform3/pla_common $HOME/geonode-project/
-
-    cp -pr $HOME/oq-platform3/data_commands $HOME/geonode-project/
-    #cp -pr $HOME/oq-platform3/openquakeplatform_src/ghec_viewer $HOME/geonode-project/
-    #cp -pr $HOME/oq-platform3/openquakeplatform_src/isc_viewer $HOME/geonode-project/
-    
-    # template
-    mkdir -p $HOME/geonode-project/openquakeplatform/templates
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/templates/* $HOME/geonode-project/openquakeplatform/templates/
-    cp $HOME/oq-platform3/openquakeplatform_src/urls.py $HOME/geonode-project/openquakeplatform/
-    
-    #static
-    mkdir -p $HOME/geonode-project/openquakeplatform/static/css
-    cp $HOME/oq-platform3/openquakeplatform_src/static/css/oqplatform.css $HOME/geonode-project/openquakeplatform/static/css/
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/static/geonode/img $HOME/geonode-project/openquakeplatform/static/
-    
-    
-    wget https://ftp.openquake.org/oq-platform3/data.tar.gz
-    tar zxf data.tar.gz
-    sudo cp -pr $HOME/oq-platform3/gs_data $HOME/geonode-project/openquakeplatform/
-    
-    rm data.tar.gz gs_data.tar.gz | true
-    rm -rf data | true
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/bin $HOME/geonode-project
-    cp -pr $HOME/oq-platform3/openquakeplatform_src/common $HOME/geonode-project
-    
-    cd $GEM_GIT_PACKAGE
-    cp .env.sample .env
-    
-    # start django project
-    django-admin startproject -v 3 --template=$HOME/geonode-project -e py,sh,md,rst,json,yml,ini,env,sample,properties -n monitoring-cron -n Dockerfile $NAME_PROJECT
-    exit 0
-fi    
  
 cd $GEM_GIT_PACKAGE
 cp local_settings.py.tmpl $NAME_PROJECT/$NAME_PROJECT/local_settings.py 
@@ -147,7 +105,24 @@ if [ -d geoserver ]; then
     sudo rm -rf geoserver
 fi
 
-# dump folder from ftp
+# documents from ftp
+if [ "$TYPE_INSTALL" = "prod" ] ; then
+    wget https://ftp.openquake.org/oq-platform3/documents.tar.gz
+    tar zxf documents.tar.gz
+    sudo cp -pr documents $HOME/oq-platform3/openquakeplatform/openquakeplatform
+fi
+
+if [ "$TYPE_INSTALL" = "dev" ] ; then
+    wget https://ftp.openquake.org/oq-platform3/documents_dev.tar.gz
+    tar zxf documents_dev.tar.gz
+    mv documents_dev documents
+    sudo cp -pr documents $HOME/oq-platform3/openquakeplatform/openquakeplatform
+fi
+
+rm -rf documents.tar.gz | true
+rm -rf documents | true
+
+# dump from ftp
 wget https://ftp.openquake.org/oq-platform3/dump.tar.gz
 tar zxf dump.tar.gz
 sudo cp -pr dump $HOME/oq-platform3/openquakeplatform/data_commands/gs_data
@@ -180,8 +155,8 @@ docker-compose up -d
 sleep 350
 
 # Run commands on django container
-docker-compose exec -T django bash -c "./manage.sh makemigrations -v 3"
-docker-compose exec -T django bash -c "./manage.sh migrate -v 3"
+docker-compose exec -T django bash -c "./manage.sh makemigrations"
+docker-compose exec -T django bash -c "./manage.sh migrate"
 docker-compose exec -T django bash -c "./manage.sh create_gem_user"
 docker-compose exec -T django bash -c "./manage.sh add_user /usr/src/openquakeplatform/data_commands/gs_data/dump/auth_user.json"
 
@@ -190,24 +165,22 @@ wget https://ftp.openquake.org/oq-platform3/sql_new.tar.gz
 tar zxf sql_new.tar.gz
 
 docker cp sql db4openquakeplatform:sql
-# docker-compose exec -T db bash -c "psql -U postgres openquakeplatform_data < /sql/gem_active_faults.sql"
 docker-compose exec -T db bash -c "cat /sql/*.sql | psql -U postgres openquakeplatform"
 rm -rf sql
 rm sql_new.tar.gz
-
-## load data for gec and isc viewer
-#docker-compose exec -T django bash -c "./manage.sh import_isccsv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data.csv /usr/src/openquakeplatform/isc_viewer/dev_data/isc_data_app.csv"
-#docker-compose exec -T django bash -c "./manage.sh import_gheccsv /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_data.csv"
 
 docker-compose exec -T django bash -c "./manage.sh add_data_mapstore_final"
 docker-compose exec -T django bash -c "./manage.sh serialize"
 # docker-compose exec django bash -c "./manage.sh loaddata /usr/src/openquakeplatform/data_commands/gs_data/dump/base_topiccategory.json"
 
-# Create programmatically ISC and GHEC from json
-#docker-compose exec -T django bash -c "./manage.sh create_iscmap /usr/src/openquakeplatform/isc_viewer/dev_data/isc_map_comps.json"
-#docker-compose exec -T django bash -c "./manage.sh create_ghecmap /usr/src/openquakeplatform/ghec_viewer/dev_data/ghec_map_comps.json"
-
+# sync geoserver with geonode
 docker-compose exec -T django bash -c "./manage.sh updatelayers"
+
+# import isc and ghec data, clean obsolete layers
+docker-compose exec -T django bash -c "./manage.sh isc_ghec"
+
+# delete orphan layers and maps
+docker-compose exec -T django bash -c "./manage.sh clean"
 
 echo "Installation complete."
 
@@ -240,7 +213,6 @@ exec_test () {
 run_test () {
     export DISPLAY=:1
     python -m openquake.moon.nose_runner --failurecatcher dev -s -v --with-xunit --xunit-file=xunit-platform-dev.xml $HOME/$GEM_GIT_PACKAGE/test # || true
-    # sleep 40000 || true
 }
 
 #set thumbnails
@@ -259,10 +231,13 @@ do_logs () {
 
 # install environment for testing
 exec_test
+
 # script to generate map thumbnails
 exec_set_map_thumbs
+
 # run tests
 run_test
+
 # docker logs
 do_logs
 

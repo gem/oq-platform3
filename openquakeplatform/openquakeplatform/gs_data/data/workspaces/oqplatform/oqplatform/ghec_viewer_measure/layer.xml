@@ -1,0 +1,16 @@
+<layer>
+  <name>ghec_viewer_measure</name>
+  <id>LayerInfoImpl--56cfc338:16a2aa3373a:-7e36</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--56cfc338:16a2aa3373a:-7fdd</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--76e0ca:1866f9d7453:-7eee</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-02-21 08:23:03.997 UTC</dateCreated>
+</layer>

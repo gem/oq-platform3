@@ -17,14 +17,14 @@ body.home {
     background: none!important;
 }    
 .home .jumbotron {
-    margin: 20px auto 0!important;
-    width: 75%;
-    background: rgba(0, 0, 0, 0.75)!important;
-    padding: 0!important;
-    height: 500px;
-}    
+  margin: 50px auto 0!important;
+  width: 75%;
+  background: rgba(0, 0, 0, 0.75)!important;
+  padding: 50px 0 !important;
+  height: 350px;
+}
 .home .jumbotron p {
-    font-size: 22px;
+    font-size: 21px;
 }
 .jumbotron .gn-container {
     float: left;
@@ -122,6 +122,7 @@ body.home {
 .ac-results {
     background-color: #fff;
     padding: 5px;
+    position:absolute;
 }
 .footer-col-md-6 {
     width: 100%!important;
@@ -192,7 +193,7 @@ footer ul {
 .oq-right-search,
 .oq-right-help,
 .oq-right-share {
-    margin: -13px 25px 0 -42px!important;
+    margin: -13px 25px 0 -45px!important;
 
 }    
 .oq-right-search a,
@@ -243,7 +244,7 @@ footer ul {
     min-height: 42px!important;
 }    
 .navbar-right {
-    margin-right: 40px!important;
+    margin-right: 50px!important;
     height: 42px;
 }    
 .oq-share {
@@ -346,6 +347,15 @@ span.user-contrib {
 .item-details .item-meta {
   margin-top: 1em;
   display: none;
+}
+.page-header {
+  padding-bottom: 0!important;
+  margin: 44px 0 30px!important;
+  border-bottom: 0!important;
+}
+.oq-right-user-separated {
+  color: #fff;
+  margin: 12px 27px 0px -24px !important;
 }
 
 /*Responsive */
